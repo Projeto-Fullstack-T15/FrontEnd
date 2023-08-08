@@ -13,7 +13,7 @@ interface Car {
 }
 
 export const Nav = () => {
-  // const { cars } = useCarContext(); USAR ESSA FORMA QUANDO O CONTEXTO ESTIVER PRONTO
+  // const { cars } = useCarContext(); TODO : USAR ESSA FORMA QUANDO O CONTEXTO ESTIVER PRONTO
 
   const [, setCars] = useState<Car[]>([]);
   const [brands, setBrands] = useState<string[]>([]);
@@ -30,7 +30,8 @@ export const Nav = () => {
       .then((response) => {
         const carData: Car[] = response.data;
         setCars(carData);
-
+        // const uniqueBrands = [...new Set(cars.map((car) => car.Brand))];
+        // setBrands(uniqueBrands); TODO : USAR ESSA FORMA QUANDO O CONTEXTO ESTIVER PRONTO
         const uniqueBrands = [...new Set(carData.map((car) => car.Brand))];
         setBrands(uniqueBrands);
 
