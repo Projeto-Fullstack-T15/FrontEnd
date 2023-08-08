@@ -3,7 +3,7 @@ import ButtonLarge from './Components/Global/ButtonsLarge';
 const App = () => {
   return (
     <>
-      <ButtonLarge $text='Text Button' $type='outline2'></ButtonLarge>
+      <ButtonLarge text='Text Button' $type='sucess'></ButtonLarge>
     </>
   );
 };

@@ -1,8 +1,6 @@
-export interface IButtonLargerProps {
-  $text: string;
-  $type: string;
-}
-
 export interface IStyleProps {
   $type: string;
+}
+export interface IButtonLargerProps extends IStyleProps {
+  text: string;
 }
