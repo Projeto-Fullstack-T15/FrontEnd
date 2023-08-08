@@ -2,13 +2,15 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    // brand
+    --transparente: --transparente;
+    
+    // Brand
     --brand1: #4529E6;
     --brand2: #5126EA;
     --brand3: #B0A6F0;
     --brand4: #EDEAFD;
 
-    // grey scale
+    // Grey scale
     --grey0: #0B0D0D;
     --grey1: #212529;
     --grey2: #495057;
@@ -23,7 +25,7 @@ export const GlobalStyle = createGlobalStyle`
 
     --white: #FFFFFF;
 
-    // feedback
+    // Feedback
     --alert1: #CD2B31;
     --alert2: #FDD8D8;
     --alert3: #FFE5E5;
@@ -32,7 +34,7 @@ export const GlobalStyle = createGlobalStyle`
     --sucess2: #CCEBD7;
     --sucess3: #DDF3E4;
 
-    // color random profile
+    // Color random profile
     --random1: #E34D8C;
     --random2: #C04277;
     --random3: #7D2A4D;
@@ -46,8 +48,19 @@ export const GlobalStyle = createGlobalStyle`
     --random11: #6100FF;
     --random12: #30007D;
 
-    * {
-      margin: 0;
-    }
+    
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: 0 0 0 0;
+    
+    font-family: 'Lexend', sans-serif;
   }
 `;
