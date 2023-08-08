@@ -13,6 +13,8 @@ interface Car {
 }
 
 export const Nav = () => {
+  // const { cars } = useCarContext(); USAR ESSA FORMA QUANDO O CONTEXTO ESTIVER PRONTO
+
   const [, setCars] = useState<Car[]>([]);
   const [brands, setBrands] = useState<string[]>([]);
   const [models, setModels] = useState<string[]>([]);
