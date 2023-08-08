@@ -1,5 +1,11 @@
-const App = () => {
-  return <></>;
-};
+import { RoutesMain } from "./routes";
+import { GlobalStyle } from "./style/globalStyle";
 
-export default App;
+export const App = () => {
+  return (
+    <>
+      <GlobalStyle />
+      <RoutesMain />
+    </>
+  );
+};
