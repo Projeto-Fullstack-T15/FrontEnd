@@ -2,7 +2,7 @@ import { createGlobalStyle } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   :root {
-    --transparente: --transparente
+    --transparente: --transparente;
     
     // Brand
     --brand1: #4529E6;
@@ -48,17 +48,19 @@ export const GlobalStyle = createGlobalStyle`
     --random11: #6100FF;
     --random12: #30007D;
 
-    * {
-      margin: 0;
-      padding: 0;
-      border: 0;
-      box-shadow: 0 0 0 0;
-      
-      font-family: 'Lexend', sans-serif;
-    }
-
-    button {
-      cursor: pointer;
-    }
+    
+  }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    box-shadow: 0 0 0 0;
+    
+    font-family: 'Lexend', sans-serif;
   }
 `;
