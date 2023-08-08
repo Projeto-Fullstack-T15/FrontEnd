@@ -1,11 +1,11 @@
-import ButtonLarge from './Components/Global/ButtonsLarge';
+import { RoutesMain } from "./routes";
+import { GlobalStyle } from "./style/globalStyle";
 
-const App = () => {
+export const App = () => {
   return (
     <>
-      <ButtonLarge $text='Text Button' $type='outline2'></ButtonLarge>
+      <GlobalStyle />
+      <RoutesMain />
     </>
   );
 };
-
-export default App;
