@@ -23,7 +23,7 @@ export const ButtonStyle = styled.button<IStyleProps>`
       })}
   );
 
-  border: solid 1px
+  border: solid 2px
     var(
       ${({ $type }) =>
         buttonsVariables.map((button) => {
@@ -55,6 +55,16 @@ export const ButtonStyle = styled.button<IStyleProps>`
           }
         })}
     );
+
+    border: solid 2px
+      var(
+        ${({ $type }) =>
+          buttonsVariables.map((button) => {
+            if (button.id === $type) {
+              return button.hover.border;
+            }
+          })}
+      );
   }
 
   :focus {
@@ -74,5 +84,15 @@ export const ButtonStyle = styled.button<IStyleProps>`
           }
         })}
     );
+
+    border: solid 2px
+      var(
+        ${({ $type }) =>
+          buttonsVariables.map((button) => {
+            if (button.id === $type) {
+              return button.focus.border;
+            }
+          })}
+      );
   }
 `;
