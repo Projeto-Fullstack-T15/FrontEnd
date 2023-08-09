@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import ButtonComponents from "../global/Buttons";
+import { NavStyle } from "./style";
 
 interface Car {
   ID: number;
@@ -63,50 +65,82 @@ export const Nav = () => {
   }, []);
 
   return (
-    <nav>
-      <div>
-        <h2>Marcas</h2>
-        <ul>
-          {brands.map((brand) => (
-            <li key={brand}>{brand}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h2>Modelo</h2>
-        <ul>
-          {models.map((model) => (
-            <li key={model}>{model}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h2>Cor</h2>
-        <ul>
-          {colors.map((color) => (
-            <li key={color}>{color}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h2>Ano:</h2>
-        <ul>
-          {years.map((year) => (
-            <li key={year}>{year}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h2>Combustível</h2>
-        <ul>
-          {fuelTypes.map((fuelType) => (
-            <li key={fuelType}>{fuelType}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <h2>Km:</h2>
-        <select>
+    <NavStyle>
+      <div className="content">
+        <div>
+          <h2>Marca</h2>
+          <ul>
+            {brands.map((brand) => (
+              <li key={brand}>{brand}</li>
+            ))}
+            <li>General Motors</li>
+            <li>General Motors</li>
+            <li>General Motors</li>
+            <li>General Motors</li>
+            <li>General Motors</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Modelo</h2>
+          <ul>
+            {models.map((model) => (
+              <li key={model}>{model}</li>
+            ))}
+            <li>Civic</li>
+            <li>Civic</li>
+            <li>Civic</li>
+            <li>Civic</li>
+            <li>Civic</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Cor</h2>
+          <ul>
+            {colors.map((color) => (
+              <li key={color}>{color}</li>
+            ))}
+            <li>Preta</li>
+            <li>Preta</li>
+            <li>Preta</li>
+            <li>Preta</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Ano</h2>
+          <ul>
+            {years.map((year) => (
+              <li key={year}>{year}</li>
+            ))}
+            <li>2019</li>
+            <li>2019</li>
+            <li>2019</li>
+            <li>2019</li>
+          </ul>
+        </div>
+        <div>
+          <h2>Combustível</h2>
+          <ul>
+            {fuelTypes.map((fuelType) => (
+              <li key={fuelType}>{fuelType}</li>
+            ))}
+            <li>Elétrico</li>
+            <li>Elétrico</li>
+            <li>Elétrico</li>
+          </ul>
+        </div>
+        <div className="rangeOptions">
+          <h2>Km</h2>
+          <span>
+            <p>0 km</p>
+            <p>650.000km</p>
+          </span>
+          <input
+            type="range"
+            name="km"
+            min="0"
+            max="650000"
+            step="100"
+          />
           {mileageRange.map((mileage) => (
             <option
               key={mileage}
@@ -115,11 +149,20 @@ export const Nav = () => {
               {mileage}
             </option>
           ))}
-        </select>
-      </div>
-      <div>
-        <h2>Preço</h2>
-        <select>
+        </div>
+        <div className="rangeOptions">
+          <h2>Preço</h2>
+          <span>
+            <p>R$ 10 mil</p>
+            <p>R$ 550 mil</p>
+          </span>
+          <input
+            type="range"
+            name="price"
+            min="0"
+            max="550000"
+            step="10000"
+          />
           {priceRange.map((price) => (
             <option
               key={price}
@@ -128,8 +171,13 @@ export const Nav = () => {
               {price}
             </option>
           ))}
-        </select>
+        </div>
+        <div className="navFooterButton">
+          <ButtonComponents
+            {...{ $size: "small", text: "Limpar filtros", $type: "brand1" }}
+          />
+        </div>
       </div>
-    </nav>
+    </NavStyle>
   );
 };
