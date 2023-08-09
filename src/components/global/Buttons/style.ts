@@ -2,9 +2,26 @@ import { styled } from 'styled-components';
 import { IStyleProps } from './interface';
 import { buttonsVariables } from '../../../utils';
 
+// large = width: 146px; height: 48px;
+// small = width: 119px; height: 38px;
+
 export const ButtonStyle = styled.button<IStyleProps>`
-  height: 48px;
-  width: 146px;
+  ${({ $size }) => {
+    if ($size === 'large') {
+      return `
+        height: 48px;
+        width: 146px
+    `;
+    } else if ($size === 'small') {
+      return `
+        height: 38px;
+        width: 119px
+    `;
+    }
+  }};
+
+  /*   height: 48px;
+  width: 146px; */
 
   background-color: var(
     ${({ $type }) =>
@@ -38,7 +55,7 @@ export const ButtonStyle = styled.button<IStyleProps>`
 
   border-radius: 4px;
 
-  :hover {
+  &:hover {
     background-color: var(
       ${({ $type }) =>
         buttonsVariables.map((button) => {
@@ -67,7 +84,7 @@ export const ButtonStyle = styled.button<IStyleProps>`
       );
   }
 
-  :focus {
+  &:focus {
     background-color: var(
       ${({ $type }) =>
         buttonsVariables.map((button) => {
