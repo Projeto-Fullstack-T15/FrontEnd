@@ -48,10 +48,10 @@ export const buttonsVariables = [
     },
   },
   {
-    id: 'outlineLightHover',
-    background: '--gray10',
+    id: 'outlineLight',
+    background: '--tranparente',
     border: '--grey10',
-    color: '--grey1',
+    color: '--grey10',
     hover: { background: '--gray10', border: '--grey10', color: '--grey1' },
     focus: { background: '--gray10', border: '--grey10', color: '--grey1' },
   },
