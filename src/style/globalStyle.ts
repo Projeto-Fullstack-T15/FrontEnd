@@ -48,6 +48,10 @@ export const GlobalStyle = createGlobalStyle`
     --random11: #6100FF;
     --random12: #30007D;
 
+    // Badge Low Price
+    --green1-strong: #439874;
+    --green1-weak: #54A282;
+
     --font-title: 'Lexend', sans-serif;
     --font-body: 'Inter', sans-serif;
   }
