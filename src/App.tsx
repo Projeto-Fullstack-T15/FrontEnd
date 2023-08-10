@@ -6,8 +6,7 @@ export const App = () => {
   return (
     <>
       <GlobalStyle />
-      {/* <RoutesMain /> */}
-      <ProductCard />
+      <RoutesMain />
     </>
   );
 };
