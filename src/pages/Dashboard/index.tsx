@@ -1,4 +1,4 @@
-import ButtonComponents from '../../components/global/Buttons';
+import ButtonComponents from '../../Components/global/Buttons';
 import { Input } from '../../style/input';
 
 export const DashboardPage = () => {

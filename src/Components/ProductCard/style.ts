@@ -9,6 +9,17 @@ export const ProductCardStyle = styled.div`
     gap: 1rem;
     position: relative;
 
+    transition: 1s ease-in-out;
+    &:hover {
+        cursor: pointer;
+
+        >.card_header {
+            border: 3px solid var(--brand1);
+            >img {
+                transform: scale(1.125);
+            }
+        }
+    }
 
     >.card_header {
         box-sizing: border-box;
@@ -25,18 +36,6 @@ export const ProductCardStyle = styled.div`
             max-width: 100%;
             height: 100%;
             margin: auto;
-        }
-        
-
-        &:hover {
-            border: 3px solid var(--brand1);
-            
-            cursor: zoom-in;
-
-            >img {
-                height: 125%;
-                max-width: max-content;
-            }
         }
     }
 
@@ -141,6 +140,7 @@ export const BadgeLowPriceStyle = styled.span`
     background-color: var(--green1-strong);
     border: 1px solid var(--green1-weak);
     border-radius: 0.125rem;
+    z-index: 1;
 `;
 
 export const BadgeActiveInactiveStyle = styled.span`
@@ -151,6 +151,7 @@ export const BadgeActiveInactiveStyle = styled.span`
     font-family: var(--font-body);
     font-size: 0.875rem;
     color: white;
+    z-index: 1;
 
     &.active {
         background-color: var(--brand1);
