@@ -1,5 +1,5 @@
-import { IButtonProps } from './interface';
-import { ButtonStyle } from './style';
+import { IButtonProps } from "./interface";
+import { ButtonStyle } from "./style";
 
 const ButtonComponents = ({ text, $type, $size }: IButtonProps) => {
   return (

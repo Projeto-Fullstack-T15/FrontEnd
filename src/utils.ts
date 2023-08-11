@@ -119,4 +119,4 @@ export const buttonsVariables = [
     hover: { background: '--brand3', border: '--brand3', color: 'brand4' },
     focus: { background: '--brand3', border: '--brand3', color: 'brand4' },
   },
-];
+] as const;
