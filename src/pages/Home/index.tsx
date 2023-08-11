@@ -1,10 +1,10 @@
-import { Header } from "../../Components/Header";
+import { Header } from '../../components/Header';
 //import ButtonComponents from "../../Components/global/Buttons";
 
 export const HomePage: React.FC = () => {
   const isLoggedIn = false;
   const isAdvertiser = false;
-  const username = "Usuário Motors";
+  const username = 'Usuário Motors';
   return (
     <>
       <Header
