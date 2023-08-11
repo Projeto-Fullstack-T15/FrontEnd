@@ -1,5 +1,7 @@
 import { BiSolidUpArrow } from 'react-icons/bi';
 import { FooterStyle } from './style';
+import LogoDark from "./../../../assets/logoDarkMode.svg"
+
 
 const FooterComponent = () => {
   return (
