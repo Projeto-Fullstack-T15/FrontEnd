@@ -67,6 +67,7 @@ export const GlobalStyle = createGlobalStyle`
     box-shadow: 0 0 0 0;
     
     font-family: var(--font-body);
+    
   }
 
   >h1, h2, h3, h4, h5, h6 {
