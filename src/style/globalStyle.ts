@@ -61,6 +61,6 @@ export const GlobalStyle = createGlobalStyle`
     border: 0;
     box-shadow: 0 0 0 0;
     
-    font-family: 'Lexend', sans-serif;
+    font-family: 'Inter', sans-serif;
   }
 `;

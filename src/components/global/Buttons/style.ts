@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
-import { IStyleProps } from './interface';
 import { buttonsVariables } from '../../../utils';
+import { IStyleProps } from './interface';
 
 // large = width: 146px; height: 48px;
 // small = width: 119px; height: 38px;
