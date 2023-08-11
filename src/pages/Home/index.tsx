@@ -1,6 +1,5 @@
-import { Header } from "../../components/Header";
-import FooterComponent from "../../components/global/Footer";
-//import ButtonComponents from "../../Components/global/Buttons";
+import { Header } from "../../Components/Header";
+import FooterComponent from "../../Components/global/Footer";
 
 export const HomePage: React.FC = () => {
   const isLoggedIn = false;
