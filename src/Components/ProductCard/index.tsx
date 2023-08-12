@@ -1,17 +1,33 @@
+import Announcement from "../../interfaces/announcement.interface";
 import { BadgeActiveInactiveStyle, BadgeLowPriceStyle, CardAnnouncerStyle, CardLabelsStyle, ProductCardStyle } from "./style";
 
-export const ProductCard = () => {
-    const title = "Lorem Ipsum is simply dummy text of the printing and typesetting"
-    const imageSrc = "https://omunicipio.com.br/wp-content/uploads/2021/07/que-coisas-procuram-as-mulheres-quando-compram-um-carro-kr1307-foto-2.png"
+interface ProductCardProps {
+    announcement: Announcement;
+    announcerView: boolean;
+}
+
+export const ProductCard = ({ announcement, announcerView }: ProductCardProps) => {
+    const title = "Lorem Ipsum is simply dummy text of the printing and typesetting";
+    const imageSrc = "https://omunicipio.com.br/wp-content/uploads/2021/07/que-coisas-procuram-as-mulheres-quando-compram-um-carro-kr1307-foto-2.png";
+
+    const MOCKED_FIPE_PRICE: number = ((2 * Math.random()) * announcement.price)
+    const isCheaper: boolean = MOCKED_FIPE_PRICE * 0.95 >= announcement.price;
+    const isActive: boolean = Math.random() > 0.5;
 
     return (
         <ProductCardStyle>
-            <BadgeLowPriceStyle>
-                $
-            </BadgeLowPriceStyle>
-            <BadgeActiveInactiveStyle className="active">
-                Ativo
-            </BadgeActiveInactiveStyle>
+            {
+                isCheaper &&
+                <BadgeLowPriceStyle>
+                    $
+                </BadgeLowPriceStyle>
+            }
+            {
+                announcerView &&
+                <BadgeActiveInactiveStyle className={isActive ? "active" : "inactive"}>
+                    {isActive ? "Ativo" : "Inativo"}
+                </BadgeActiveInactiveStyle>
+            }
             <div className="card_header">
                 <img src={imageSrc} />
             </div>
