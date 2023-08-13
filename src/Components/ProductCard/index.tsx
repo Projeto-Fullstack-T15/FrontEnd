@@ -48,6 +48,7 @@ export const ProductCard = ({ announcement, announcerView }: ProductCardProps) =
                     <span className="card_price"> R$ 55.000,00 </span>
                 </CardLabelsStyle>
             </div>
+
         </ProductCardStyle>
     );
 };
