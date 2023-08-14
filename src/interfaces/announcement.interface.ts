@@ -13,8 +13,18 @@ export default interface Announcement {
 }
 
 export interface AnnouncementContextProps {
-    announcements: State<Array<Announcement>>;
     loadAnnouncements: () => void;
     updateAnnouncement: (id: number, data: Partial<Announcement>) => void;
     removeAnnouncement: (id: number) => void;
+    announcements: State<Array<Announcement>>;
+    filteredAnnouncements: State<Array<Announcement>>;
+    brands: State<Array<string>>;
+    models: State<Array<string>>;
+    colors: State<Array<string>>;
+    years: State<Array<number>>;
+    fuelTypes: State<Array<string>>;
+    mileageRangeMin: State<number>;
+    mileageRangeMax: State<number>;
+    priceRangeMin: State<number>;
+    priceRangeMax: State<number>;
 }
