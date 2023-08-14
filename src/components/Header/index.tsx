@@ -1,20 +1,20 @@
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import {
-  Container,
-  HeaderContainer,
-  LogoLink,
-  MenuButton,
-  UserActions,
-  UserMenu,
-  UserName,
-  UserOptions,
-} from './style';
 import Logo from './../../assets/logo.svg';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrFormClose } from 'react-icons/gr';
 import { HeaderProps } from './interface';
 import UserAvatarComponents from './Avatar';
+import {
+  ContainerStyled,
+  HeaderContainerStyled,
+  LogoLinkStyled,
+  MenuButtonStyled,
+  UserActionsStyled,
+  UserMenuStyled,
+  UserNameStyled,
+  UserOptionsStyled,
+} from './style';
 
 const HeaderComponents = ({
   isLoggedIn,
@@ -37,22 +37,22 @@ const HeaderComponents = ({
   };
 
   return (
-    <HeaderContainer isOpen={isMenuOpen}>
-      <Container>
-        <LogoLink to='/'>
+    <HeaderContainerStyled isOpen={isMenuOpen}>
+      <ContainerStyled>
+        <LogoLinkStyled to='/'>
           <img src={Logo} alt='Logo' />
-        </LogoLink>
-        <MenuButton onClick={toggleMenu}>{menuIcon}</MenuButton>
-      </Container>
-      <UserMenu isOpen={isMenuOpen}>
+        </LogoLinkStyled>
+        <MenuButtonStyled onClick={toggleMenu}>{menuIcon}</MenuButtonStyled>
+      </ContainerStyled>
+      <UserMenuStyled isOpen={isMenuOpen}>
         {isLoggedIn ? (
           <>
-            <UserName onClick={toggleUserOptions}>
+            <UserNameStyled onClick={toggleUserOptions}>
               <UserAvatarComponents username={username || ''} />
               {username}
-            </UserName>
+            </UserNameStyled>
             {showUserOptions && (
-              <UserOptions>
+              <UserOptionsStyled>
                 <li>
                   <Link to=''>Editar Perfil</Link>
                 </li>
@@ -67,17 +67,17 @@ const HeaderComponents = ({
                 <li>
                   <Link to=''>Sair</Link>
                 </li>
-              </UserOptions>
+              </UserOptionsStyled>
             )}
           </>
         ) : (
-          <UserActions>
+          <UserActionsStyled>
             <Link to='/'>Fazer Login</Link>
             <Link to='/register'>Cadastrar</Link>
-          </UserActions>
+          </UserActionsStyled>
         )}
-      </UserMenu>
-    </HeaderContainer>
+      </UserMenuStyled>
+    </HeaderContainerStyled>
   );
 };
 

@@ -3,3 +3,10 @@ export interface HeaderProps {
   isAdvertiser: boolean;
   username?: string;
 }
+
+export interface UserMenuProps {
+  isOpen: boolean;
+}
+export interface HeaderContainerProps {
+  isOpen: boolean;
+}
