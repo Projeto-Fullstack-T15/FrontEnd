@@ -1,8 +1,8 @@
-import { createContext, useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
-import { toast } from "react-toastify";
-import { Api } from "../../services/api";
-import { IAnnounceContext, IProviderProps, IRegisterAnnounce } from "./types";
+import { createContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { Api } from '../../services/api';
+import { IAnnounceContext, IProviderProps, IRegisterAnnounce } from './types';
 
 export const UserContext = createContext({} as IAnnounceContext);
 
@@ -11,19 +11,19 @@ export const UserContextProvider = ({ children }: IProviderProps) => {
   const navigate = useNavigate();
 
   async function getAnnounce() {
-    const token = localStorage.getItem("@TOKEN");
+    const token = localStorage.getItem('@TOKEN');
     if (token) {
       const tokenUser = JSON.parse(token);
       try {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars
-        const response = await Api.get("/", {
+        const response = await Api.get('/', {
           headers: {
             Authorization: `Bearer ${tokenUser}`,
           },
         });
-        navigate("/");
+        navigate('/');
       } catch (error) {
-        navigate("/");
+        navigate('/');
       }
     }
   }
@@ -36,17 +36,17 @@ export const UserContextProvider = ({ children }: IProviderProps) => {
   async function CreateAnnounce(formData: IRegisterAnnounce) {
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const response = await Api.post("/", formData);
-      toast.success("Anúncio criado com sucesso");
-      navigate("/");
+      const response = await Api.post('/', formData);
+      toast.success('Anúncio criado com sucesso');
+      navigate('/');
     } catch (errors) {
-      toast.error("Ops, algo deu errado");
+      toast.error('Ops, algo deu errado');
     }
   }
 
   async function DeleteAnnounce(id) {
     try {
-      const tokenUser = JSON.parse(localStorage.getItem("@TOKEN"));
+      const tokenUser = JSON.parse(localStorage.getItem('@TOKEN'));
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
       const response = await Api.delete(`//${id}`, {
         headers: {
@@ -56,14 +56,14 @@ export const UserContextProvider = ({ children }: IProviderProps) => {
 
       const Anno = announces.filter((announ) => announ.id !== id);
       setAnnounce(Anno);
-      toast.success("Excluída com sucesso");
+      toast.success('Excluída com sucesso');
     } catch (error) {
       console.log(error);
     }
   }
 
   async function UpdateAnnounce(data) {
-    const tokenUser = JSON.parse(localStorage.getItem("@TOKEN"));
+    const tokenUser = JSON.parse(localStorage.getItem('@TOKEN'));
     const id = data.id;
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -80,7 +80,7 @@ export const UserContextProvider = ({ children }: IProviderProps) => {
         }
       });
       setAnnounce(newtecn);
-      toast.success("Atualizado com sucesso");
+      toast.success('Atualizado com sucesso');
     } catch (error) {
       console.log(error);
     }
