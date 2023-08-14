@@ -62,5 +62,11 @@ export const GlobalStyle = createGlobalStyle`
     box-shadow: 0 0 0 0;
     
     font-family: 'Inter', sans-serif;
+
+    body {
+      height: 100vh;
+
+      overflow-x: hidden;
+    }
   }
 `;

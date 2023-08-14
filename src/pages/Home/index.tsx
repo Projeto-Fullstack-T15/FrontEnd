@@ -1,8 +1,8 @@
-
 //import ButtonComponents from "../../Components/global/Buttons";
-import { Header } from "../../Components/Header";
-import FooterComponent from "../../Components/global/Footer";
 
+import HeaderComponents from '../../components/Header';
+import NavComponents from '../../components/Nav';
+import FooterComponent from '../../components/global/Footer';
 
 export const HomePage: React.FC = () => {
   const isLoggedIn = false;
@@ -10,12 +10,12 @@ export const HomePage: React.FC = () => {
   const username = 'Usuário Motors';
   return (
     <>
-      <Header
+      <HeaderComponents
         isLoggedIn={isLoggedIn}
         isAdvertiser={isAdvertiser}
         username={username}
       />
-      {/* <ButtonComponents text="Clique Aqui" $type="brand1" $size="large" /> */}
+      <NavComponents />
       <FooterComponent />
     </>
   );
