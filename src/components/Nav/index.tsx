@@ -21,11 +21,11 @@ export const Nav = () => {
 	useEffect(() => {
 		context.filteredAnnouncements.set(context.announcements.value.filter((car) => {
 			return (
-				(filterBrands.value.length ? new FilterValue(filterBrands.value, car.brand, { exact: true }) : true) &&
-				(filterModels.value.length ? new FilterValue(filterModels.value, car.model, { exact: true }) : true) &&
-				(filterColors.value.length ? new FilterValue(filterColors.value, car.color, { exact: true }) : true) &&
-				(filterYears.value.length ? new FilterValue(filterYears.value, car.year, { exact: true }) : true) &&
-				(filterFuelTypes.value.length ? new FilterValue(filterFuelTypes.value, car.fuelType, { exact: true }) : true) &&
+				(filterBrands.value.length ? new FilterValue(filterBrands.value, car.brand, { exact: true }).validate() : true) &&
+				(filterModels.value.length ? new FilterValue(filterModels.value, car.model, { exact: true }).validate() : true) &&
+				(filterColors.value.length ? new FilterValue(filterColors.value, car.color, { exact: true }).validate() : true) &&
+				(filterYears.value.length ? new FilterValue(filterYears.value, car.year, { exact: true }).validate() : true) &&
+				(filterFuelTypes.value.length ? new FilterValue(filterFuelTypes.value, car.fuelType, { exact: true }).validate() : true) &&
 				(car.mileage >= filterMileageMin.value && car.mileage <= filterMileageMax.value) &&
 				(car.price >= filterPriceMin.value && car.mileage <= filterPriceMax.value)
 			)
