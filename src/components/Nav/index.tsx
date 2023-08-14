@@ -7,7 +7,6 @@ import { FilterValue } from "../../hooks/filter.hook";
 
 export const Nav = () => {
 	const context = useContext(AnnouncementContext);
-
 	const filterBrands = new State<Array<string>>([]);
 	const filterModels = new State<Array<string>>([]);
 	const filterColors = new State<Array<string>>([]);
@@ -126,3 +125,5 @@ export const Nav = () => {
 		</NavStyle>
 	);
 };
+
+export default NavComponents;

@@ -8,21 +8,13 @@ export const FooterStyle = styled.footer`
   color: var(--white);
 
   height: 140px;
-  width: 100vw;
+  width: 90vw;
 
   display: flex;
   justify-content: space-between;
   align-items: center;
 
   padding: 0 5%;
-
-  h3 {
-    font-size: 24px;
-  }
-
-  span {
-    font-size: 16px;
-  }
 
   p {
     font-size: 14px;
@@ -37,6 +29,8 @@ export const FooterStyle = styled.footer`
     border-radius: 4px;
 
     font-size: 14px;
+
+    cursor: pointer;
   }
 
   @media (max-width: 425px) {

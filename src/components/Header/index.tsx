@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Container,
   HeaderContainer,
@@ -9,23 +9,18 @@ import {
   UserMenu,
   UserName,
   UserOptions,
-} from "./style";
-import Logo from "./../../assets/logo.svg";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { GrFormClose } from "react-icons/gr";
-import { UserAvatar } from "./Avatar";
+} from './style';
+import Logo from './../../assets/logo.svg';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { GrFormClose } from 'react-icons/gr';
+import { HeaderProps } from './interface';
+import UserAvatarComponents from './Avatar';
 
-interface HeaderProps {
-  isLoggedIn: boolean;
-  isAdvertiser: boolean;
-  username?: string;
-}
-
-export const Header: React.FC<HeaderProps> = ({
+const HeaderComponents = ({
   isLoggedIn,
   isAdvertiser,
   username,
-}) => {
+}: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [menuIcon, setMenuIcon] = useState(<GiHamburgerMenu size={20} />);
   const [showUserOptions, setShowUserOptions] = useState(false);
@@ -44,8 +39,8 @@ export const Header: React.FC<HeaderProps> = ({
   return (
     <HeaderContainer isOpen={isMenuOpen}>
       <Container>
-        <LogoLink to="/">
-          <img src={Logo} alt="Logo" />
+        <LogoLink to='/'>
+          <img src={Logo} alt='Logo' />
         </LogoLink>
         <MenuButton onClick={toggleMenu}>{menuIcon}</MenuButton>
       </Container>
@@ -53,35 +48,37 @@ export const Header: React.FC<HeaderProps> = ({
         {isLoggedIn ? (
           <>
             <UserName onClick={toggleUserOptions}>
-              <UserAvatar username={username || ""} />
+              <UserAvatarComponents username={username || ''} />
               {username}
             </UserName>
             {showUserOptions && (
               <UserOptions>
                 <li>
-                  <Link to="">Editar Perfil</Link>
+                  <Link to=''>Editar Perfil</Link>
                 </li>
                 <li>
-                  <Link to="">Editar Endereço</Link>
+                  <Link to=''>Editar Endereço</Link>
                 </li>
                 {isAdvertiser && (
                   <li>
-                    <Link to="">Editar Anúncio</Link>
+                    <Link to=''>Editar Anúncio</Link>
                   </li>
                 )}
                 <li>
-                  <Link to="">Sair</Link>
+                  <Link to=''>Sair</Link>
                 </li>
               </UserOptions>
             )}
           </>
         ) : (
           <UserActions>
-            <Link to="/">Fazer Login</Link>
-            <Link to="/register">Cadastrar</Link>
+            <Link to='/'>Fazer Login</Link>
+            <Link to='/register'>Cadastrar</Link>
           </UserActions>
         )}
       </UserMenu>
     </HeaderContainer>
   );
 };
+
+export default HeaderComponents;

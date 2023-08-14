@@ -66,11 +66,21 @@ export const GlobalStyle = createGlobalStyle`
     border: 0;
     box-shadow: 0 0 0 0;
     
+
+    // font-family: 'Inter', sans-serif;
+
+    body {
+      height: 100vh;
+
+      overflow-x: hidden;
+    }
+
     font-family: var(--font-body);
     
   }
 
-  >h1, h2, h3, h4, h5, h6 {
+    h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-title);
+
   }
 `;
