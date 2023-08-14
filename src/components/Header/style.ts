@@ -1,11 +1,8 @@
-import { Link } from "react-router-dom";
-import { styled } from "styled-components";
+import { Link } from 'react-router-dom';
+import { styled } from 'styled-components';
+import { HeaderContainerProps, UserMenuProps } from './interface';
 
-interface HeaderContainerProps {
-  isOpen: boolean;
-}
-
-const HeaderContainer = styled.header<HeaderContainerProps>`
+export const HeaderContainerStyled = styled.header<HeaderContainerProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -17,13 +14,13 @@ const HeaderContainer = styled.header<HeaderContainerProps>`
   @media screen and (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
-    border-bottom: ${(props) => (props.isOpen ? "none" : "2px solid #ddd")};
+    border-bottom: ${(props) => (props.isOpen ? 'none' : '2px solid #ddd')};
     box-shadow: ${(props) =>
-      props.isOpen ? "none" : "0px 2px 4px rgba(0, 0, 0, 0.1)"};
+      props.isOpen ? 'none' : '0px 2px 4px rgba(0, 0, 0, 0.1)'};
   }
 `;
 
-const Container = styled.div`
+export const ContainerStyled = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -31,14 +28,14 @@ const Container = styled.div`
   width: 100%;
 `;
 
-const LogoLink = styled(Link)`
+export const LogoLinkStyled = styled(Link)`
   align-items: center;
   font-size: 24px;
   color: white;
   text-decoration: none;
 `;
 
-const MenuButton = styled.button`
+export const MenuButtonStyled = styled.button`
   font-size: 24px;
   background: none;
   border: none;
@@ -49,12 +46,8 @@ const MenuButton = styled.button`
   }
 `;
 
-interface UserMenuProps {
-  isOpen: boolean;
-}
-
-const UserMenu = styled.div<UserMenuProps>`
-  display: ${(props: UserMenuProps) => (props.isOpen ? "flex" : "none")};
+export const UserMenuStyled = styled.div<UserMenuProps>`
+  display: ${(props: UserMenuProps) => (props.isOpen ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
   width: 100%;
@@ -66,7 +59,7 @@ const UserMenu = styled.div<UserMenuProps>`
   }
 `;
 
-const UserName = styled.span`
+export const UserNameStyled = styled.span`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,7 +68,7 @@ const UserName = styled.span`
   cursor: pointer;
 `;
 
-const UserOptions = styled.ul`
+export const UserOptionsStyled = styled.ul`
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -97,7 +90,7 @@ const UserOptions = styled.ul`
   }
 `;
 
-const UserActions = styled.div`
+export const UserActionsStyled = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -123,14 +116,3 @@ const UserActions = styled.div`
     }
   }
 `;
-
-export {
-  HeaderContainer,
-  Container,
-  LogoLink,
-  MenuButton,
-  UserMenu,
-  UserName,
-  UserOptions,
-  UserActions,
-};
