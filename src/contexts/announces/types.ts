@@ -14,7 +14,7 @@ export interface IRegisterForm {
   confirmpassword: string;
 }
 
-export type IRegisterAnnounce = Omit<IRegisterForm, "confirmpassword">;
+export type IRegisterAnnounce = Omit<IRegisterForm, 'confirmpassword'>;
 
 export interface IAnnounceContext {
   CreateAnnounce: (formData: IRegisterForm) => Promise<void>;

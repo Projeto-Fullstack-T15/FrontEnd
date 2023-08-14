@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const NavStyle = styled.nav`
   .content {
@@ -23,13 +23,13 @@ export const NavStyle = styled.nav`
         font-weight: 600;
         font-size: 10px;
       }
-      input[type="range"] {
+      input[type='range'] {
         -webkit-appearance: none;
         height: 1px;
         background: #9747ff;
         color: #9747ff;
       }
-      input[type="range"]::-webkit-slider-thumb {
+      input[type='range']::-webkit-slider-thumb {
         -webkit-appearance: none;
         width: 10px;
         height: 10px;
