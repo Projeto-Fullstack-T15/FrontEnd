@@ -1,23 +1,13 @@
-import axios from "axios";
-import { useEffect, useState } from "react";
-import ButtonComponents from "../global/Buttons";
-import { NavStyle } from "./style";
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import ButtonComponents from '../global/Buttons';
+import { NavStyle } from './style';
+import { ICar } from './interface';
 
-interface Car {
-  ID: number;
-  Brand: string;
-  Model: string;
-  Color: string;
-  Year: number;
-  FuelType: string;
-  Mileage: number;
-  Price: number;
-}
-
-export const Nav = () => {
+const NavComponents = () => {
   // const { cars } = useCarContext(); TODO : USAR ESSA FORMA QUANDO O CONTEXTO ESTIVER PRONTO
 
-  const [, setCars] = useState<Car[]>([]);
+  const [, setCars] = useState<ICar[]>([]);
   const [brands, setBrands] = useState<string[]>([]);
   const [models, setModels] = useState<string[]>([]);
   const [colors, setColors] = useState<string[]>([]);
@@ -28,9 +18,9 @@ export const Nav = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/cars")
+      .get('http://localhost:3000/cars')
       .then((response) => {
-        const carData: Car[] = response.data;
+        const carData: ICar[] = response.data;
         setCars(carData);
         // const uniqueBrands = [...new Set(cars.map((car) => car.Brand))];
         // setBrands(uniqueBrands); TODO : USAR ESSA FORMA QUANDO O CONTEXTO ESTIVER PRONTO
@@ -60,13 +50,13 @@ export const Nav = () => {
         setPriceRange([minPrice, maxPrice]);
       })
       .catch((error) => {
-        console.error("Erro ao buscar os carros:", error);
+        console.error('Erro ao buscar os carros:', error);
       });
   }, []);
 
   return (
     <NavStyle>
-      <div className="content">
+      <div className='content'>
         <div>
           <h2>Marca</h2>
           <ul>
@@ -128,56 +118,40 @@ export const Nav = () => {
             <li>Elétrico</li>
           </ul>
         </div>
-        <div className="rangeOptions">
+        <div className='rangeOptions'>
           <h2>Km</h2>
           <span>
             <p>0 km</p>
             <p>650.000km</p>
           </span>
-          <input
-            type="range"
-            name="km"
-            min="0"
-            max="650000"
-            step="100"
-          />
+          <input type='range' name='km' min='0' max='650000' step='100' />
           {mileageRange.map((mileage) => (
-            <option
-              key={mileage}
-              value={mileage}
-            >
+            <option key={mileage} value={mileage}>
               {mileage}
             </option>
           ))}
         </div>
-        <div className="rangeOptions">
+        <div className='rangeOptions'>
           <h2>Preço</h2>
           <span>
             <p>R$ 10 mil</p>
             <p>R$ 550 mil</p>
           </span>
-          <input
-            type="range"
-            name="price"
-            min="0"
-            max="550000"
-            step="10000"
-          />
+          <input type='range' name='price' min='0' max='550000' step='10000' />
           {priceRange.map((price) => (
-            <option
-              key={price}
-              value={price}
-            >
+            <option key={price} value={price}>
               {price}
             </option>
           ))}
         </div>
-        <div className="navFooterButton">
+        <div className='navFooterButton'>
           <ButtonComponents
-            {...{ $size: "small", text: "Limpar filtros", $type: "brand1" }}
+            {...{ $size: 'small', text: 'Limpar filtros', $type: 'brand1' }}
           />
         </div>
       </div>
     </NavStyle>
   );
 };
+
+export default NavComponents;
