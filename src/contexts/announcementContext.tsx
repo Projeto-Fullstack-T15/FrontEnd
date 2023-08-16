@@ -13,17 +13,17 @@ export const AnnouncementContext = createContext(
 export const AnnouncementProvider = ({
   children,
 }: ProviderProps<AnnouncementContextProps>) => {
-  const announcements = new State<Array<Announcement>>([]);
-  const filteredAnnouncements = new State<Array<Announcement>>([]);
-  const brands = new State<Array<string>>([]);
-  const models = new State<Array<string>>([]);
-  const colors = new State<Array<string>>([]);
-  const years = new State<Array<number>>([]);
-  const fuelTypes = new State<Array<string>>([]);
-  const mileageRangeMin = new State<number>(0);
-  const mileageRangeMax = new State<number>(0);
-  const priceRangeMin = new State<number>(0);
-  const priceRangeMax = new State<number>(0);
+  const announcements = State<Array<Announcement>>([]);
+  const filteredAnnouncements = State<Array<Announcement>>([]);
+  const brands = State<Array<string>>([]);
+  const models = State<Array<string>>([]);
+  const colors = State<Array<string>>([]);
+  const years = State<Array<number>>([]);
+  const fuelTypes = State<Array<string>>([]);
+  const mileageRangeMin = State<number>(0);
+  const mileageRangeMax = State<number>(0);
+  const priceRangeMin = State<number>(0);
+  const priceRangeMax = State<number>(0);
 
   const loadAnnouncements = () => {
     const listRoute = `/announcements`;
