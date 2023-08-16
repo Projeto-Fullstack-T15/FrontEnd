@@ -1,10 +1,10 @@
 import { ProviderProps, createContext, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { api } from '../../services/api';
+import { State } from '../../hooks/state.hook';
 import Announcement, {
   AnnouncementContextProps,
-} from '../interfaces/announcement.interface';
-import { State } from '../hooks/state.hook';
-import { Api } from '../services/api';
-import { toast } from 'react-toastify';
+} from '../../interfaces/announcement.interface';
 
 export const AnnouncementContext = createContext(
   {} as AnnouncementContextProps
@@ -13,21 +13,22 @@ export const AnnouncementContext = createContext(
 export const AnnouncementProvider = ({
   children,
 }: ProviderProps<AnnouncementContextProps>) => {
-  const announcements = new State<Array<Announcement>>([]);
-  const filteredAnnouncements = new State<Array<Announcement>>([]);
-  const brands = new State<Array<string>>([]);
-  const models = new State<Array<string>>([]);
-  const colors = new State<Array<string>>([]);
-  const years = new State<Array<number>>([]);
-  const fuelTypes = new State<Array<string>>([]);
-  const mileageRangeMin = new State<number>(0);
-  const mileageRangeMax = new State<number>(0);
-  const priceRangeMin = new State<number>(0);
-  const priceRangeMax = new State<number>(0);
+  const announcements = State<Array<Announcement>>([]);
+  const filteredAnnouncements = State<Array<Announcement>>([]);
+  const brands = State<Array<string>>([]);
+  const models = State<Array<string>>([]);
+  const colors = State<Array<string>>([]);
+  const years = State<Array<number>>([]);
+  const fuelTypes = State<Array<string>>([]);
+  const mileageRangeMin = State<number>(0);
+  const mileageRangeMax = State<number>(0);
+  const priceRangeMin = State<number>(0);
+  const priceRangeMax = State<number>(0);
 
   function loadAnnouncements() {
     const listRoute = `/announcements`;
-    Api.get<Array<Announcement>>(listRoute)
+    api
+      .get<Array<Announcement>>(listRoute)
       .then((res) => announcements.set(res.data))
       .catch(() => toast.error('Falha ao carregar anúncios...'));
   }
@@ -35,7 +36,8 @@ export const AnnouncementProvider = ({
   function updateAnnouncement(id: number, data: Partial<Announcement>): void {
     const updateRoute = `/announcements/${id}`;
 
-    Api.patch(updateRoute, data)
+    api
+      .patch(updateRoute, data)
       .then(() => loadAnnouncements())
       .catch(() => toast.error('Falha ao atualizar anúncio...'));
   }
@@ -43,7 +45,8 @@ export const AnnouncementProvider = ({
   function removeAnnouncement(id: number): void {
     const deleteRoute = `/announcements/${id}`;
 
-    Api.delete(deleteRoute)
+    api
+      .delete(deleteRoute)
       .then(() => loadAnnouncements())
       .catch(() => toast.error('Falha ao remover anúncio...'));
   }
