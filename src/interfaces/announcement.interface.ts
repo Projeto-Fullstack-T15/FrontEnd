@@ -28,3 +28,7 @@ export interface AnnouncementContextProps {
   priceRangeMin: State<number>;
   priceRangeMax: State<number>;
 }
+
+export interface AnnouncementProviderProps {
+  children: React.ReactNode;
+}

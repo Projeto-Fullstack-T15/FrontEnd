@@ -63,6 +63,8 @@ const NavComponents = () => {
     filterMileageMax.value,
     filterPriceMin.value,
     filterPriceMax.value,
+    context.announcements.value,
+    context.filteredAnnouncements.value,
   ]);
 
   return (

@@ -3,7 +3,7 @@ import Announcement, {
   AnnouncementContextProps,
 } from '../interfaces/announcement.interface';
 import { State } from '../hooks/state.hook';
-import { Api } from '../services/api';
+import { api } from '../services/api';
 import { toast } from 'react-toastify';
 
 export const AnnouncementContext = createContext(
@@ -25,28 +25,34 @@ export const AnnouncementProvider = ({
   const priceRangeMin = new State<number>(0);
   const priceRangeMax = new State<number>(0);
 
-  function loadAnnouncements() {
+  const loadAnnouncements = () => {
     const listRoute = `/announcements`;
-    Api.get<Array<Announcement>>(listRoute)
+    api
+      .get<Array<Announcement>>(listRoute)
       .then((res) => announcements.set(res.data))
       .catch(() => toast.error('Falha ao carregar anúncios...'));
-  }
+  };
 
-  function updateAnnouncement(id: number, data: Partial<Announcement>): void {
+  const updateAnnouncement = (
+    id: number,
+    data: Partial<Announcement>
+  ): void => {
     const updateRoute = `/announcements/${id}`;
 
-    Api.patch(updateRoute, data)
+    api
+      .patch(updateRoute, data)
       .then(() => loadAnnouncements())
       .catch(() => toast.error('Falha ao atualizar anúncio...'));
-  }
+  };
 
-  function removeAnnouncement(id: number): void {
+  const removeAnnouncement = (id: number): void => {
     const deleteRoute = `/announcements/${id}`;
 
-    Api.delete(deleteRoute)
+    api
+      .delete(deleteRoute)
       .then(() => loadAnnouncements())
       .catch(() => toast.error('Falha ao remover anúncio...'));
-  }
+  };
 
   useEffect(() => {
     loadAnnouncements();
