@@ -7,15 +7,15 @@ import { FilterValue } from "../../hooks/filter.hook";
 
 const NavComponents = () => {
   const context = useContext(AnnouncementContext);
-  const filterBrands = new State<Array<string>>([]);
-  const filterModels = new State<Array<string>>([]);
-  const filterColors = new State<Array<string>>([]);
-  const filterYears = new State<Array<number>>([]);
-  const filterFuelTypes = new State<Array<string>>([]);
-  const filterMileageMin = new State<number>(context.mileageRangeMin.value);
-  const filterMileageMax = new State<number>(context.mileageRangeMax.value);
-  const filterPriceMin = new State<number>(context.priceRangeMin.value);
-  const filterPriceMax = new State<number>(context.priceRangeMax.value);
+  const filterBrands = State<Array<string>>([]);
+  const filterModels = State<Array<string>>([]);
+  const filterColors = State<Array<string>>([]);
+  const filterYears = State<Array<number>>([]);
+  const filterFuelTypes = State<Array<string>>([]);
+  const filterMileageMin = State<number>(context.mileageRangeMin.value);
+  const filterMileageMax = State<number>(context.mileageRangeMax.value);
+  const filterPriceMin = State<number>(context.priceRangeMin.value);
+  const filterPriceMax = State<number>(context.priceRangeMax.value);
 
   useEffect(() => {
     context.filteredAnnouncements.set(
@@ -63,6 +63,8 @@ const NavComponents = () => {
     filterMileageMax.value,
     filterPriceMin.value,
     filterPriceMax.value,
+    context.announcements.value,
+    context.filteredAnnouncements.value,
   ]);
 
   return (
