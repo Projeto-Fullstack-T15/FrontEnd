@@ -1,4 +1,4 @@
-import Announcement from '../../interfaces/announcement.interface';
+import Announcement from '../../contexts/announces/interface';
 import {
   BadgeActiveInactiveStyle,
   BadgeLowPriceStyle,

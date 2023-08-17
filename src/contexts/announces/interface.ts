@@ -1,4 +1,4 @@
-import { StateHook } from '../hooks/state.hook';
+import { StateHook } from '../../hooks/state.hook';
 
 export default interface Announcement {
   readonly id: number;
