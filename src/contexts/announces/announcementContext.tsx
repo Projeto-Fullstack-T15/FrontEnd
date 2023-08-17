@@ -2,9 +2,7 @@ import { ProviderProps, createContext, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { api } from '../../services/api';
 import { State } from '../../hooks/state.hook';
-import Announcement, {
-  AnnouncementContextProps,
-} from '../../interfaces/announcement.interface';
+import Announcement, { AnnouncementContextProps } from './interface';
 
 export const AnnouncementContext = createContext(
   {} as AnnouncementContextProps
