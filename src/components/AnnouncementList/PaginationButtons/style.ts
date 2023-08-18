@@ -12,8 +12,13 @@ export const PaginationStyled = styled.div`
     color: var(--grey3);
   }
 
-  a {
-    text-decoration: none;
+  .paginationButton {
+    background: none;
+    color: initial;
+    border: initial;
+    padding: initial;
+    font-size: initial;
     color: var(--brand2);
+    font-weight: 600;
   }
 `;
