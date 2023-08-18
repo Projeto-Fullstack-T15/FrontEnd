@@ -1,4 +1,4 @@
-import { State } from '../hooks/state.hook';
+import { StateHook } from '../hooks/state.hook';
 
 export default interface Announcement {
   readonly id: number;
@@ -16,15 +16,19 @@ export interface AnnouncementContextProps {
   loadAnnouncements: () => void;
   updateAnnouncement: (id: number, data: Partial<Announcement>) => void;
   removeAnnouncement: (id: number) => void;
-  announcements: State<Array<Announcement>>;
-  filteredAnnouncements: State<Array<Announcement>>;
-  brands: State<Array<string>>;
-  models: State<Array<string>>;
-  colors: State<Array<string>>;
-  years: State<Array<number>>;
-  fuelTypes: State<Array<string>>;
-  mileageRangeMin: State<number>;
-  mileageRangeMax: State<number>;
-  priceRangeMin: State<number>;
-  priceRangeMax: State<number>;
+  announcements: StateHook<Array<Announcement>>;
+  filteredAnnouncements: StateHook<Array<Announcement>>;
+  brands: StateHook<Array<string>>;
+  models: StateHook<Array<string>>;
+  colors: StateHook<Array<string>>;
+  years: StateHook<Array<number>>;
+  fuelTypes: StateHook<Array<string>>;
+  mileageRangeMin: StateHook<number>;
+  mileageRangeMax: StateHook<number>;
+  priceRangeMin: StateHook<number>;
+  priceRangeMax: StateHook<number>;
+}
+
+export interface AnnouncementProviderProps {
+  children: React.ReactNode;
 }
