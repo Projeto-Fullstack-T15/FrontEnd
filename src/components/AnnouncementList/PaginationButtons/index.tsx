@@ -1,3 +1,6 @@
+import { Link } from "react-router-dom";
+import { PaginationStyled } from "./style";
+
 interface PaginationButtonsProps {
   currentPage: number;
   totalPages: number;
@@ -12,11 +15,15 @@ const PaginationButtons = ({
   onPrevious,
 }: PaginationButtonsProps) => {
   return (
-    <div>
-      {currentPage > 1 && <button onClick={onPrevious}>Anterior</button>}
-      {` ${currentPage} de ${totalPages}`}
-      {currentPage < totalPages && <button onClick={onNext}>Seguinte</button>}
-    </div>
+    <PaginationStyled>
+      {currentPage > 1 && <Link onClick={onPrevious}>&lt; Anterior</Link>}
+      <span>{`${currentPage}`}</span>
+      <span className="totalPages">de </span>{" "}
+      <span className="totalPages">{` ${totalPages}`} </span>
+      {currentPage < totalPages && (
+        <Link onClick={onNext}> Seguinte &gt; </Link>
+      )}
+    </PaginationStyled>
   );
 };
 
