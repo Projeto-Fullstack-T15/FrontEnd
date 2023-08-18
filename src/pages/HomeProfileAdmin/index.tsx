@@ -2,18 +2,18 @@ import HeaderComponents from "../../components/Header";
 import FooterComponent from "../../components/global/Footer";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
-import Announcement from "../../interfaces/announcement.interface";
+/* import Announcement from "../../interfaces/announcement.interface"; */
 
 export const ProfileAdminPage: React.FC = () => {
   const isLoggedIn = false;
   const isAdvertiser = false;
   const username = "Usuário Motors";
 
-  const [announces, setAnnounces] = useState<Announcement[]>([]);
+  const [announces, setAnnounces] = useState([]);
 
   useEffect(() => {
     (async () => {
-      const response = await api.get<Announcement[]>("/annouces");
+      const response = await api.get("/annouces");
 
       setAnnounces(response.data);
     })();

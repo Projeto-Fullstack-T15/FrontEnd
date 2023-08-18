@@ -1,9 +1,17 @@
+<<<<<<< HEAD
 import { Route, Routes } from "react-router-dom";
 import { HomePage } from "../pages/Home";
 import LoginPage from "../pages/Login";
 import RegisterPage from "../pages/Register";
 import { AnnouncementProvider } from "../contexts/announces/announcementContext";
 import { ProfileAdminPage } from "../pages/HomeProfileAdmin";
+=======
+import { Route, Routes } from 'react-router-dom';
+import { HomePage } from '../pages/Home';
+import LoginPage from '../pages/Login';
+import RegisterPage from '../pages/Register';
+import { AnnouncementProvider } from '../contexts/announces/announcementContext';
+>>>>>>> ae168fb1759e256eedd635d88529baeaf247b9c5
 
 export const RoutesMain = () => {
   return (

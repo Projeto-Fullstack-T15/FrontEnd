@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import { ProviderProps, createContext, useEffect } from "react";
 import { toast } from "react-toastify";
 import { State } from "../../hooks/state.hook";
@@ -5,6 +6,13 @@ import Announcement, {
   AnnouncementContextProps,
 } from "../../interfaces/announcement.interface";
 import { api } from "../../services/api";
+=======
+import { ProviderProps, createContext, useEffect } from 'react';
+import { toast } from 'react-toastify';
+import { api } from '../../services/api';
+import { State } from '../../hooks/state.hook';
+import Announcement, { AnnouncementContextProps } from './interface';
+>>>>>>> ae168fb1759e256eedd635d88529baeaf247b9c5
 
 export const AnnouncementContext = createContext(
   {} as AnnouncementContextProps
