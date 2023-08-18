@@ -1,7 +1,8 @@
 import { useState } from "react";
-import Announcement from "../../interfaces/announcement.interface";
+import Announcement from "../../contexts/announces/interface";
 import { ProductCard } from "../ProductCard";
 import PaginationButtons from "./PaginationButtons";
+import { AnnouncementsListStyled } from "./style";
 
 interface ProductListProps {
   products: Array<Announcement>;
@@ -31,23 +32,27 @@ export const AnnouncementList = ({
   };
 
   return (
-    <div>
-      {currentItems.map((product, index) => (
-        <ProductCard
-          key={index}
-          announcement={product}
-          announcerView={true}
-        />
-      ))}
-      {totalPages > 1 && (
-        <PaginationButtons
-          currentPage={currentPage}
-          totalPages={totalPages}
-          onNext={handleNextPage}
-          onPrevious={handlePreviousPage}
-        />
-      )}
-    </div>
+    <AnnouncementsListStyled>
+      <div className="content">
+        {currentItems.map((product, index) => (
+          <ProductCard
+            key={index}
+            announcement={product}
+            announcerView={true}
+          />
+        ))}
+      </div>
+      <div className="pagination">
+        {totalPages > 1 && (
+          <PaginationButtons
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onNext={handleNextPage}
+            onPrevious={handlePreviousPage}
+          />
+        )}
+      </div>
+    </AnnouncementsListStyled>
   );
 };
 
