@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const NavStyle = styled.nav`
+  margin-top: 77px;
   .content {
     display: flex;
     flex-direction: column;
