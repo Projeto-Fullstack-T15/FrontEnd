@@ -1,3 +1,5 @@
+import { PaginationStyled } from "./style";
+
 interface PaginationButtonsProps {
   currentPage: number;
   totalPages: number;
@@ -12,11 +14,28 @@ const PaginationButtons = ({
   onPrevious,
 }: PaginationButtonsProps) => {
   return (
-    <div>
-      {currentPage > 1 && <button onClick={onPrevious}>Anterior</button>}
-      {` ${currentPage} de ${totalPages}`}
-      {currentPage < totalPages && <button onClick={onNext}>Seguinte</button>}
-    </div>
+    <PaginationStyled>
+      {currentPage > 1 && (
+        <button
+          className="paginationButton"
+          onClick={onPrevious}
+        >
+          &lt; Anterior
+        </button>
+      )}
+      <span>{`${currentPage}`}</span>
+      <span className="totalPages">de </span>{" "}
+      <span className="totalPages">{` ${totalPages}`} </span>
+      {currentPage < totalPages && (
+        <button
+          className="paginationButton"
+          onClick={onNext}
+        >
+          {" "}
+          Seguinte &gt;{" "}
+        </button>
+      )}
+    </PaginationStyled>
   );
 };
 

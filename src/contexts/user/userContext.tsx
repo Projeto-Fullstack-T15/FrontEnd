@@ -1,7 +1,12 @@
 import { createContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import jwt_decode from 'jwt-decode';
-import { IUserContextProps, TCreateUser, TUpdateUser } from './interfaces';
+import {
+  ILogin,
+  IUserContextProps,
+  TCreateUser,
+  TUpdateUser,
+} from './interfaces';
 import { api } from '../../services/api';
 import { ITokenDecode, IUser } from '../../interfaces';
 
@@ -45,8 +50,17 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.error(err));
   };
 
+  const login = async (data: ILogin) => {
+    await api
+      .post('/login', data)
+      .then((res) => setUser(res.data))
+      .catch((err) => console.error(err));
+  };
+
   return (
-    <UserContext.Provider value={{ createUser, deleteUser, updateUser, user }}>
+    <UserContext.Provider
+      value={{ createUser, deleteUser, updateUser, user, login }}
+    >
       {children}
     </UserContext.Provider>
   );
