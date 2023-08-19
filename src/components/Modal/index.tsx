@@ -14,11 +14,13 @@ export const Modal = ({ children, title, closeFunction }: ModalProps) => {
 			<div>
 				<header>
 					<h2> {title} </h2>
-					<button>
+					<button onClick={closeFunction}>
 						<IoMdClose />
 					</button>
 				</header>
-				{children}
+				<div>
+					{children}
+				</div>
 			</div>
 		</StyledModal>
 	);

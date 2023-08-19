@@ -41,6 +41,11 @@ export const StyledModal = styled.aside`
                 color: var(--grey4);
             }
         }
+
+        >div {
+            max-height: calc(90vh - 3rem);
+            overflow-y: auto;
+        }
     }
 
 `;
