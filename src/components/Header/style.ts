@@ -15,14 +15,6 @@ export const HeaderContainerStyled = styled.header<HeaderContainerProps>`
   top: 0;
   left: 0;
   z-index: 100;
-
-  /* @media screen and (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-    border-bottom: ${(props) => (props.isOpen ? "none" : "2px solid #ddd")};
-    box-shadow: ${(props) =>
-    props.isOpen ? "none" : "0px 2px 4px rgba(0, 0, 0, 0.1)"};
-  } */
 `;
 
 export const ContainerStyled = styled.div`

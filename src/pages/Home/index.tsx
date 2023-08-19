@@ -1,10 +1,10 @@
 //import ButtonComponents from "../../Components/global/Buttons";
 
-import AnnouncementList from "../../Components/AnnouncementList";
-import HeaderComponents from "../../components/Header";
-import NavComponents from "../../components/Nav";
-import FooterComponent from "../../components/global/Footer";
-import mockData from "../Home/mockdata.js";
+//import AnnouncementList from "../../Components/AnnouncementList";
+//import mockData from "../Home/mockdata.js";
+import HeaderComponents from "../../Components/Header/index.js";
+import NavComponents from "../../Components/Nav/index.js";
+import FooterComponent from "../../Components/global/Footer/index.js";
 import { HomeContainer } from "./style.js";
 
 export const HomePage: React.FC = () => {
@@ -22,10 +22,10 @@ export const HomePage: React.FC = () => {
       </div>
       <div className="body">
         <NavComponents />
-        <AnnouncementList
+        {/* <AnnouncementList
           products={mockData}
           itemsPerPage={6}
-        />
+        /> */}
       </div>
       <FooterComponent />
     </HomeContainer>
