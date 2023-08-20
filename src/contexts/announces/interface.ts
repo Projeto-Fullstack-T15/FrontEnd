@@ -16,6 +16,7 @@ export interface AnnouncementContextProps {
   loadAnnouncements: () => void;
   updateAnnouncement: (id: number, data: Partial<Announcement>) => void;
   removeAnnouncement: (id: number) => void;
+  createAnnouncement: (data: any) => void;
   announcements: StateHook<Array<Announcement>>;
   filteredAnnouncements: StateHook<Array<Announcement>>;
   brands: StateHook<Array<string>>;

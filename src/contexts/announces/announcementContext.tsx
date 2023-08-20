@@ -49,6 +49,15 @@ export const AnnouncementProvider = ({
       .catch(() => toast.error('Falha ao remover anúncio...'));
   }
 
+  function createAnnouncement(data: any): void {
+    const createRoute = `/announcements`;
+
+    api
+      .post(createRoute, data)
+      .then(() => loadAnnouncements())
+      .catch(() => toast.error('Falha ao criar anúncio...'));
+  }
+
   useEffect(() => {
     loadAnnouncements();
   }, []);
@@ -75,6 +84,7 @@ export const AnnouncementProvider = ({
         loadAnnouncements,
         updateAnnouncement,
         removeAnnouncement,
+        createAnnouncement,
         filteredAnnouncements,
         brands,
         models,
