@@ -1,6 +1,6 @@
 import { styled } from "styled-components";
 
-export const AnnouncementFormStyle = styled.div`
+export const AnnouncementFormStyle = styled.form`
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
@@ -21,6 +21,7 @@ export const FullWidthInput = styled.div`
     flex-direction: column;
     width: 100%;
     gap: 0.5rem;
+    position: relative;
 
     >label {
         font-size: 0.875rem;
@@ -40,6 +41,21 @@ export const FullWidthInput = styled.div`
         border: 0.1rem solid var(--grey7);
         font-size: 1rem;
         color: var(--grey3);
+    }
+
+    >svg {
+        position: absolute;
+        top: calc(55% );
+        right: 1rem;
+        font-size: 1rem;
+        color: var(--grey4);
+        cursor: pointer;
+        
+        :hover {
+            color: var(--grey2);
+            transform: scale(1.1);
+            transition: 120ms ease-in-out;
+        }
     }
 `;
 
