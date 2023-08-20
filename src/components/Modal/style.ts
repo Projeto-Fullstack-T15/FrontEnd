@@ -15,6 +15,7 @@ export const StyledModal = styled.aside`
     >div {
         background-color: white;
         width: 32.5rem;
+        max-width: calc(100% - 0.5rem);
         box-sizing: border-box;
         border-radius: 0.5rem;
 
