@@ -1,14 +1,27 @@
+import { FormEventHandler, useContext } from "react";
 import { Modal } from "../Modal";
 import { AddFieldButton, AnnouncementFormStyle, ButtonsWrapper, CancelButton, CreateAnnouncementButton, FullWidthInput, FullWidthSelect, HalfInputsContainer, HalfWidthInput, TextArea } from "./style";
-import { FaAngleDown } from "react-icons/fa";
+import { FaAngleDown, FaMinus } from "react-icons/fa";
+import { AnnouncementContext } from "../../contexts/announces/announcementContext";
+import { State } from "../../hooks/state.hook";
 
 export const CreateAnnouncementModal = () => {
+    const { createAnnouncement } = useContext(AnnouncementContext);
+
+    const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
+        e.preventDefault();
+        createAnnouncement({});
+    }
+
+    const galleryState = State<Array<string>>([]);
+    const isAddGalleryDisabled = galleryState.value.length >= 10;
+
     return (
         <Modal
             closeFunction={() => { console.log("close") }}
             title="Criar anúncio"
         >
-            <AnnouncementFormStyle>
+            <AnnouncementFormStyle onSubmit={handleSubmit}>
                 <h3> Informações do veículo </h3>
 
                 <FullWidthSelect>
@@ -82,29 +95,45 @@ export const CreateAnnouncementModal = () => {
                     />
                 </FullWidthInput>
 
-                <FullWidthInput>
-                    <label> 1° Imagem da galeria </label>
-                    <input
-                        placeholder="https://imageurl.com"
-                    />
-                </FullWidthInput>
+                {
+                    galleryState.value.map((s, i) => (
+                        <FullWidthInput>
+                            <label> {i + 1}° Imagem da galeria </label>
+                            <input
+                                placeholder="https://imageurl.com"
+                                value={s}
+                                onChange={(e) => galleryState.set((prev) => {
+                                    prev[i] = e.target.value;
+                                    return prev;
+                                })}
+                            />
+                            <FaMinus
+                                onClick={() => {
+                                    galleryState.set((prev) => {
+                                        return prev.filter((_, index) => index !== i);
+                                    })
+                                }}
+                            />
+                        </FullWidthInput>
+                    ))
+                }
 
-                <FullWidthInput>
-                    <label> 2° Imagem da galeria </label>
-                    <input
-                        placeholder="https://imageurl.com"
-                    />
-                </FullWidthInput>
-
-                <AddFieldButton>
+                <AddFieldButton
+                    onClick={() => galleryState.set((prev) => [...prev, ""])}
+                    disabled={isAddGalleryDisabled}
+                >
                     Adicionar campo para imagem da galeria
                 </AddFieldButton>
 
                 <ButtonsWrapper>
-                    <CancelButton>
+                    <CancelButton
+                        type="button"
+                    >
                         Cancelar
                     </CancelButton>
-                    <CreateAnnouncementButton>
+                    <CreateAnnouncementButton
+                        type="submit"
+                    >
                         Criar anúncio
                     </CreateAnnouncementButton>
                 </ButtonsWrapper>
