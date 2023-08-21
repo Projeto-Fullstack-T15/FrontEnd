@@ -1,8 +1,18 @@
+<<<<<<< HEAD
+import { ProviderProps, createContext, useEffect } from "react";
+import { toast } from "react-toastify";
+import { State } from "../../hooks/state.hook";
+import Announcement, {
+  AnnouncementContextProps,
+} from "../../interfaces/announcement.interface";
+import { api } from "../../services/api";
+=======
 import { ProviderProps, createContext, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { api } from '../../services/api';
 import { State } from '../../hooks/state.hook';
 import Announcement, { AnnouncementContextProps } from './interface';
+>>>>>>> ae168fb1759e256eedd635d88529baeaf247b9c5
 
 export const AnnouncementContext = createContext(
   {} as AnnouncementContextProps
@@ -28,7 +38,7 @@ export const AnnouncementProvider = ({
     api
       .get<Array<Announcement>>(listRoute)
       .then((res) => announcements.set(res.data))
-      .catch(() => toast.error('Falha ao carregar anúncios...'));
+      .catch(() => toast.error("Falha ao carregar anúncios..."));
   }
 
   function updateAnnouncement(id: number, data: Partial<Announcement>): void {
@@ -37,7 +47,7 @@ export const AnnouncementProvider = ({
     api
       .patch(updateRoute, data)
       .then(() => loadAnnouncements())
-      .catch(() => toast.error('Falha ao atualizar anúncio...'));
+      .catch(() => toast.error("Falha ao atualizar anúncio..."));
   }
 
   function removeAnnouncement(id: number): void {
@@ -46,7 +56,7 @@ export const AnnouncementProvider = ({
     api
       .delete(deleteRoute)
       .then(() => loadAnnouncements())
-      .catch(() => toast.error('Falha ao remover anúncio...'));
+      .catch(() => toast.error("Falha ao remover anúncio..."));
   }
 
   useEffect(() => {
