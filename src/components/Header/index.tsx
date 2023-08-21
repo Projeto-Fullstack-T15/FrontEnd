@@ -3,18 +3,19 @@ import { Link } from 'react-router-dom';
 import Logo from './../../assets/logo.svg';
 import { GiHamburgerMenu } from 'react-icons/gi';
 import { GrFormClose } from 'react-icons/gr';
-import { HeaderProps } from './interface';
 import UserAvatarComponents from './Avatar';
 import {
   ContainerStyled,
   HeaderContainerStyled,
   LogoLinkStyled,
   MenuButtonStyled,
+  Overlay,
   UserActionsStyled,
   UserMenuStyled,
   UserNameStyled,
   UserOptionsStyled,
 } from './style';
+import { HeaderProps } from './interface';
 
 const HeaderComponents = ({
   isLoggedIn,
@@ -24,6 +25,7 @@ const HeaderComponents = ({
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [menuIcon, setMenuIcon] = useState(<GiHamburgerMenu size={20} />);
   const [showUserOptions, setShowUserOptions] = useState(false);
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -44,6 +46,7 @@ const HeaderComponents = ({
         </LogoLinkStyled>
         <MenuButtonStyled onClick={toggleMenu}>{menuIcon}</MenuButtonStyled>
       </ContainerStyled>
+      <Overlay isOpen={isMenuOpen} />
       <UserMenuStyled isOpen={isMenuOpen}>
         {isLoggedIn ? (
           <>

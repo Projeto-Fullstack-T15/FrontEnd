@@ -1,23 +1,20 @@
-import { Link } from 'react-router-dom';
-import { styled } from 'styled-components';
-import { HeaderContainerProps, UserMenuProps } from './interface';
+import { Link } from "react-router-dom";
+import { styled } from "styled-components";
+import { HeaderContainerProps, UserMenuProps } from "./interface";
 
 export const HeaderContainerStyled = styled.header<HeaderContainerProps>`
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 20px 20px 20px 10px;
+  width: 100%;
   background-color: var(--grey10);
   border-bottom: 2px solid #ddd;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
-
-  @media screen and (max-width: 768px) {
-    flex-direction: column;
-    align-items: flex-start;
-    border-bottom: ${(props) => (props.isOpen ? 'none' : '2px solid #ddd')};
-    box-shadow: ${(props) =>
-      props.isOpen ? 'none' : '0px 2px 4px rgba(0, 0, 0, 0.1)'};
-  }
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
 `;
 
 export const ContainerStyled = styled.div`
@@ -47,15 +44,24 @@ export const MenuButtonStyled = styled.button`
 `;
 
 export const UserMenuStyled = styled.div<UserMenuProps>`
-  display: ${(props: UserMenuProps) => (props.isOpen ? 'flex' : 'none')};
+  display: ${(props: UserMenuProps) => (props.isOpen ? "flex" : "none")};
   flex-direction: column;
   align-items: center;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 25px;
+  background-color: var(--white);
+  position: fixed;
+  top: ${(props: UserMenuProps) => (props.isOpen ? "50px" : "-100%")};
+  right: 0;
+  z-index: 100;
+  transition: top 0.3s ease-in-out;
 
   @media screen and (min-width: 769px) {
+    display: flex;
     align-items: flex-end;
     margin: 0;
+    width: auto;
+    top: 0;
   }
 `;
 
@@ -65,7 +71,14 @@ export const UserNameStyled = styled.span`
   justify-content: center;
   color: var(--grey2);
   font-size: 1rem;
+  padding: 20px 0 10px 0;
   cursor: pointer;
+
+  @media screen and (min-width: 769px) {
+    border-left: 2px solid rgba(0, 0, 0, 0.1);
+    padding-bottom: 20px;
+    padding-left: 35px;
+  }
 `;
 
 export const UserOptionsStyled = styled.ul`
@@ -73,11 +86,9 @@ export const UserOptionsStyled = styled.ul`
   flex-direction: column;
   align-items: center;
   list-style: none;
-  background-color: var(--grey9);
   border-radius: 4px;
   padding: 10px;
   width: 50%;
-  box-shadow: 0px 4px 40px -10px #00000040;
 
   li {
     margin: 5px 0;
@@ -88,6 +99,22 @@ export const UserOptionsStyled = styled.ul`
       color: var(--grey2);
     }
   }
+
+  @media screen and (min-width: 769px) {
+    background-color: var(--grey9);
+    box-shadow: 0px 4px 40px -10px #00000040;
+    width: 13%;
+    align-items: flex-start;
+    position: fixed;
+    top: 53px;
+    right: 32px;
+  }
+
+  @media screen and (min-width: 1439px) {
+    width: 11%;
+    top: 53px;
+    right: 7px;
+  }
 `;
 
 export const UserActionsStyled = styled.div`
@@ -95,8 +122,8 @@ export const UserActionsStyled = styled.div`
   flex-direction: column;
   align-items: flex-start;
   gap: 1rem;
-  padding: 20px;
-  width: 100%;
+  padding: 20px 20px 20px 10px;
+  width: 90%;
 
   a {
     margin: 5px 0;
@@ -115,4 +142,30 @@ export const UserActionsStyled = styled.div`
       padding: 0.5rem 0;
     }
   }
+
+  @media screen and (min-width: 769px) {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px 40px 14px 40px;
+    width: 100%;
+    border-left: 2px solid rgba(0, 0, 0, 0.1);
+
+    a {
+      &:nth-child(2) {
+        width: 40%;
+      }
+    }
+  }
+`;
+
+export const Overlay = styled.div<{ isOpen: boolean }>`
+  position: fixed;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.1);
+  display: ${(props) => (props.isOpen ? "block" : "none")};
+  z-index: 99;
 `;

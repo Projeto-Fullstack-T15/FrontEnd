@@ -37,5 +37,7 @@ export const FooterStyle = styled.footer`
     flex-direction: column;
 
     padding: 5% 0;
+
+    width: 100%;
   }
 `;
