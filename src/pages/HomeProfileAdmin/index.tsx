@@ -1,7 +1,9 @@
-import HeaderComponents from "../../components/Header";
-import FooterComponent from "../../components/global/Footer";
 import { useEffect, useState } from "react";
 import { api } from "../../services/api";
+import HeaderComponents from "../../Components/Header";
+import FooterComponent from "../../Components/global/Footer";
+import { ProductCard } from "../../components/ProductCard";
+import { StyledAnnouceList } from "./style";
 /* import Announcement from "../../interfaces/announcement.interface"; */
 
 export const ProfileAdminPage: React.FC = () => {
@@ -35,19 +37,11 @@ export const ProfileAdminPage: React.FC = () => {
         </div>
       </div>
       <>
-        <ul>
+        <StyledAnnouceList>
           {announces.map((announce) => (
-            <li key={announce.id}>
-              <h2>{announce.brand}</h2> - <h2>{announce.model}</h2>
-              <p>{announce.description}</p>
-              <div>
-                <span>{announce.year}</span>
-                <span>{announce.price}</span>
-                <span>{announce.mileage}</span>
-              </div>
-            </li>
+            <ProductCard announcement={announce} announcerView={false} />
           ))}
-        </ul>
+        </StyledAnnouceList>
       </>
 
       <FooterComponent />

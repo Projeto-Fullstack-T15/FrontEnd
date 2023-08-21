@@ -1,11 +1,11 @@
-import Announcement from '../../contexts/announces/interface';
+import Announcement from "../../contexts/announces/interface";
 import {
   BadgeActiveInactiveStyle,
   BadgeLowPriceStyle,
   CardAnnouncerStyle,
   CardLabelsStyle,
   ProductCardStyle,
-} from './style';
+} from "./style";
 
 interface ProductCardProps {
   announcement: Announcement;
@@ -16,10 +16,9 @@ export const ProductCard = ({
   announcement,
   announcerView,
 }: ProductCardProps) => {
-  const title =
-    'Lorem Ipsum is simply dummy text of the printing and typesetting';
+  const title = announcement.model;
   const imageSrc =
-    'https://omunicipio.com.br/wp-content/uploads/2021/07/que-coisas-procuram-as-mulheres-quando-compram-um-carro-kr1307-foto-2.png';
+    "https://omunicipio.com.br/wp-content/uploads/2021/07/que-coisas-procuram-as-mulheres-quando-compram-um-carro-kr1307-foto-2.png";
 
   const MOCKED_FIPE_PRICE: number = 2 * Math.random() * announcement.price;
   const isCheaper: boolean = MOCKED_FIPE_PRICE * 0.95 >= announcement.price;
@@ -29,29 +28,26 @@ export const ProductCard = ({
     <ProductCardStyle>
       {isCheaper && <BadgeLowPriceStyle>$</BadgeLowPriceStyle>}
       {announcerView && (
-        <BadgeActiveInactiveStyle className={isActive ? 'active' : 'inactive'}>
-          {isActive ? 'Ativo' : 'Inativo'}
+        <BadgeActiveInactiveStyle className={isActive ? "active" : "inactive"}>
+          {isActive ? "Ativo" : "Inativo"}
         </BadgeActiveInactiveStyle>
       )}
-      <div className='card_header'>
+      <div className="card_header">
         <img src={imageSrc} />
       </div>
-      <div className='card_body'>
+      <div className="card_body">
         <h3 title={title}> {title.slice(0, 38)} </h3>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem...
-        </p>
+        <p>{announcement.description}</p>
       </div>
-      <div className='card_footer'>
+      <div className="card_footer">
         <CardAnnouncerStyle>
-          <span className='announcer_acronym'> RD </span>
-          <span> Renan Dutra </span>
+          <span className="announcer_acronym"> RD </span>
+          <span>{announcement.model} </span>
         </CardAnnouncerStyle>
         <CardLabelsStyle>
-          <span className='card_label'> 0 KM </span>
-          <span className='card_label'> 2019 </span>
-          <span className='card_price'> R$ 55.000,00 </span>
+          <span className="card_label"> {announcement.mileage} KM </span>
+          <span className="card_label"> {announcement.year} </span>
+          <span className="card_price"> {announcement.price} </span>
         </CardLabelsStyle>
       </div>
     </ProductCardStyle>
