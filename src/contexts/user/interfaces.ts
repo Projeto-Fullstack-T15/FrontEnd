@@ -12,7 +12,12 @@ export interface IUserProviderProps {
   children: React.ReactNode;
 }
 
-export type TCreateUser = Omit<IUser, 'id' | 'announcements'>;
+export interface TCreateUser {
+  email: string;
+  password: string;
+  phone: string;
+  accountType: string;
+}
 
 export type TUpdateUser = Partial<TCreateUser>;
 
