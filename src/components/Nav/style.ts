@@ -27,7 +27,7 @@ export const NavStyle = styled.nav`
       }
 
       input[type="range"] {
-        -webkit-appearance: none;
+        --webkit-appearance: none;
         height: 1px;
         background: #9747ff;
         color: #9747ff;

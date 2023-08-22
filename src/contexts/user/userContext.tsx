@@ -1,6 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import jwt_decode from 'jwt-decode';
 import {
   ILogin,
   IUserContextProps,
@@ -65,3 +64,7 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
+function jwt_decode(token: string): ITokenDecode {
+  throw new Error('Function not implemented.');
+}
+
