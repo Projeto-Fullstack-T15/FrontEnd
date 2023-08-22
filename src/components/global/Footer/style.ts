@@ -38,11 +38,15 @@ export const FooterStyle = styled.footer`
     border-radius: 4px;
 
     font-size: 14px;
+
+    cursor: pointer;
   }
 
   @media (max-width: 425px) {
     flex-direction: column;
 
     padding: 5% 0;
+
+    width: 100%;
   }
 `;

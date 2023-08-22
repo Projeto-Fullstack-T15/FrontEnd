@@ -2,9 +2,6 @@ import { styled } from 'styled-components';
 import { buttonsVariables } from '../../../utils';
 import { IStyleProps } from './interface';
 
-// large = width: 146px; height: 48px;
-// small = width: 119px; height: 38px;
-
 export const ButtonStyle = styled.button<IStyleProps>`
   ${({ $size }) => {
     if ($size === 'large') {

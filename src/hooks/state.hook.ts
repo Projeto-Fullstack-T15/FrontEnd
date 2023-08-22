@@ -1,18 +1,18 @@
-import { Dispatch, SetStateAction, useState } from "react";
+import { useState } from 'react';
 
-export class State<T> {
-    public readonly value: T;
-    public readonly set: Dispatch<SetStateAction<T>>;
-    public readonly defaultValue: T;
+export interface StateHook<T> {
+  defaultValue: T;
+  value: T;
+  set: React.Dispatch<React.SetStateAction<T>>;
+  reset: () => void;
+}
 
-    constructor(defaultValue: T) {
-        const [value, set] = useState<T>(defaultValue);
+export function State<T>(defaultValue: T): StateHook<T> {
+  const [value, set] = useState<T>(defaultValue);
 
-        this.value = value;
-        this.set = set;
-    }
+  const reset = () => {
+    set(defaultValue);
+  };
 
-    public reset() {
-        this.set(this.defaultValue);
-    }
+  return { defaultValue, value, set, reset };
 }
