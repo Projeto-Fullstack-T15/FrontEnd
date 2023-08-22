@@ -30,7 +30,7 @@ export const UserProvider = ({ children }) => {
 
   const createUser = async (data: TCreateUser) => {
     await api
-      .post('/users', data)
+      .post('/accounts', data)
       .then((res) => setUser(res.data))
       .catch((err) => console.error(err));
   };
@@ -67,4 +67,3 @@ export const UserProvider = ({ children }) => {
 function jwt_decode(token: string): ITokenDecode {
   throw new Error('Function not implemented.');
 }
-
