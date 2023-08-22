@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import styled from "styled-components";
 
 export const ProductCardStyle = styled.div`
   width: 19.5rem;

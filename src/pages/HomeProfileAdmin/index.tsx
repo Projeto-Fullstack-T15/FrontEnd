@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import { api } from "../../services/api";
 import HeaderComponents from "../../Components/Header";
 import FooterComponent from "../../Components/global/Footer";
-import { ProductCard } from "../../components/ProductCard";
 import { StyledAnnouceList } from "./style";
+import { ProductCard } from "../../Components/ProductCard";
 /* import Announcement from "../../interfaces/announcement.interface"; */
 
 export const ProfileAdminPage: React.FC = () => {

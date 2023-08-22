@@ -16,8 +16,7 @@ export const ProductCard = ({
   announcement,
   announcerView,
 }: ProductCardProps) => {
-  const title =
-    "Lorem Ipsum is simply dummy text of the printing and typesetting";
+  const title = announcement.model;
   const imageSrc =
     "https://omunicipio.com.br/wp-content/uploads/2021/07/que-coisas-procuram-as-mulheres-quando-compram-um-carro-kr1307-foto-2.png";
 
@@ -38,20 +37,17 @@ export const ProductCard = ({
       </div>
       <div className="card_body">
         <h3 title={title}> {title.slice(0, 38)} </h3>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem...
-        </p>
+        <p>{announcement.description}</p>
       </div>
       <div className="card_footer">
         <CardAnnouncerStyle>
           <span className="announcer_acronym"> RD </span>
-          <span> Renan Dutra </span>
+          <span>{announcement.model} </span>
         </CardAnnouncerStyle>
         <CardLabelsStyle>
-          <span className="card_label"> 0 KM </span>
-          <span className="card_label"> 2019 </span>
-          <span className="card_price"> R$ 55.000,00 </span>
+          <span className="card_label"> {announcement.mileage} KM </span>
+          <span className="card_label"> {announcement.year} </span>
+          <span className="card_price"> {announcement.price} </span>
         </CardLabelsStyle>
       </div>
     </ProductCardStyle>

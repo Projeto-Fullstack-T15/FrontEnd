@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Announcement from "../../contexts/announces/interface";
-import { ProductCard } from "../ProductCard";
 import PaginationButtons from "./PaginationButtons";
 import { AnnouncementsListStyled } from "./style";
+import { ProductCard } from "../ProductCard";
 
 interface ProductListProps {
   products: Array<Announcement>;
