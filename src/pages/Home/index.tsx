@@ -1,33 +1,52 @@
-//import ButtonComponents from "../../Components/global/Buttons";
-
-//import AnnouncementList from "../../Components/AnnouncementList";
-//import mockData from "../Home/mockdata.js";
-import HeaderComponents from "../../Components/Header/index.js";
-import NavComponents from "../../Components/Nav/index.js";
-import FooterComponent from "../../Components/global/Footer/index.js";
-import { HomeContainer } from "./style.js";
+import FooterComponent from "../../Components/global/Footer";
+import contentImage from "../../assets/Content.png";
+import { ProductCard } from "../../Components/ProductCard";
+import { Image, MainStyled } from "./style";
+import Header from "../../Components/Header";
+import Nav from "../../Components/Nav";
 
 export const HomePage: React.FC = () => {
   const isLoggedIn = false;
   const isAdvertiser = false;
-  const username = "Usuário Motors";
+  const username = 'Usuário Motors';
+
   return (
-    <HomeContainer>
-      <div className="header">
-        <HeaderComponents
-          isLoggedIn={isLoggedIn}
-          isAdvertiser={isAdvertiser}
-          username={username}
+    <>
+      <Header
+        isLoggedIn={isLoggedIn}
+        isAdvertiser={isAdvertiser}
+        username={username}
+      />
+      <section className="section_home">
+        <Image>
+          <img
+            src={contentImage}
+            alt="Imagem de capa"
+            className="img_home"
+          />
+        </Image>
+      </section>
+      <MainStyled>
+        <Nav
+          key={"as"}
         />
-      </div>
-      <div className="body">
-        <NavComponents />
-        {/* <AnnouncementList
-          products={mockData}
-          itemsPerPage={6}
-        /> */}
-      </div>
+        <ProductCard
+          announcement={{
+            brand: "bmw",
+            color: "black",
+            description: "veloz",
+            fuelType: "2.0",
+            id: 1,
+            mileage: 234,
+            model: "sass",
+            price: 2551,
+            year: 2002,
+          }}
+          announcerView={false}
+          key={"as"}
+        />
+      </MainStyled>
       <FooterComponent />
-    </HomeContainer>
-  );
-};
+    </>
+  )
+}
