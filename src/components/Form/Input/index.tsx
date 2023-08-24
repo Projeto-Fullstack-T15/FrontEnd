@@ -8,6 +8,7 @@ export interface IInput {
   error?: any;
   placeholder: string;
   withBackground?: string;
+  withDiv?:string;
 }
 
 export const Input = ({
@@ -17,9 +18,10 @@ export const Input = ({
   error,
   placeholder,
   withBackground,
+  withDiv
 }: IInput) => {
   return (
-    <FieldStyled>
+    <FieldStyled className={withDiv === 'yes' ? 'with-div' : ''}>
       <label htmlFor={register.name}>{label}</label>
       <input
         type={type}
