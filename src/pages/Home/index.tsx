@@ -1,10 +1,9 @@
-import { Header } from "../../Components/Header";
 import FooterComponent from "../../Components/global/Footer";
 import contentImage from "../../assets/Content.png";
 import { ProductCard } from "../../Components/ProductCard";
-import { Nav } from "../../Components/Nav";
 import { Image, MainStyled } from "./style";
-
+import Header from "../../Components/Header";
+import Nav from "../../Components/Nav";
 
 export const HomePage: React.FC = () => {
   const isLoggedIn = false;
@@ -34,7 +33,7 @@ export const HomePage: React.FC = () => {
         <ProductCard
           announcement={{
             brand: "bmw",
-            color: "white",
+            color: "black",
             description: "veloz",
             fuelType: "2.0",
             id: 1,
@@ -49,5 +48,5 @@ export const HomePage: React.FC = () => {
       </MainStyled>
       <FooterComponent />
     </>
-  );
-};
+  )
+}

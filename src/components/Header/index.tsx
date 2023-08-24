@@ -1,34 +1,31 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState } from 'react';
+import { Link } from 'react-router-dom';
+import Logo from './../../assets/logo.svg';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { GrFormClose } from 'react-icons/gr';
+import UserAvatarComponents from './Avatar';
 import {
-  Container,
-  HeaderContainer,
-  LogoLink,
-  MenuButton,
-  UserActions,
-  UserMenu,
-  UserName,
-  UserOptions,
-} from "./style";
-import Logo from "./../../assets/logo.svg";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { GrFormClose } from "react-icons/gr";
-import { UserAvatar } from "./Avatar";
+  ContainerStyled,
+  HeaderContainerStyled,
+  LogoLinkStyled,
+  MenuButtonStyled,
+  Overlay,
+  UserActionsStyled,
+  UserMenuStyled,
+  UserNameStyled,
+  UserOptionsStyled,
+} from './style';
+import { HeaderProps } from './interface';
 
-interface HeaderProps {
-  isLoggedIn: boolean;
-  isAdvertiser: boolean;
-  username?: string;
-}
-
-export const Header: React.FC<HeaderProps> = ({
+const HeaderComponents = ({
   isLoggedIn,
   isAdvertiser,
   username,
-}) => {
+}: HeaderProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [menuIcon, setMenuIcon] = useState(<GiHamburgerMenu size={20} />);
   const [showUserOptions, setShowUserOptions] = useState(false);
+
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -42,46 +39,49 @@ export const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <HeaderContainer isOpen={isMenuOpen}>
-      <Container>
-        <LogoLink to="/">
-          <img src={Logo} alt="Logo" />
-        </LogoLink>
-        <MenuButton onClick={toggleMenu}>{menuIcon}</MenuButton>
-      </Container>
-      <UserMenu isOpen={isMenuOpen}>
+    <HeaderContainerStyled isOpen={isMenuOpen}>
+      <ContainerStyled>
+        <LogoLinkStyled to='/'>
+          <img src={Logo} alt='Logo' />
+        </LogoLinkStyled>
+        <MenuButtonStyled onClick={toggleMenu}>{menuIcon}</MenuButtonStyled>
+      </ContainerStyled>
+      <Overlay isOpen={isMenuOpen} />
+      <UserMenuStyled isOpen={isMenuOpen}>
         {isLoggedIn ? (
           <>
-            <UserName onClick={toggleUserOptions}>
-              <UserAvatar username={username || ""} />
+            <UserNameStyled onClick={toggleUserOptions}>
+              <UserAvatarComponents username={username || ''} />
               {username}
-            </UserName>
+            </UserNameStyled>
             {showUserOptions && (
-              <UserOptions>
+              <UserOptionsStyled>
                 <li>
-                  <Link to="">Editar Perfil</Link>
+                  <Link to=''>Editar Perfil</Link>
                 </li>
                 <li>
-                  <Link to="">Editar Endereço</Link>
+                  <Link to=''>Editar Endereço</Link>
                 </li>
                 {isAdvertiser && (
                   <li>
-                    <Link to="">Editar Anúncio</Link>
+                    <Link to=''>Editar Anúncio</Link>
                   </li>
                 )}
                 <li>
-                  <Link to="">Sair</Link>
+                  <Link to=''>Sair</Link>
                 </li>
-              </UserOptions>
+              </UserOptionsStyled>
             )}
           </>
         ) : (
-          <UserActions>
-            <Link to="/">Fazer Login</Link>
-            <Link to="/register">Cadastrar</Link>
-          </UserActions>
+          <UserActionsStyled>
+            <Link to='/'>Fazer Login</Link>
+            <Link to='/register'>Cadastrar</Link>
+          </UserActionsStyled>
         )}
-      </UserMenu>
-    </HeaderContainer>
+      </UserMenuStyled>
+    </HeaderContainerStyled>
   );
 };
+
+export default HeaderComponents;

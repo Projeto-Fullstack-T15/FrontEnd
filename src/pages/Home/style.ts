@@ -1,13 +1,11 @@
 import { styled } from "styled-components";
 
 export const Image = styled.div`
-
     .img_home{
-        width:100%; 
+      width:100%; 
     }
 
 `
-
 export const MainStyled = styled.main`
     display: flex;
     justify-content: flex-start;

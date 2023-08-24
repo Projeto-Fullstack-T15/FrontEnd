@@ -15,7 +15,6 @@ export const FooterStyle = styled.footer`
   padding: 0 5%;
 
   box-sizing: border-box;
-  margin-top: 4.5rem;
 
   h3 {
     font-size: 24px;
@@ -38,11 +37,15 @@ export const FooterStyle = styled.footer`
     border-radius: 4px;
 
     font-size: 14px;
+
+    cursor: pointer;
   }
 
   @media (max-width: 425px) {
     flex-direction: column;
 
     padding: 5% 0;
+
+    width: 100%;
   }
 `;

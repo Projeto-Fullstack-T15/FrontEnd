@@ -1,17 +1,15 @@
-import React from 'react';
 import { UserAvatarContainer } from './style';
+import { UserAvatarProps } from './interface';
 
-interface UserAvatarProps {
-  username: string;
-}
-
-export const UserAvatar: React.FC<UserAvatarProps> = ({ username }) => {
+const UserAvatarComponents = ({ username }: UserAvatarProps) => {
   const initials = username
     .split(' ')
-    .map(name => name[0])
+    .map((name) => name[0])
     .slice(0, 2)
     .join('')
-    .toUpperCase();    
+    .toUpperCase();
 
   return <UserAvatarContainer>{initials}</UserAvatarContainer>;
 };
+
+export default UserAvatarComponents;

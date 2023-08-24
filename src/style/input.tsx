@@ -1,4 +1,4 @@
-import { css, styled } from "styled-components";
+import { css, styled } from 'styled-components';
 
 interface InputProps {
   withBackground?: string;
@@ -18,14 +18,14 @@ export const Input = styled.input<InputProps>`
   }
 
   ::placeholder {
-    font-family: "Inter", sans-serif;
+    font-family: 'Inter', sans-serif;
     font-size: 1rem;
     color: var(--grey3);
     outline: none;
   }
 
   ${(props) =>
-    props.withBackground === "yes" &&
+    props.withBackground === 'yes' &&
     css`
       background-color: var(--grey8);
     `}

@@ -1,16 +1,13 @@
-import { BiSolidUpArrow } from 'react-icons/bi';
 import { FooterStyle } from './style';
-import LogoDark from "./../../../assets/logoDarkMode.svg"
-
+import LogoDark from './../../../assets/logoDarkMode.svg';
+import Arrow from './../../../assets/arrowFooter.svg'
 
 const FooterComponent = () => {
   return (
     <FooterStyle>
-      <h3>
-        Motors <span>shop</span>
-      </h3>
+      <img src={LogoDark} alt='' />
       <p>@ 2022 - Todos os direitos reservados</p>
-      <BiSolidUpArrow />
+      <img src={Arrow} alt='arrow'/>
     </FooterStyle>
   );
 };
