@@ -1,5 +1,24 @@
+import FooterComponent from '../../components/Global/Footer';
+import HeaderComponents from '../../components/Header';
+import { MainRegister } from './style';
+
 const RegisterPage = () => {
-  return <div>Register</div>;
+  const isLoggedIn = false;
+  const isAdvertiser = false;
+  const username = 'Usuário Motors';
+  return (
+    <>
+      <HeaderComponents
+        isLoggedIn={isLoggedIn}
+        isAdvertiser={isAdvertiser}
+        username={username}
+      />
+      <MainRegister>
+        <RegisterForm />
+      </MainRegister>
+      <FooterComponent />
+    </>
+  );
 };
 
 export default RegisterPage;
