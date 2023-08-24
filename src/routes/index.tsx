@@ -5,7 +5,6 @@ import RegisterPage from "../pages/Register";
 import { AnnouncementProvider } from "../contexts/announces/announcementContext";
 import { ProfileAdminPage } from "../pages/HomeProfileAdmin";
 
-
 export const RoutesMain = () => {
   return (
     <Routes>
