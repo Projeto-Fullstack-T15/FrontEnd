@@ -1,9 +1,9 @@
-import { useContext, useEffect } from "react";
-import { AnnouncementContext } from "../../contexts/announces/announcementContext";
-import { FilterValue } from "../../hooks/filter.hook";
-import { State } from "../../hooks/state.hook";
-import ButtonComponents from "../global/Buttons";
-import { NavStyle } from "./style";
+import { useContext, useEffect } from 'react';
+import { AnnouncementContext } from '../../contexts/announces/announcementContext';
+import { FilterValue } from '../../hooks/filter.hook';
+import { State } from '../../hooks/state.hook';
+import ButtonComponents from '../Global/Buttons';
+import { NavStyle } from './style';
 
 const NavComponents = () => {
   const context = useContext(AnnouncementContext);
@@ -69,8 +69,8 @@ const NavComponents = () => {
 
   return (
     <NavStyle>
-      <div className="content">
-        <div className="selectOptions">
+      <div className='content'>
+        <div className='selectOptions'>
           <h2> Marca </h2>
           <ul>
             {context.brands.value.map((brand) => (
@@ -78,7 +78,7 @@ const NavComponents = () => {
             ))}
           </ul>
         </div>
-        <div className="selectOptions">
+        <div className='selectOptions'>
           <h2> Modelo </h2>
           <ul>
             {context.models.value.map((model) => (
@@ -86,7 +86,7 @@ const NavComponents = () => {
             ))}
           </ul>
         </div>
-        <div className="selectOptions">
+        <div className='selectOptions'>
           <h2> Cor </h2>
           <ul>
             {context.colors.value.map((color) => (
@@ -94,7 +94,7 @@ const NavComponents = () => {
             ))}
           </ul>
         </div>
-        <div className="selectOptions">
+        <div className='selectOptions'>
           <h2> Ano </h2>
           <ul>
             {context.years.value.map((year) => (
@@ -102,7 +102,7 @@ const NavComponents = () => {
             ))}
           </ul>
         </div>
-        <div className="selectOptions">
+        <div className='selectOptions'>
           <h2> Combustível </h2>
           <ul>
             {context.fuelTypes.value.map((fuelType) => (
@@ -110,17 +110,17 @@ const NavComponents = () => {
             ))}
           </ul>
         </div>
-        <div className="rangeOptions">
+        <div className='rangeOptions'>
           <h2> Km </h2>
           <span>
             <p> {context.mileageRangeMin.value} km </p>
             <p> {context.mileageRangeMax.value} km </p>
           </span>
-          <div className="rangeInputs">
+          <div className='rangeInputs'>
             <input
-              className="range-input-min"
-              type="range"
-              name="km"
+              className='range-input-min'
+              type='range'
+              name='km'
               min={context.mileageRangeMin.value}
               max={context.mileageRangeMax.value / 2}
               step={
@@ -132,9 +132,9 @@ const NavComponents = () => {
               onChange={(e) => filterMileageMin.set(Number(e.target.value))}
             />
             <input
-              className="range-input-max"
-              type="range"
-              name="km"
+              className='range-input-max'
+              type='range'
+              name='km'
               min={context.mileageRangeMax.value / 2}
               max={context.mileageRangeMax.value}
               step={
@@ -147,17 +147,17 @@ const NavComponents = () => {
             />
           </div>
         </div>
-        <div className="rangeOptions">
+        <div className='rangeOptions'>
           <h2> Preço </h2>
           <span>
             <p> R$ {String(context.priceRangeMin.value).slice(0, -3)} mil </p>
             <p> R$ {String(context.priceRangeMax.value).slice(0, -3)} mil </p>
           </span>
-          <div className="rangeInputs">
+          <div className='rangeInputs'>
             <input
-              className="range-input-min"
-              type="range"
-              name="price"
+              className='range-input-min'
+              type='range'
+              name='price'
               min={context.priceRangeMin.value}
               max={context.priceRangeMax.value / 2}
               step={
@@ -169,9 +169,9 @@ const NavComponents = () => {
               onChange={(e) => filterPriceMin.set(Number(e.target.value))}
             />
             <input
-              type="range"
-              className="range-input-max"
-              name="price"
+              type='range'
+              className='range-input-max'
+              name='price'
               min={context.priceRangeMax.value / 2}
               max={context.priceRangeMax.value}
               step={
@@ -184,9 +184,9 @@ const NavComponents = () => {
             />
           </div>
         </div>
-        <div className="navFooterButton">
+        <div className='navFooterButton'>
           <ButtonComponents
-            {...{ $size: "small", text: "Limpar filtros", $type: "brand1" }}
+            {...{ $size: 'small', text: 'Limpar filtros', $type: 'brand1' }}
           />
         </div>
       </div>

@@ -1,12 +1,12 @@
-import { RegisterForm } from "../../Components/Form/Register";
-import HeaderComponents from "../../Components/Header";
-import FooterComponent from "../../Components/global/Footer";
-import { MainRegister } from "./style";
+import { RegisterForm } from '../../components/Form/Register';
+import FooterComponent from '../../components/Global/Footer';
+import HeaderComponents from '../../components/Header';
+import { MainRegister } from './style';
 
 const RegisterPage = () => {
   const isLoggedIn = false;
   const isAdvertiser = false;
-  const username = "Usuário Motors";
+  const username = 'Usuário Motors';
   return (
     <>
       <HeaderComponents

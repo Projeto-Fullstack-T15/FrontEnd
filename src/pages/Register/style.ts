@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 export const MainRegister = styled.main`
   margin-top: 77px;

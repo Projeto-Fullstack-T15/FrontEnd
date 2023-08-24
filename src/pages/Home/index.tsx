@@ -1,9 +1,8 @@
-import FooterComponent from "../../Components/global/Footer";
-import contentImage from "../../assets/Content.png";
-import { ProductCard } from "../../Components/ProductCard";
-import { Image, MainStyled } from "./style";
-import Header from "../../Components/Header";
-import Nav from "../../Components/Nav";
+import AnnouncementList from '../../components/AnnouncementList';
+import FooterComponent from '../../components/Global/Footer';
+import HeaderComponents from '../../components/Header';
+import NavComponents from '../../components/Nav';
+import { HomeContainer } from './style';
 
 export const HomePage: React.FC = () => {
   const isLoggedIn = false;
@@ -11,42 +10,19 @@ export const HomePage: React.FC = () => {
   const username = 'Usuário Motors';
 
   return (
-    <>
-      <Header
-        isLoggedIn={isLoggedIn}
-        isAdvertiser={isAdvertiser}
-        username={username}
-      />
-      <section className="section_home">
-        <Image>
-          <img
-            src={contentImage}
-            alt="Imagem de capa"
-            className="img_home"
-          />
-        </Image>
-      </section>
-      <MainStyled>
-        <Nav
-          key={"as"}
+    <HomeContainer>
+      <div className='header'>
+        <HeaderComponents
+          isLoggedIn={isLoggedIn}
+          isAdvertiser={isAdvertiser}
+          username={username}
         />
-        <ProductCard
-          announcement={{
-            brand: "bmw",
-            color: "black",
-            description: "veloz",
-            fuelType: "2.0",
-            id: 1,
-            mileage: 234,
-            model: "sass",
-            price: 2551,
-            year: 2002,
-          }}
-          announcerView={false}
-          key={"as"}
-        />
-      </MainStyled>
+      </div>
+      <div className='body'>
+        <NavComponents />
+        <AnnouncementList products={} itemsPerPage={6} />
+      </div>
       <FooterComponent />
-    </>
-  )
-}
+    </HomeContainer>
+  );
+};

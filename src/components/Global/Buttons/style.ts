@@ -7,26 +7,31 @@ export const ButtonStyle = styled.button<IStyleProps>`
     if ($size === 'large') {
       return `
         height: 48px;
-        width: 146px
+        width: 146px;
     `;
     } else if ($size === 'small') {
       return `
         height: 38px;
-        width: 119px
+        width: 119px;
     `;
     }
   }};
 
-  /*   height: 48px;
-  width: 146px; */
+  ${({ $width }) => {
+    if ($width) return `width: ${$width};`;
+  }}
+
+  ${({ $height }) => {
+    if ($height) return `height: ${$height};`;
+  }}
 
   background-color: var(
     ${({ $type }) =>
-      buttonsVariables.map((button) => {
-        if (button.id === $type) {
-          return button.background;
-        }
-      })}
+    buttonsVariables.map((button) => {
+      if (button.id === $type) {
+        return button.background;
+      }
+    })}
   );
   color: var(
     ${({ $type }) =>
