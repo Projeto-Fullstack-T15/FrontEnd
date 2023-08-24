@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle, styled } from 'styled-components';
 
 export const GlobalStyle = createGlobalStyle`
   :root {
@@ -84,4 +84,17 @@ export const GlobalStyle = createGlobalStyle`
     font-family: var(--font-title);
 
   }
+`;
+
+export const ModalContainer = styled.div`
+  width: 100vw;
+  height: 100vh;
+
+  position: absolute;
+  top: 0;
+
+  display: flex;
+  justify-content: center;
+
+  background-color: rgba(0, 0, 0, 0.2);
 `;

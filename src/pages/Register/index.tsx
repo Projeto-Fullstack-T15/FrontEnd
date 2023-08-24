@@ -1,5 +1,7 @@
+import ModalEditUser from '../../components/ModalEditUser';
+
 const RegisterPage = () => {
-  return <h1>RegisterPage</h1>;
+  return <ModalEditUser></ModalEditUser>;
 };
 
 export default RegisterPage;
