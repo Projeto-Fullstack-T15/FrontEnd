@@ -1,17 +1,17 @@
 import { createPortal } from 'react-dom';
 import { GrClose } from 'react-icons/gr';
 import { ModalContainer } from '../../style/globalStyle';
-import { ButtonsStyle, FormStyle, SectionStyle } from './style';
+import { ButtonsStyle, CloseStyle, FormStyle, SectionStyle } from './style';
 import ButtonComponents from '../Global/Buttons';
 
 const ModalEditUser = () => {
   return createPortal(
     <ModalContainer>
       <SectionStyle>
-        <div>
+        <CloseStyle>
           <h3>Editar Perfil</h3>
           <GrClose />
-        </div>
+        </CloseStyle>
         <FormStyle>
           <div className='input__class'>
             <label htmlFor='name'>Nome</label>

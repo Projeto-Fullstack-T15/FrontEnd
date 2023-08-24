@@ -15,6 +15,19 @@ export const SectionStyle = styled.section`
   align-items: center;
 `;
 
+export const CloseStyle = styled.div`
+  display: flex;
+  justify-content: space-between;
+
+  width: 90%;
+
+  padding: 20px 0 30px 0;
+
+  svg {
+    cursor: pointer;
+  }
+`;
+
 export const FormStyle = styled.form`
   display: flex;
   flex-direction: column;
@@ -41,4 +54,6 @@ export const FormStyle = styled.form`
 
 export const ButtonsStyle = styled.div`
   display: flex;
+
+  gap: 15px;
 `;
