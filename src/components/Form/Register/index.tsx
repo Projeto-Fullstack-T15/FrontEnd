@@ -13,6 +13,7 @@ import {
   TextLabel,
   Title,
 } from './style';
+import ButtonComponents from '../../Global/Buttons';
 
 export const RegisterForm = () => {
   const { createUser } = useContext(UserContext);
