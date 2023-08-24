@@ -64,6 +64,7 @@ export const UserProvider = ({ children }) => {
     </UserContext.Provider>
   );
 };
+
 function jwt_decode(token: string): ITokenDecode {
   throw new Error('Function not implemented.');
 }

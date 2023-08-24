@@ -14,6 +14,7 @@ export const FormStyled = styled.form`
   width: 80%;
   height: max-content;
   margin-top: 45px;
+  margin-bottom: 100px;
   padding: 35px 20px;
   display: flex;
   flex-direction: column;

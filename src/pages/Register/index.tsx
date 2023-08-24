@@ -1,3 +1,4 @@
+import { RegisterForm } from '../../components/Form/Register';
 import FooterComponent from '../../components/Global/Footer';
 import HeaderComponents from '../../components/Header';
 import { MainRegister } from './style';

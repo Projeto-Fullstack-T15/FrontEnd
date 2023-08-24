@@ -15,7 +15,6 @@ export const FooterStyle = styled.footer`
   padding: 0 5%;
 
   box-sizing: border-box;
-  margin-top: 4.5rem;
 
   h3 {
     font-size: 24px;

@@ -15,6 +15,7 @@ export interface IUserProviderProps {
 export interface TCreateUser {
   email: string;
   password: string;
+  confirmPassword: string;
   phone: string;
   accountType: string;
   user: {
