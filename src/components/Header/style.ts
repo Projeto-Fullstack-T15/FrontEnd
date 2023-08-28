@@ -1,6 +1,6 @@
-import { Link } from "react-router-dom";
-import { styled } from "styled-components";
-import { HeaderContainerProps, UserMenuProps } from "./interface";
+import { Link } from 'react-router-dom';
+import { styled } from 'styled-components';
+import { HeaderContainerProps, UserMenuProps } from './interface';
 
 export const HeaderContainerStyled = styled.header<HeaderContainerProps>`
   display: flex;
@@ -14,7 +14,7 @@ export const HeaderContainerStyled = styled.header<HeaderContainerProps>`
   position: fixed;
   top: 0;
   left: 0;
-  z-index: 100;
+  z-index: 1;
 `;
 
 export const ContainerStyled = styled.div`
@@ -44,14 +44,14 @@ export const MenuButtonStyled = styled.button`
 `;
 
 export const UserMenuStyled = styled.div<UserMenuProps>`
-  display: ${(props: UserMenuProps) => (props.isOpen ? "flex" : "none")};
+  display: ${(props: UserMenuProps) => (props.isOpen ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
   width: 100%;
   margin-top: 25px;
   background-color: var(--white);
   position: fixed;
-  top: ${(props: UserMenuProps) => (props.isOpen ? "50px" : "-100%")};
+  top: ${(props: UserMenuProps) => (props.isOpen ? '50px' : '-100%')};
   right: 0;
   z-index: 100;
   transition: top 0.3s ease-in-out;
@@ -166,6 +166,6 @@ export const Overlay = styled.div<{ isOpen: boolean }>`
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.1);
-  display: ${(props) => (props.isOpen ? "block" : "none")};
+  display: ${(props) => (props.isOpen ? 'block' : 'none')};
   z-index: 99;
 `;
