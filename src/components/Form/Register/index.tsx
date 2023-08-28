@@ -5,7 +5,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { registerSchema } from './schema';
 import { Input } from '../Input';
 import { TCreateUser } from '../../../contexts/user/interfaces';
-import ButtonComponents from '../../global/Buttons';
 import {
   DivInput,
   DivInputRadio,
@@ -14,6 +13,7 @@ import {
   TextLabel,
   Title,
 } from './style';
+import ButtonComponents from '../../Global/Buttons';
 
 export const RegisterForm = () => {
   const { createUser } = useContext(UserContext);

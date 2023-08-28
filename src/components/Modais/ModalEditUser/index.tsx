@@ -1,8 +1,8 @@
 import { createPortal } from 'react-dom';
 import { GrClose } from 'react-icons/gr';
-import { ModalContainer } from '../../style/globalStyle';
+import { ModalContainer } from '../../../style/globalStyle';
 import { ButtonsStyle, CloseStyle, FormStyle, SectionStyle } from './style';
-import ButtonComponents from '../Global/Buttons';
+import ButtonComponents from '../../Global/Buttons';
 
 const ModalEditUser = () => {
   return createPortal(
