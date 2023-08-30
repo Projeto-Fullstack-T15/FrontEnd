@@ -29,8 +29,6 @@ export const TitleAndCloneStyle = styled.div`
   align-items: center;
   justify-content: space-between;
 
-  margin-top: 20px;
-
   h4 {
     font-size: 1rem;
   }

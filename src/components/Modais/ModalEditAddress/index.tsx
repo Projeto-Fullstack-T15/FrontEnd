@@ -7,6 +7,7 @@ import {
   TitleAndCloneStyle,
 } from '../../../style/utilsStyle';
 import { FormStyle, DivOfInput, DivButtons } from './style';
+import { createPortal } from 'react-dom';
 
 const ModalEditAddress = () => {
   const [value, setValue] = useState<boolean>(false);
@@ -15,9 +16,9 @@ const ModalEditAddress = () => {
     target_value ? setValue(true) : setValue(false);
   };
 
-  return (
+  return createPortal(
     <ModalContainer>
-      <SectionModalStyle $height='605px' $width='520px'>
+      <SectionModalStyle $height='560px' $width='520px'>
         <TitleAndCloneStyle>
           <h4>Editar endereço</h4>
           <GrFormClose />
@@ -100,7 +101,8 @@ const ModalEditAddress = () => {
           </DivButtons>
         </FormStyle>
       </SectionModalStyle>
-    </ModalContainer>
+    </ModalContainer>,
+    document.body
   );
 };
 
