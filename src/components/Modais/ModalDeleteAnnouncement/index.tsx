@@ -2,17 +2,16 @@ import { ModalContainer } from '../../../style/globalStyle';
 import { GrFormClose } from 'react-icons/gr';
 import ButtonComponents from '../../Global/Buttons';
 import { createPortal } from 'react-dom';
+import { ButtonsStyle, DetailModelDeleteStyle } from './style';
 import {
-  ButtonsStyle,
-  DetailModelDeleteStyle,
-  SectionStyle,
+  SectionModalStyle,
   TitleAndCloneStyle,
-} from './style';
+} from '../../../style/utilsStyle';
 
 const ModelDeleteAnnouncement = () => {
   return createPortal(
     <ModalContainer>
-      <SectionStyle>
+      <SectionModalStyle $height='331px' $width='520px'>
         <TitleAndCloneStyle>
           <h4>Excluir anúncio</h4>
           <GrFormClose />
@@ -41,7 +40,7 @@ const ModelDeleteAnnouncement = () => {
             $type='alert'
           />
         </ButtonsStyle>
-      </SectionStyle>
+      </SectionModalStyle>
     </ModalContainer>,
     document.body
   );

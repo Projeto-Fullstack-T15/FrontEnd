@@ -16,3 +16,8 @@ export interface ITokenDecode {
   exp: number;
   iat: number;
 }
+
+export interface IStyledModalProps {
+  $width: string;
+  $height: string;
+}
