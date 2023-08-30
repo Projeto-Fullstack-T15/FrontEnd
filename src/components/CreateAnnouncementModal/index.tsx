@@ -1,17 +1,28 @@
-import { FormEventHandler, useContext } from "react";
+import { useContext } from "react";
 import { Modal } from "../Modal";
 import { AddFieldButton, AnnouncementFormStyle, ButtonsWrapper, CancelButton, CreateAnnouncementButton, FullWidthInput, FullWidthSelect, HalfInputsContainer, HalfWidthInput, TextArea } from "./style";
 import { FaAngleDown, FaMinus } from "react-icons/fa";
 import { AnnouncementContext } from "../../contexts/announces/announcementContext";
 import { State } from "../../hooks/state.hook";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { CreateAnnouncementSchema } from "../../contexts/announces/interface";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { createAnnouncementSchema } from "./schema";
 
 export const CreateAnnouncementModal = () => {
     const { createAnnouncement } = useContext(AnnouncementContext);
 
-    const handleSubmit: FormEventHandler<HTMLFormElement> = (e) => {
-        e.preventDefault();
-        createAnnouncement({});
-    }
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm<CreateAnnouncementSchema>({
+        resolver: yupResolver(createAnnouncementSchema),
+    });
+
+    const onSubmit: SubmitHandler<CreateAnnouncementSchema> = (data) => {
+        createAnnouncement({ ...data, images: galleryState.value });
+    };
 
     const galleryState = State<Array<string>>([]);
     const isAddGalleryDisabled = galleryState.value.length >= 10;
@@ -21,13 +32,13 @@ export const CreateAnnouncementModal = () => {
             closeFunction={() => { console.log("close") }}
             title="Criar anúncio"
         >
-            <AnnouncementFormStyle onSubmit={handleSubmit}>
+            <AnnouncementFormStyle onSubmit={handleSubmit(onSubmit)}>
                 <h3> Informações do veículo </h3>
 
                 <FullWidthSelect>
                     <label> Marca </label>
                     <div>
-                        <select>
+                        <select {...register("brand")}>
                             <option> Chevrolet </option>
                         </select>
                         <FaAngleDown />
@@ -37,7 +48,7 @@ export const CreateAnnouncementModal = () => {
                 <FullWidthSelect>
                     <label> Modelo </label>
                     <div>
-                        <select>
+                        <select {...register("model")}>
                             <option> camaro ss 6.2 v8 16v </option>
                         </select>
                         <FaAngleDown />
@@ -45,66 +56,77 @@ export const CreateAnnouncementModal = () => {
                 </FullWidthSelect>
 
                 <HalfInputsContainer>
-                    <HalfWidthInput>
+                    <HalfWidthInput className={errors.year ? "error" : ""}>
                         <label> Ano </label>
                         <input
                             placeholder="2018"
+                            {...register("year")}
                         />
                     </HalfWidthInput>
-                    <HalfWidthInput>
+                    <HalfWidthInput className={errors.fuel_type ? "error" : ""}>
                         <label> Combustível </label>
                         <input
                             placeholder="Gasolina / Etanol"
+                            {...register("fuel_type")}
                         />
                     </HalfWidthInput>
-                    <HalfWidthInput>
+                    <HalfWidthInput className={errors.mileage ? "error" : ""}>
                         <label> Quilometragem </label>
                         <input
                             placeholder="30.000"
+                            {...register("mileage")}
                         />
                     </HalfWidthInput>
-                    <HalfWidthInput>
+                    <HalfWidthInput className={errors.color ? "error" : ""}>
                         <label> Cor </label>
                         <input
                             placeholder="Branco"
+                            {...register("color")}
                         />
                     </HalfWidthInput>
                     <HalfWidthInput>
                         <label> Preço tabela FIPE </label>
                         <input
                             placeholder="R$ 48.000,00"
+                            disabled
                         />
                     </HalfWidthInput>
-                    <HalfWidthInput>
+                    <HalfWidthInput className={errors.price ? "error" : ""}>
                         <label> Preço </label>
                         <input
                             placeholder="R$ 50.000,00"
+                            {...register("price")}
                         />
                     </HalfWidthInput>
                 </HalfInputsContainer>
 
-                <TextArea>
+                <TextArea className={errors.description ? "error" : ""}>
                     <label> Descrição </label>
-                    <textarea placeholder="Adicione informações adicionais sobre o seu anúncio..." />
+                    <textarea
+                        placeholder="Adicione informações adicionais sobre o seu anúncio..."
+                        {...register("description")}
+                    />
                 </TextArea>
 
-                <FullWidthInput>
+                <FullWidthInput className={errors.cover_image ? "error" : ""}>
                     <label> Imagem da capa </label>
                     <input
                         placeholder="https://imageurl.com"
+                        {...register("cover_image")}
                     />
                 </FullWidthInput>
 
                 {
                     galleryState.value.map((s, i) => (
-                        <FullWidthInput>
+                        <FullWidthInput key={`ìmage_${i}`}>
                             <label> {i + 1}° Imagem da galeria </label>
                             <input
                                 placeholder="https://imageurl.com"
                                 value={s}
                                 onChange={(e) => galleryState.set((prev) => {
-                                    prev[i] = e.target.value;
-                                    return prev;
+                                    const newArr = [...prev];
+                                    newArr[i] = e.target.value;
+                                    return newArr;
                                 })}
                             />
                             <FaMinus
@@ -121,6 +143,7 @@ export const CreateAnnouncementModal = () => {
                 <AddFieldButton
                     onClick={() => galleryState.set((prev) => [...prev, ""])}
                     disabled={isAddGalleryDisabled}
+                    type="button"
                 >
                     Adicionar campo para imagem da galeria
                 </AddFieldButton>

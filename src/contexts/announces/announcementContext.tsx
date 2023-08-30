@@ -2,7 +2,7 @@ import { ProviderProps, createContext, useEffect } from "react";
 import { toast } from "react-toastify";
 import { State } from "../../hooks/state.hook";
 import { api } from "../../services/api";
-import Announcement, { AnnouncementContextProps } from "./interface";
+import Announcement, { AnnouncementContextProps, CreateAnnouncementRequest } from "./interface";
 
 export const AnnouncementContext = createContext(
   {} as AnnouncementContextProps
@@ -25,8 +25,8 @@ export const AnnouncementProvider = ({
 
   function loadAnnouncements() {
     const listRoute = `/announcements`;
-    api
-      .get<Array<Announcement>>(listRoute)
+
+    api.get<Array<Announcement>>(listRoute)
       .then((res) => announcements.set(res.data))
       .catch(() => toast.error("Falha ao carregar anúncios..."));
   }
@@ -34,8 +34,7 @@ export const AnnouncementProvider = ({
   function updateAnnouncement(id: number, data: Partial<Announcement>): void {
     const updateRoute = `/announcements/${id}`;
 
-    api
-      .patch(updateRoute, data)
+    api.patch(updateRoute, data)
       .then(() => loadAnnouncements())
       .catch(() => toast.error("Falha ao atualizar anúncio..."));
   }
@@ -43,24 +42,31 @@ export const AnnouncementProvider = ({
   function removeAnnouncement(id: number): void {
     const deleteRoute = `/announcements/${id}`;
 
-    api
-      .delete(deleteRoute)
+    api.delete(deleteRoute)
       .then(() => loadAnnouncements())
       .catch(() => toast.error("Falha ao remover anúncio..."));
   }
 
-  function createAnnouncement(data: any): void {
+  function createAnnouncement(data: CreateAnnouncementRequest): void {
     const createRoute = `/announcements`;
+    const token = localStorage.getItem('@token');
+    api.defaults.headers.Authorization = `Bearer ${token}`;
 
-    api
-      .post(createRoute, data)
-      .then(() => loadAnnouncements())
-      .catch(() => toast.error('Falha ao criar anúncio...'));
+    api.post(createRoute, data)
+      .then((res) => {
+        console.log(res.data);
+        loadAnnouncements();
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error('Falha ao criar anúncio...');
+      });
   }
 
   useEffect(() => {
     loadAnnouncements();
   }, []);
+
   useEffect(() => {
     brands.set([...new Set(announcements.value.map((car) => car.brand))]);
     models.set([...new Set(announcements.value.map((car) => car.model))]);

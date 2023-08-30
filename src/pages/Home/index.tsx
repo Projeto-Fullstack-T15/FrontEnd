@@ -20,7 +20,7 @@ export const HomePage: React.FC = () => {
       </div>
       <div className='body'>
         <NavComponents />
-        <AnnouncementList products={} itemsPerPage={6} />
+        <AnnouncementList products={[]} itemsPerPage={6} />
       </div>
       <FooterComponent />
     </HomeContainer>

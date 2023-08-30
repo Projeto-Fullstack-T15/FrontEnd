@@ -40,6 +40,13 @@ export const StyledModal = styled.aside`
                 align-items: center;
                 justify-content: center;
                 color: var(--grey4);
+                transition: 300ms ease-in-out;
+                padding: 0;
+
+                &:hover {
+                    transform: scale(1.35);
+                    color: red;
+                }
             }
         }
 

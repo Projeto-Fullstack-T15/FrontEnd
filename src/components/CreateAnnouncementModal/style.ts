@@ -14,6 +14,12 @@ export const AnnouncementFormStyle = styled.form`
         line-height: 1.5rem;
         color: black;
     }
+
+    .error {
+        :nth-child(2) {
+            border: 1px solid rgba(255, 25, 25, 0.4);
+        }
+    }
 `;
 
 export const FullWidthInput = styled.div`
