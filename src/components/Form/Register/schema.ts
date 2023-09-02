@@ -26,6 +26,6 @@ export const registerSchema = yup.object().shape({
     city: yup.string().required('Campo obrigatório'),
     street: yup.string().required('Campo obrigatório'),
     number: yup.string().required('Campo obrigatório'),
-    complement: yup.string(),
+    complement: yup.string().optional(),
   }),
 });

@@ -164,9 +164,11 @@ export const RegisterForm = () => {
         error={errors.confirmPassword}
       />
       <ButtonComponents
+        typeButton='submit'
         text='Finalizar cadastro'
         $type='brand1'
         $size='large'
+        $width='100%'
       />
     </FormStyled>
   );

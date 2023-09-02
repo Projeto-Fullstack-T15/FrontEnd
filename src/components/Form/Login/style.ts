@@ -31,6 +31,10 @@ export const FormStyled = styled.form`
       align-self: flex-end;
       margin-top: -20px;
     }
+
+    &:nth-of-type(2) {
+      width: 100%;
+    }
   }
 
   p {
