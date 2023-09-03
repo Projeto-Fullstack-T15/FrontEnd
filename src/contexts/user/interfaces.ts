@@ -1,4 +1,4 @@
-import { IUser } from '../../interfaces';
+import { IUser } from "../../interfaces";
 
 export interface IUserContextProps {
   user: IUser;
@@ -6,6 +6,9 @@ export interface IUserContextProps {
   updateUser: (data: TUpdateUser) => Promise<void>;
   deleteUser: () => Promise<void>;
   login: (data: ILogin) => Promise<void>;
+  openSuccessModal: () => void;
+  closeSuccessModal: () => void;
+  successModalOpen: boolean;
 }
 
 export interface IUserProviderProps {
@@ -17,15 +20,15 @@ export interface TCreateUser {
   password: string;
   confirmPassword: string;
   phone: string;
-  accountType: string;
+  account_type: string;
   user: {
     name: string;
     cpf: string;
-    birthday: string;
+    birthday: Date;
     description: string;
   };
   address: {
-    zipCode: string;
+    zip_code: string;
     state: string;
     city: string;
     street: string;
