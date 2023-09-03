@@ -5,32 +5,31 @@ import { State } from '../../hooks/state.hook';
 import ButtonComponents from '../Global/Buttons';
 import { NavStyle } from './style';
 import { AnnouncementFilters } from './interface';
+import RangeInput from '../Global/RangeInput';
 
 const NavComponents = () => {
   const { announcements, filteredAnnouncements } = useContext(AnnouncementContext);
-
-  const minMileage: number = Math.min(...announcements.value.map((car) => car.mileage));
-  const maxMileage: number = Math.max(...announcements.value.map((car) => car.mileage));
-  const minPrice: number = Math.min(...announcements.value.map((car) => car.price));
-  const maxPrice: number = Math.max(...announcements.value.map((car) => car.price));
 
   const filters = State<AnnouncementFilters>({
     brands: [],
     models: [],
     colors: [],
     years: [],
-    fuelTypes: [],
-    mileageRange: {
-      min: minMileage,
-      max: maxMileage,
-    },
-    priceRange: {
-      min: minPrice,
-      max: maxPrice,
-    }
+    fuelTypes: []
   });
 
+  const maxMileage: number = Math.max(...announcements.value.map((car) => car.mileage));
+  const maxPrice: number = Math.max(...announcements.value.map((car) => car.price));
+  const filterMileage = State<{ min: number, max: number }>({ min: 0, max: maxMileage });
+  const filterPrice = State<{ min: number, max: number }>({ min: 1000, max: maxPrice });
+
   useEffect(() => {
+    filterMileage.set({ min: 0, max: maxMileage });
+    filterPrice.set({ min: 1000, max: maxPrice })
+  }, [maxMileage, maxPrice]);
+
+  useEffect(() => {
+    console.log("Filters: ", filters.value);
     filteredAnnouncements.set(
       announcements.value.filter((car) => {
         return (
@@ -39,10 +38,10 @@ const NavComponents = () => {
           new FilterValue(filters.value.colors, car.color).validate() &&
           new FilterValue(filters.value.years, car.year).validate() &&
           new FilterValue(filters.value.fuelTypes, car.fuelType).validate() &&
-          car.mileage >= filters.value.mileageRange.min &&
-          car.mileage <= filters.value.mileageRange.max &&
-          car.price >= filters.value.priceRange.min &&
-          car.price <= filters.value.priceRange.max
+          car.mileage >= filterMileage.value.min &&
+          car.mileage <= filterMileage.value.max &&
+          car.price >= filterPrice.value.min &&
+          car.price <= filterPrice.value.max
         );
       })
     );
@@ -91,88 +90,38 @@ const NavComponents = () => {
             ))}
           </ul>
         </div>
-        <div className='rangeOptions'>
-          <h2> Km </h2>
-          <span>
-            <p> {minMileage} km </p>
-            <p> {maxMileage} km </p>
-          </span>
-          <div className='rangeInputs'>
-            <input
-              className='range-input-min'
-              type='range'
-              name='km'
-              min={minMileage}
-              max={maxMileage / 2}
-              step={((maxMileage / 2) - minMileage) / 100}
-              value={filters.value.mileageRange.min}
-              onChange={(e) => filters.set((prev) => {
-                return {
-                  ...prev, mileageRange: {
-                    ...prev.mileageRange, min: Number(e.target.value)
-                  }
-                }
-              })}
-            />
-            <input
-              className='range-input-max'
-              type='range'
-              name='km'
-              min={maxMileage / 2}
-              max={maxMileage}
-              step={(maxMileage - (minMileage / 2)) / 100}
-              value={filters.value.mileageRange.max}
-              onChange={(e) => filters.set((prev) => {
-                return {
-                  ...prev, mileageRange: {
-                    ...prev.mileageRange, max: Number(e.target.value)
-                  }
-                }
-              })}
+        {
+          maxMileage && maxMileage > 0 &&
+          <div className='rangeOptions'>
+            <h2> Km </h2>
+            <span>
+              <p> {filterMileage.value.min} km </p>
+              <p> {filterMileage.value.max} km </p>
+            </span>
+            <RangeInput
+              state={filterMileage}
+              minValue={0}
+              maxValue={maxMileage}
+              step={1000}
             />
           </div>
-        </div>
-        <div className='rangeOptions'>
-          <h2> Preço </h2>
-          <span>
-            <p> R$ {String(minPrice).slice(0, -3)} mil </p>
-            <p> R$ {String(maxPrice).slice(0, -3)} mil </p>
-          </span>
-          <div className='rangeInputs'>
-            <input
-              className='range-input-min'
-              type='range'
-              name='price'
-              min={minPrice}
-              max={maxPrice / 2}
-              step={((maxPrice / 2) - minPrice) / 100}
-              value={filters.value.priceRange.min}
-              onChange={(e) => filters.set((prev) => {
-                return {
-                  ...prev, priceRange: {
-                    ...prev.priceRange, min: Number(e.target.value)
-                  }
-                }
-              })}
-            />
-            <input
-              type='range'
-              className='range-input-max'
-              name='price'
-              min={maxPrice / 2}
-              max={maxPrice}
-              step={(maxPrice - (maxPrice / 2)) / 100}
-              value={filters.value.mileageRange.min}
-              onChange={(e) => filters.set((prev) => {
-                return {
-                  ...prev, priceRange: {
-                    ...prev.priceRange, max: Number(e.target.value)
-                  }
-                }
-              })}
+        }
+        {
+          maxPrice && maxPrice > 0 &&
+          <div className='rangeOptions'>
+            <h2> Preço </h2>
+            <span>
+              <p> R$ {String(filterPrice.value.min).slice(0, -3)} mil </p>
+              <p> R$ {String(filterPrice.value.max).slice(0, -3)} mil </p>
+            </span>
+            <RangeInput
+              state={filterPrice}
+              minValue={1000}
+              maxValue={maxPrice}
+              step={1000}
             />
           </div>
-        </div>
+        }
         <div className='navFooterButton'>
           <ButtonComponents
             $size='small'

@@ -15,12 +15,4 @@ export interface AnnouncementFilters {
   colors: Array<string>;
   years: Array<number>;
   fuelTypes: Array<string>;
-  mileageRange: {
-    min: number;
-    max: number;
-  }
-  priceRange: {
-    min: number;
-    max: number;
-  }
 }
