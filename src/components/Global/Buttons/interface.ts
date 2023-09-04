@@ -11,4 +11,5 @@ export interface IStyleProps {
 export interface IButtonProps extends IStyleProps {
   text: string;
   typeButton: 'submit' | 'reset' | 'button';
+  onClick?: () => void;
 }

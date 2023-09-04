@@ -8,6 +8,7 @@ const ButtonComponents = ({
   typeButton,
   $width,
   $height,
+  onClick
 }: IButtonProps) => {
   return (
     <ButtonStyle
@@ -16,6 +17,7 @@ const ButtonComponents = ({
       $height={$height}
       $size={$size}
       $type={$type}
+      onClick={onClick}
     >
       {text}
     </ButtonStyle>

@@ -8,3 +8,11 @@ export interface ICar {
   Mileage: number;
   Price: number;
 }
+
+export interface AnnouncementFilters {
+  brands: Array<string>;
+  models: Array<string>;
+  colors: Array<string>;
+  years: Array<number>;
+  fuelTypes: Array<string>;
+}
