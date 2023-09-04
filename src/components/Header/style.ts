@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 import { styled } from 'styled-components';
-import { HeaderContainerProps, UserMenuProps } from './interface';
+import { IsOpenProps } from './interface';
 
-export const HeaderContainerStyled = styled.header<HeaderContainerProps>`
+export const HeaderContainerStyled = styled.header`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -43,15 +43,15 @@ export const MenuButtonStyled = styled.button`
   }
 `;
 
-export const UserMenuStyled = styled.div<UserMenuProps>`
-  display: ${(props: UserMenuProps) => (props.isOpen ? 'flex' : 'none')};
+export const UserMenuStyled = styled.div<IsOpenProps>`
+  display: ${(props: IsOpenProps) => (props.isOpen ? 'flex' : 'none')};
   flex-direction: column;
   align-items: center;
   width: 100%;
   margin-top: 25px;
   background-color: var(--white);
   position: fixed;
-  top: ${(props: UserMenuProps) => (props.isOpen ? '50px' : '-100%')};
+  top: ${(props: IsOpenProps) => (props.isOpen ? '50px' : '-100%')};
   right: 0;
   z-index: 100;
   transition: top 0.3s ease-in-out;
@@ -159,13 +159,13 @@ export const UserActionsStyled = styled.div`
   }
 `;
 
-export const Overlay = styled.div<{ isOpen: boolean }>`
+export const Overlay = styled.div<IsOpenProps>`
   position: fixed;
   top: 80px;
   left: 0;
   width: 100%;
   height: 100%;
   background-color: rgba(0, 0, 0, 0.1);
-  display: ${(props) => (props.isOpen ? 'block' : 'none')};
+  display: ${(props: IsOpenProps) => (props.isOpen ? 'block' : 'none')};
   z-index: 99;
 `;

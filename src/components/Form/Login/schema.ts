@@ -4,5 +4,5 @@ export const loginSchema = yup.object().shape({
   email: yup.string().required("Campo obrigatório").email("E-mail inválido"),
   password: yup.string()
     .required("Campo obrigatório")
-    .min(6, "Mínimo 6 caracteres"),
+    .min(8, "Mínimo 8 caracteres"),
 });

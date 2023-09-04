@@ -5,18 +5,10 @@ import NavComponents from '../../components/Nav';
 import { HomeContainer } from './style';
 
 export const HomePage: React.FC = () => {
-  const isLoggedIn = false;
-  const isAdvertiser = false;
-  const username = 'Usuário Motors';
-
   return (
     <HomeContainer>
       <div className='header'>
-        <HeaderComponents
-          isLoggedIn={isLoggedIn}
-          isAdvertiser={isAdvertiser}
-          username={username}
-        />
+        <HeaderComponents />
       </div>
       <div className='body'>
         <NavComponents />

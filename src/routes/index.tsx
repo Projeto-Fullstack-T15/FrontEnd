@@ -6,29 +6,27 @@ import { ProfileAdminPage } from "../pages/HomeProfileAdmin";
 import LoginPage from "../pages/Login";
 import RegisterPage from "../pages/Register";
 
+import { AnnouncementProvider } from "../contexts/announces/announcementContext";
+import { ProfileAdminPage } from "../pages/HomeProfileAdmin";
+import { ProtectedRoutes } from "./ProtectedRoutes";
+
+
 export const RoutesMain = () => {
   return (
     <Routes>
       <Route
-        path='/home'
+        path="/"
         element={
           <AnnouncementProvider value={undefined}>
             <HomePage />
           </AnnouncementProvider>
         }
       />
-      <Route
-        path='/'
-        element={<LoginPage />}
-      />
-      <Route
-        path='/register'
-        element={<RegisterPage />}
-      />
-      <Route
-        path='/profileadmin'
-        element={<ProfileAdminPage />}
-      />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+      <Route path="/profileadmin" element={<ProtectedRoutes />}>
+        <Route index element={<ProfileAdminPage />} />
+      </Route>
       <Route
         path='/adsbyseller'
         element={<AdsBySellerPage />}
