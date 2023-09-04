@@ -1,11 +1,11 @@
 import { styled } from "styled-components";
 
 export const AnnouncementsListStyled = styled.div`
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   .content {
+    margin-top: 100px;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
   }
