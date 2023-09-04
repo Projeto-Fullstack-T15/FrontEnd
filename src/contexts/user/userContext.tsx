@@ -1,14 +1,15 @@
-import { createContext, useEffect, useState } from "react";
+import { createContext, useState } from "react";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   ILogin,
+  ILoginResponse,
   IUserContextProps,
   TCreateUser,
   TUpdateUser,
 } from "./interfaces";
 import { api } from "../../services/api";
-import { IUser } from "../../interfaces";
+import { IUserResponse } from "../../interfaces";
 import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext<IUserContextProps>(
@@ -16,9 +17,7 @@ export const UserContext = createContext<IUserContextProps>(
 );
 
 export const UserProvider = ({ children }) => {
-  const token = localStorage.getItem("@TOKEN");
-  const bearerToken = `Bearer ${token}`;
-  const [user, setUser] = useState<IUser>({} as IUser);
+  const [user, setUser] = useState<IUserResponse>({} as IUserResponse);
   const [successModalOpen, setSuccessModalOpen] = useState(false);
 
   const navigate = useNavigate();
@@ -31,22 +30,21 @@ export const UserProvider = ({ children }) => {
     setSuccessModalOpen(false);
   };
 
-  useEffect(() => {
-    const getUser = async () => {
-      await api
-        .get(`/accounts`, {
-          headers: {
-            Authorization: bearerToken,
-          },
-        })
-        .then((res) => {
-          console.log(res.data);
-          setUser(res.data);
-        })
-        .catch((err) => console.error(err));
-    };
-    getUser();
-  }, []);
+  const getUser = async () => {
+    const token = localStorage.getItem("@TOKEN");
+    const bearerToken = `Bearer ${token}`;
+
+    await api
+      .get<IUserResponse>(`/accounts`, {
+        headers: {
+          Authorization: bearerToken,
+        },
+      })
+      .then((res) => {
+        setUser(res.data);
+      })
+      .catch((err) => console.error(err));
+  };
 
   const createUser = async (data: TCreateUser) => {
     await api
@@ -74,15 +72,24 @@ export const UserProvider = ({ children }) => {
 
   const login = async (data: ILogin) => {
     await api
-      .post("/accounts/login", data)
+      .post<ILoginResponse>("/accounts/login", data)
       .then((res) => {
-        setUser(res.data);
+        localStorage.setItem("@TOKEN", res.data.token);
+        getUser();
         toast.success("Login realizado com sucesso!");
-        setTimeout(() => {
-          navigate("/profileadmin");
-        }, 3000);
+        // setTimeout(() => {
+        //   navigate("/");
+        // }, 3000);
       })
       .catch((err) => console.error(err));
+  };
+
+  const userLogout = () => {
+    setUser(null);
+    localStorage.removeItem("@TOKEN");
+    setTimeout(() => {
+      navigate("/login");
+    }, 3000);
   };
 
   return (
@@ -93,9 +100,10 @@ export const UserProvider = ({ children }) => {
         updateUser,
         user,
         login,
+        userLogout,
         openSuccessModal,
         closeSuccessModal,
-        successModalOpen,
+        successModalOpen
       }}
     >
       {children}

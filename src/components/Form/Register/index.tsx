@@ -56,7 +56,7 @@ export const RegisterForm = () => {
       <Input
         label="CPF"
         type="text"
-        placeholder="000.000.000-00"
+        placeholder="000.000.000.00"
         register={register("user.cpf")}
         error={errors.user?.cpf}
       />

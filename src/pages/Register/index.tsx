@@ -8,16 +8,9 @@ import { SuccessModal } from '../../components/Modais/ModalSuccessRegister';
 
 const RegisterPage = () => {
   const { successModalOpen, closeSuccessModal } = useContext(UserContext);
-  const isLoggedIn = false;
-  const isAdvertiser = false;
-  const username = 'Usuário Motors';
-  return (
+  return(  
     <>
-      <HeaderComponents
-        isLoggedIn={isLoggedIn}
-        isAdvertiser={isAdvertiser}
-        username={username}
-      />
+      <HeaderComponents />
       <MainRegister>
         <RegisterForm />
       </MainRegister>

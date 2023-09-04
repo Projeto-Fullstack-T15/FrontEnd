@@ -16,7 +16,7 @@ export const SuccessModal: React.FC<SuccessModalProps> = ({
   const handleLoginClick = () => {
     onClose();
     setTimeout(() => {
-      navigate("/");
+      navigate("/login");
     }, 500);
   };
 

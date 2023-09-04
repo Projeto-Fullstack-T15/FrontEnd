@@ -1,11 +1,12 @@
-import { IUser } from "../../interfaces";
+import { IUserResponse } from "../../interfaces";
 
 export interface IUserContextProps {
-  user: IUser;
+  user: IUserResponse;
   createUser: (data: TCreateUser) => Promise<void>;
   updateUser: (data: TUpdateUser) => Promise<void>;
   deleteUser: () => Promise<void>;
   login: (data: ILogin) => Promise<void>;
+  userLogout: () => void;
   openSuccessModal: () => void;
   closeSuccessModal: () => void;
   successModalOpen: boolean;
@@ -42,4 +43,8 @@ export type TUpdateUser = Partial<TCreateUser>;
 export interface ILogin {
   email: string;
   password: string;
+}
+
+export interface ILoginResponse {
+  token: string;
 }
