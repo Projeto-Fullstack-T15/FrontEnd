@@ -5,10 +5,6 @@ import { api } from '../../services/api';
 /* import Announcement from "../../interfaces/announcement.interface"; */
 
 export const ProfileAdminPage: React.FC = () => {
-  const isLoggedIn = false;
-  const isAdvertiser = false;
-  const username = 'Usuário Motors';
-
   const [announces, setAnnounces] = useState([]);
 
   useEffect(() => {
@@ -21,11 +17,7 @@ export const ProfileAdminPage: React.FC = () => {
 
   return (
     <>
-      <HeaderComponents
-        isLoggedIn={isLoggedIn}
-        isAdvertiser={isAdvertiser}
-        username={username}
-      />
+      <HeaderComponents />
       <div>
         <div>
           <h2>SL</h2>

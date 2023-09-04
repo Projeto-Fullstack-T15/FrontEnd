@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Logo from './../../assets/logo.svg';
-import { GiHamburgerMenu } from 'react-icons/gi';
-import { GrFormClose } from 'react-icons/gr';
-import UserAvatarComponents from './Avatar';
+import { useContext, useState } from "react";
+import { Link } from "react-router-dom";
+import Logo from "./../../assets/logo.svg";
+import { GiHamburgerMenu } from "react-icons/gi";
+import { GrFormClose } from "react-icons/gr";
+import UserAvatarComponents from "./Avatar";
 import {
   ContainerStyled,
   HeaderContainerStyled,
@@ -14,18 +14,26 @@ import {
   UserMenuStyled,
   UserNameStyled,
   UserOptionsStyled,
-} from './style';
-import { HeaderProps } from './interface';
+} from "./style";
+import { UserContext } from "../../contexts/user/userContext";
 
-const HeaderComponents = ({
-  isLoggedIn,
-  isAdvertiser,
-  username,
-}: HeaderProps) => {
+const HeaderComponents = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [menuIcon, setMenuIcon] = useState(<GiHamburgerMenu size={20} />);
   const [showUserOptions, setShowUserOptions] = useState(false);
 
+  const { userLogout, user } = useContext(UserContext);
+
+  const nameUser = (user && user.user && user.user.name) || "";
+  const isAdvertiser = user && user.account_type === "ANNOUNCER";  
+
+  const handleLogout = () => {
+    userLogout();
+    window.location.href = "/login";
+  };
+
+  const token = localStorage.getItem("@TOKEN");
+  const isLoggedIn = !!token;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -39,10 +47,10 @@ const HeaderComponents = ({
   };
 
   return (
-    <HeaderContainerStyled isOpen={isMenuOpen}>
+    <HeaderContainerStyled>
       <ContainerStyled>
-        <LogoLinkStyled to='/'>
-          <img src={Logo} alt='Logo' />
+        <LogoLinkStyled to="/">
+          <img src={Logo} alt="Logo" />
         </LogoLinkStyled>
         <MenuButtonStyled onClick={toggleMenu}>{menuIcon}</MenuButtonStyled>
       </ContainerStyled>
@@ -51,32 +59,34 @@ const HeaderComponents = ({
         {isLoggedIn ? (
           <>
             <UserNameStyled onClick={toggleUserOptions}>
-              <UserAvatarComponents username={username || ''} />
-              {username}
+              <UserAvatarComponents username={nameUser} />
+              {nameUser}
             </UserNameStyled>
             {showUserOptions && (
               <UserOptionsStyled>
                 <li>
-                  <Link to=''>Editar Perfil</Link>
+                  <Link to="">Editar Perfil</Link>
                 </li>
                 <li>
-                  <Link to=''>Editar Endereço</Link>
+                  <Link to="">Editar Endereço</Link>
                 </li>
                 {isAdvertiser && (
                   <li>
-                    <Link to=''>Editar Anúncio</Link>
+                    <Link to="">Meus Anúncios</Link>
                   </li>
                 )}
                 <li>
-                  <Link to=''>Sair</Link>
+                  <Link to="#" onClick={handleLogout}>
+                    Sair
+                  </Link>
                 </li>
               </UserOptionsStyled>
             )}
           </>
         ) : (
           <UserActionsStyled>
-            <Link to='/'>Fazer Login</Link>
-            <Link to='/register'>Cadastrar</Link>
+            <Link to="/login">Fazer Login</Link>
+            <Link to="/register">Cadastrar</Link>
           </UserActionsStyled>
         )}
       </UserMenuStyled>

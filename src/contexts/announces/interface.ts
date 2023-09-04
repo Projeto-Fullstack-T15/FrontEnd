@@ -19,15 +19,6 @@ export interface AnnouncementContextProps {
   createAnnouncement: (data: any) => void;
   announcements: StateHook<Array<Announcement>>;
   filteredAnnouncements: StateHook<Array<Announcement>>;
-  brands: StateHook<Array<string>>;
-  models: StateHook<Array<string>>;
-  colors: StateHook<Array<string>>;
-  years: StateHook<Array<number>>;
-  fuelTypes: StateHook<Array<string>>;
-  mileageRangeMin: StateHook<number>;
-  mileageRangeMax: StateHook<number>;
-  priceRangeMin: StateHook<number>;
-  priceRangeMax: StateHook<number>;
 }
 
 export interface AnnouncementProviderProps {

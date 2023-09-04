@@ -1,12 +1,3 @@
-export interface HeaderProps {
-  isLoggedIn: boolean;
-  isAdvertiser: boolean;
-  username?: string;
-}
-
-export interface UserMenuProps {
-  isOpen: boolean;
-}
-export interface HeaderContainerProps {
+export interface IsOpenProps {
   isOpen: boolean;
 }

@@ -1,14 +1,36 @@
-import Announcement from '../contexts/announces/interface';
+export interface IUserResponse {
+  id: number;
+  email: string;
+  phone: string;
+  account_type: string;
+  created_at: Date;
+  last_updated_at: Date;
+  address: IAddress;
+  user: IUser;
+}
+
+export interface IAddress {
+  id: number;
+  zip_code: string;
+  state: string;
+  city: string;
+  street: string;
+  number: string;
+  complement: string;
+  account_id: number;
+  created_at: Date;
+  last_updated_at: Date;
+}
 
 export interface IUser {
   id: number;
   name: string;
   cpf: string;
-  email: string;
-  phone: string;
-  birthDate: Date;
+  birthday: Date;
   description: string;
-  announcementes: Announcement;
+  account_id: number;
+  created_at: Date;
+  last_updated_at: Date;
 }
 
 export interface ITokenDecode {
