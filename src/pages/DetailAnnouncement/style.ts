@@ -5,11 +5,28 @@ export const DivDetailsProduct = styled.div`
   flex-direction: column;
   align-items: center;
 
+  border: solid 1px orange;
+
   gap: 15px;
+
+  margin: 0 auto;
+
+  .container__right {
+    display: flex;
+    flex-direction: column;
+
+    gap: 30px;
+  }
+
+  @media (min-width: 768px) {
+    flex-direction: row;
+
+    width: 80%;
+  }
 `;
 
 export const SectionProductDetailStyle = styled.section`
-  margin-top: 35%;
+  margin-top: 100px;
 
   border: solid 1px blue;
 
@@ -24,6 +41,7 @@ export const SectionProductDetailStyle = styled.section`
   .image--product {
     border: solid 1px red;
     border-radius: 5px;
+    background-color: var(--white);
 
     width: 95%;
     height: 400px;
@@ -31,6 +49,7 @@ export const SectionProductDetailStyle = styled.section`
 `;
 
 export const SectionDetailsProductStyle = styled.section`
+  background-color: var(--white);
   border: solid 1px yellow;
   border-radius: 5px;
 
@@ -90,6 +109,7 @@ export const DivYearKMPriceStyle = styled.div`
 
 export const SectionDescriptionStyle = styled.section`
   border: solid 1px pink;
+  background-color: var(--white);
 
   width: 95%;
 
@@ -125,6 +145,7 @@ export const SectionPhotosStyle = styled.section`
   width: 95%;
   height: 359px;
 
+  background-color: var(--white);
   border: solid 1px purple;
   border-radius: 5px;
 
@@ -156,7 +177,61 @@ export const SectionPhotosStyle = styled.section`
       width: 90px;
       height: 90px;
 
-      border: solid 1px;
+      border: solid 1px black;
+      border-radius: 5px;
     }
+  }
+`;
+
+export const SectionAnnouncerStyle = styled.section`
+  background-color: var(--white);
+  border: solid 1px gold;
+  border-radius: 5px;
+
+  width: 95%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 30px;
+
+  padding: 30px 0;
+
+  div {
+    background-color: var(--brand1);
+
+    width: 77px;
+    height: 77px;
+
+    color: var(--white);
+
+    font-size: 1.625rem;
+    font-weight: 500;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    border-radius: 50%;
+  }
+
+  h4 {
+    font-size: 1.25rem;
+    font-weight: 600;
+
+    color: var(--grey1);
+  }
+
+  p {
+    text-align: center;
+
+    font-size: 1rem;
+    font-weight: 400;
+
+    color: var(--grey2);
+
+    line-height: 28px;
   }
 `;
