@@ -41,7 +41,7 @@ export const LoginForm = () => {
         register={register("password")}
         error={errors.password}
       />
-      <Link to="">Esqueci minha senha</Link>
+      <Link to="/sendEmail">Esqueci minha senha</Link>
       <ButtonComponents
         typeButton="submit"
         text="Entrar"

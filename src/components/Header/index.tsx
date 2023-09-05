@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "./../../assets/logo.svg";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -21,19 +21,24 @@ const HeaderComponents = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [menuIcon, setMenuIcon] = useState(<GiHamburgerMenu size={20} />);
   const [showUserOptions, setShowUserOptions] = useState(false);
+  
+  const { userLogout, user, getUser } = useContext(UserContext);
 
-  const { userLogout, user } = useContext(UserContext);
+  useEffect(() => {
+    getUser();
+  }, []);
+
 
   const nameUser = (user && user.user && user.user.name) || "";
-  const isAdvertiser = user && user.account_type === "ANNOUNCER";  
+  const isAdvertiser = user && user.account_type === "ANNOUNCER";
+
+  const token = localStorage.getItem("@TOKEN");
+  const isLoggedIn = !!token;
 
   const handleLogout = () => {
     userLogout();
     window.location.href = "/login";
   };
-
-  const token = localStorage.getItem("@TOKEN");
-  const isLoggedIn = !!token;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
