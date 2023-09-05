@@ -3,6 +3,7 @@ import HeaderComponents from '../../components/Header';
 import {
   DivDetailsProduct,
   DivYearKMPriceStyle,
+  SectionAnnouncerStyle,
   SectionDescriptionStyle,
   SectionDetailsProductStyle,
   SectionPhotosStyle,
@@ -12,7 +13,7 @@ import {
 const DetailAnnouncement = () => {
   return (
     <>
-      <HeaderComponents isLoggedIn={false} isAdvertiser={false} />
+      <HeaderComponents />
       <DivDetailsProduct>
         <SectionProductDetailStyle>
           <div className='image--product'>
@@ -35,39 +36,56 @@ const DetailAnnouncement = () => {
               $type='brand1'
             />
           </SectionDetailsProductStyle>
+          <SectionDescriptionStyle>
+            <h3 className='title--description'>Descrição</h3>
+            <p className='text--description'>
+              Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+              Praesentium distinctio quis aliquid! Nihil sit blanditiis nesciunt
+              explicabo veritatis quod magnam quisquam adipisci corrupti ex,
+              praesentium earum fuga unde quibusdam autem!
+            </p>
+          </SectionDescriptionStyle>
         </SectionProductDetailStyle>
-        <SectionDescriptionStyle>
-          <h3 className='title--description'>Descrição</h3>
-          <p className='text--description'>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-            Praesentium distinctio quis aliquid! Nihil sit blanditiis nesciunt
-            explicabo veritatis quod magnam quisquam adipisci corrupti ex,
-            praesentium earum fuga unde quibusdam autem!
-          </p>
-        </SectionDescriptionStyle>
-        <SectionPhotosStyle>
-          <h3>Fotos</h3>
-          <ul className='list__photos'>
-            <li className='photos'>
-              <img src='' alt='fotos do carro' />
-            </li>
-            <li className='photos'>
-              <img src='' alt='fotos do carro' />
-            </li>
-            <li className='photos'>
-              <img src='' alt='fotos do carro' />
-            </li>
-            <li className='photos'>
-              <img src='' alt='fotos do carro' />
-            </li>
-            <li className='photos'>
-              <img src='' alt='fotos do carro' />
-            </li>
-            <li className='photos'>
-              <img src='' alt='fotos do carro' />
-            </li>
-          </ul>
-        </SectionPhotosStyle>
+        <div className='container__right'>
+          <SectionPhotosStyle>
+            <h3>Fotos</h3>
+            <ul className='list__photos'>
+              <li className='photos'>
+                <img src='' alt='fotos do carro' />
+              </li>
+              <li className='photos'>
+                <img src='' alt='fotos do carro' />
+              </li>
+              <li className='photos'>
+                <img src='' alt='fotos do carro' />
+              </li>
+              <li className='photos'>
+                <img src='' alt='fotos do carro' />
+              </li>
+              <li className='photos'>
+                <img src='' alt='fotos do carro' />
+              </li>
+              <li className='photos'>
+                <img src='' alt='fotos do carro' />
+              </li>
+            </ul>
+          </SectionPhotosStyle>
+          <SectionAnnouncerStyle>
+            <div>SL</div>
+            <h4>Samuel Leão</h4>
+            <p>
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro,
+              ea! Provident, temporibus nesciunt.
+            </p>
+            <ButtonComponents
+              text='Ver todos anuncios'
+              $size='large'
+              $width='206px'
+              typeButton='button'
+              $type='big45'
+            />
+          </SectionAnnouncerStyle>
+        </div>
       </DivDetailsProduct>
       <section>
         <h3>Comentários</h3>

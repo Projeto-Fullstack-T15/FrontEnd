@@ -6,6 +6,7 @@ import { ProfileAdminPage } from '../pages/HomeProfileAdmin';
 import LoginPage from '../pages/Login';
 import RegisterPage from '../pages/Register';
 import { ProtectedRoutes } from './ProtectedRoutes';
+import DetailAnnouncement from '../pages/DetailAnnouncement';
 
 export const RoutesMain = () => {
   return (
@@ -24,6 +25,7 @@ export const RoutesMain = () => {
         <Route index element={<ProfileAdminPage />} />
       </Route>
       <Route path='/adsbyseller' element={<AdsBySellerPage />} />
+      <Route path='product-detail' element={<DetailAnnouncement />} />
     </Routes>
   );
 };
