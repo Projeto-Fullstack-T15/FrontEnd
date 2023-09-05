@@ -33,6 +33,19 @@ export interface IUser {
   last_updated_at: Date;
 }
 
+export interface ISendEmail {
+  email: string;
+}
+
+export interface IResetPassword {
+  password: string;
+  confirmPassword: string;
+}
+
+export interface IToken {
+  token: string
+}
+
 export interface ITokenDecode {
   foo: string;
   exp: number;

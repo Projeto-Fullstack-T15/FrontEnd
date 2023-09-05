@@ -9,7 +9,7 @@ import {
   TUpdateUser,
 } from "./interfaces";
 import { api } from "../../services/api";
-import { IUserResponse } from "../../interfaces";
+import { IResetPassword, ISendEmail, IUserResponse } from "../../interfaces";
 import { useNavigate } from "react-router-dom";
 
 export const UserContext = createContext<IUserContextProps>(
@@ -30,6 +30,7 @@ export const UserProvider = ({ children }) => {
     setSuccessModalOpen(false);
   };
 
+  
   const getUser = async () => {
     const token = localStorage.getItem("@TOKEN");
     const bearerToken = `Bearer ${token}`;
@@ -81,7 +82,10 @@ export const UserProvider = ({ children }) => {
         //   navigate("/");
         // }, 3000);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        toast.error("Email ou Senha incorreta");
+        console.error(err);
+      });
   };
 
   const userLogout = () => {
@@ -92,9 +96,38 @@ export const UserProvider = ({ children }) => {
     }, 3000);
   };
 
+  const sendEmail = (sendEmailResetPassword: ISendEmail) => {
+    api
+      .post("/accounts/reset-password", sendEmailResetPassword)
+      .then(() => {
+        toast.success("E-mail enviado com sucesso !");
+        navigate("/");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Erro ao enviar o e-mail, tente novamente mais tarde");
+      });
+  };
+
+  const resetPassword = (resetPassword: IResetPassword, token: string) => {
+    api
+      .patch(`/accounts/reset-password/${token}`, {
+        password: resetPassword.password,
+      })
+      .then(() => {
+        toast.success("Senha atualizada com sucesso !");
+        navigate("/login");
+      })
+      .catch((err) => {
+        console.log(err);
+        toast.error("Erro ao atualizar a senha");
+      });
+  };
+
   return (
     <UserContext.Provider
       value={{
+        getUser,
         createUser,
         deleteUser,
         updateUser,
@@ -103,7 +136,9 @@ export const UserProvider = ({ children }) => {
         userLogout,
         openSuccessModal,
         closeSuccessModal,
-        successModalOpen
+        successModalOpen,
+        sendEmail,
+        resetPassword,
       }}
     >
       {children}

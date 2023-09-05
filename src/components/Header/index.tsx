@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "./../../assets/logo.svg";
 import { GiHamburgerMenu } from "react-icons/gi";
@@ -16,24 +16,32 @@ import {
   UserOptionsStyled,
 } from "./style";
 import { UserContext } from "../../contexts/user/userContext";
+import ModalEditUser from "../Modais/ModalEditUser";
+import ModalEditAddress from "../Modais/ModalEditAddress";
 
 const HeaderComponents = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [menuIcon, setMenuIcon] = useState(<GiHamburgerMenu size={20} />);
   const [showUserOptions, setShowUserOptions] = useState(false);
+  const [isEditUserModalOpen, setIsEditUserModalOpen] = useState(false);
+  const [isEditAddressModalOpen, setIsEditAddressModalOpen] = useState(false);
 
-  const { userLogout, user } = useContext(UserContext);
+  const { userLogout, user, getUser } = useContext(UserContext);
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   const nameUser = (user && user.user && user.user.name) || "";
-  const isAdvertiser = user && user.account_type === "ANNOUNCER";  
+  const isAdvertiser = user && user.account_type === "ANNOUNCER";
+
+  const token = localStorage.getItem("@TOKEN");
+  const isLoggedIn = !!token;
 
   const handleLogout = () => {
     userLogout();
     window.location.href = "/login";
   };
-
-  const token = localStorage.getItem("@TOKEN");
-  const isLoggedIn = !!token;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -44,6 +52,14 @@ const HeaderComponents = () => {
 
   const toggleUserOptions = () => {
     setShowUserOptions(!showUserOptions);
+  };
+
+  const openEditUserModal = () => {
+    setIsEditUserModalOpen(true);
+  };
+
+  const openEditAddressModal = () => {
+    setIsEditAddressModalOpen(true);
   };
 
   return (
@@ -65,10 +81,12 @@ const HeaderComponents = () => {
             {showUserOptions && (
               <UserOptionsStyled>
                 <li>
-                  <Link to="">Editar Perfil</Link>
+                  <Link to="#" onClick={openEditUserModal}>
+                    Editar Perfil
+                  </Link>
                 </li>
                 <li>
-                  <Link to="">Editar Endereço</Link>
+                  <Link to="#" onClick={openEditAddressModal}>Editar Endereço</Link>
                 </li>
                 {isAdvertiser && (
                   <li>
@@ -90,6 +108,8 @@ const HeaderComponents = () => {
           </UserActionsStyled>
         )}
       </UserMenuStyled>
+      {isEditUserModalOpen && <ModalEditUser />}
+      {isEditAddressModalOpen && <ModalEditAddress />}
     </HeaderContainerStyled>
   );
 };

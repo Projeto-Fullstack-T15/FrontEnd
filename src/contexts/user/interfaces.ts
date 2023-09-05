@@ -1,7 +1,8 @@
-import { IUserResponse } from "../../interfaces";
+import { IResetPassword, ISendEmail, IUserResponse } from "../../interfaces";
 
 export interface IUserContextProps {
   user: IUserResponse;
+  getUser: () => Promise<void>;
   createUser: (data: TCreateUser) => Promise<void>;
   updateUser: (data: TUpdateUser) => Promise<void>;
   deleteUser: () => Promise<void>;
@@ -10,6 +11,8 @@ export interface IUserContextProps {
   openSuccessModal: () => void;
   closeSuccessModal: () => void;
   successModalOpen: boolean;
+  sendEmail: (sendEmailResetPassword: ISendEmail) => void;
+  resetPassword: (resetPassword: IResetPassword, token: string) => void;
 }
 
 export interface IUserProviderProps {
