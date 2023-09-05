@@ -78,9 +78,9 @@ export const UserProvider = ({ children }) => {
         localStorage.setItem("@TOKEN", res.data.token);
         getUser();
         toast.success("Login realizado com sucesso!");
-        // setTimeout(() => {
-        //   navigate("/");
-        // }, 3000);
+        setTimeout(() => {
+          navigate("/");
+        }, 3000);
       })
       .catch((err) => {
         toast.error("Email ou Senha incorreta");

@@ -90,7 +90,7 @@ const HeaderComponents = () => {
                 </li>
                 {isAdvertiser && (
                   <li>
-                    <Link to="">Meus Anúncios</Link>
+                    <Link to="/profileAdmin">Meus Anúncios</Link>
                   </li>
                 )}
                 <li>

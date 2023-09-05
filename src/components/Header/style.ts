@@ -73,6 +73,7 @@ export const UserNameStyled = styled.span`
   font-size: 1rem;
   padding: 20px 0 10px 0;
   cursor: pointer;
+  margin-right: 50px;
 
   @media screen and (min-width: 769px) {
     border-left: 2px solid rgba(0, 0, 0, 0.1);
