@@ -31,9 +31,19 @@ export const AnnouncementList = ({
     }
   };
 
+  if (products.length === 0) {
+    return (
+      <AnnouncementsListStyled>
+        <div className='content'>
+          <p>Nenhum anúncio encontrado.</p>
+        </div>
+      </AnnouncementsListStyled>
+    );
+  }
+
   return (
     <AnnouncementsListStyled>
-      <div className="content">
+      <div className='content'>
         {currentItems.map((product, index) => (
           <ProductCard
             key={index}
@@ -42,7 +52,7 @@ export const AnnouncementList = ({
           />
         ))}
       </div>
-      <div className="pagination">
+      <div className='pagination'>
         {totalPages > 1 && (
           <PaginationButtons
             currentPage={currentPage}
