@@ -7,6 +7,7 @@ import LoginPage from "../pages/Login";
 import RegisterPage from "../pages/Register";
 import { ProtectedRoutes } from "./ProtectedRoutes";
 
+
 export const RoutesMain = () => {
   return (
     <Routes>
@@ -18,27 +19,12 @@ export const RoutesMain = () => {
           </AnnouncementProvider>
         }
       />
-      <Route
-        path='/login'
-        element={<LoginPage />}
-      />
-      <Route
-        path='/register'
-        element={<RegisterPage />}
-      />
-      <Route
-        path='/profileadmin'
-        element={<ProtectedRoutes />}
-      >
-        <Route
-          index
-          element={<ProfileAdminPage />}
-        />
+      <Route path='/login' element={<LoginPage />} />
+      <Route path='/register' element={<RegisterPage />} />
+      <Route path='/profileadmin' element={<ProtectedRoutes />}>
+        <Route index element={<ProfileAdminPage />} />
       </Route>
-      <Route
-        path='/adsbyseller'
-        element={<AdsBySellerPage />}
-      />
+      <Route path='/adsbyseller' element={<AdsBySellerPage />} />
     </Routes>
   );
 };
