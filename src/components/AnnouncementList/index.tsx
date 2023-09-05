@@ -45,11 +45,14 @@ export const AnnouncementList = ({
     <AnnouncementsListStyled>
       <div className='content'>
         {currentItems.map((product, index) => (
-          <ProductCard
-            key={index}
-            announcement={product}
-            announcerView={true}
-          />
+          (<>
+            <ProductCard
+              key={index}
+              announcement={product}
+              announcerView={false}
+            />
+          </>
+          )
         ))}
       </div>
       <div className='pagination'>

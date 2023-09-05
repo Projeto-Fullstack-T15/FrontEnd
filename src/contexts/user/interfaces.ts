@@ -51,3 +51,27 @@ export interface ILogin {
 export interface ILoginResponse {
   token: string;
 }
+
+export interface Account {
+  id: number;
+  email: string;
+  phone: string;
+  account_type: "BUYER" | "ANNOUNCER";
+  created_at: string;
+  last_updated_at: string;
+}
+
+export interface User {
+  id: number;
+  name: string;
+  cpf: string;
+  birthday: string;
+  description: string;
+  account_id: number;
+  created_at: string;
+  last_updated_at: string;
+}
+
+export interface AccountWithUser extends Account {
+  user: User;
+}
