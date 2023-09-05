@@ -3,14 +3,15 @@ import { GrClose } from 'react-icons/gr';
 import { ModalContainer } from '../../../style/globalStyle';
 import { ButtonsStyle, CloseStyle, FormStyle, SectionStyle } from './style';
 import ButtonComponents from '../../Global/Buttons';
+import { IModalEditUserProps } from './interface';
 
-const ModalEditUser = () => {
+const ModalEditUser = ({ setIsEditUserModalOpen }: IModalEditUserProps) => {
   return createPortal(
     <ModalContainer>
       <SectionStyle>
         <CloseStyle>
           <h3>Editar Perfil</h3>
-          <GrClose />
+          <GrClose onClick={() => setIsEditUserModalOpen(false)} />
         </CloseStyle>
         <FormStyle>
           <div className='input__class'>
@@ -43,6 +44,7 @@ const ModalEditUser = () => {
               text='Cancelar'
               $size='large'
               $type='negative'
+              onClick={() => setIsEditUserModalOpen(false)}
             />
             <ButtonComponents
               typeButton='button'

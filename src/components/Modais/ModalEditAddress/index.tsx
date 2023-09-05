@@ -8,8 +8,11 @@ import {
 } from '../../../style/utilsStyle';
 import { FormStyle, DivOfInput, DivButtons } from './style';
 import { createPortal } from 'react-dom';
+import { IModalEditAddressProps } from './interface';
 
-const ModalEditAddress = () => {
+const ModalEditAddress = ({
+  setIsEditAddressModalOpen,
+}: IModalEditAddressProps) => {
   const [value, setValue] = useState<boolean>(false);
 
   const verifyInputs = (target_value: string | undefined | null) => {
@@ -21,7 +24,7 @@ const ModalEditAddress = () => {
       <SectionModalStyle $height='560px' $width='520px'>
         <TitleAndCloneStyle>
           <h4>Editar endereço</h4>
-          <GrFormClose />
+          <GrFormClose onClick={() => setIsEditAddressModalOpen(false)} />
         </TitleAndCloneStyle>
         <FormStyle>
           <h4>Informaçõwes de endereço</h4>

@@ -28,15 +28,11 @@ export const FooterStyle = styled.footer`
     font-size: 14px;
   }
 
-  svg {
-    background-color: var(--grey1);
-
+  .arrow__up {
     height: 50px;
     width: 50px;
 
     border-radius: 4px;
-
-    font-size: 14px;
 
     cursor: pointer;
   }
