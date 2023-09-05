@@ -1,9 +1,9 @@
-import { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import Logo from "./../../assets/logo.svg";
-import { GiHamburgerMenu } from "react-icons/gi";
-import { GrFormClose } from "react-icons/gr";
-import UserAvatarComponents from "./Avatar";
+import { useContext, useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import Logo from './../../assets/logo.svg';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import { GrFormClose } from 'react-icons/gr';
+import UserAvatarComponents from './Avatar';
 import {
   ContainerStyled,
   HeaderContainerStyled,
@@ -14,10 +14,10 @@ import {
   UserMenuStyled,
   UserNameStyled,
   UserOptionsStyled,
-} from "./style";
-import { UserContext } from "../../contexts/user/userContext";
-import ModalEditUser from "../Modais/ModalEditUser";
-import ModalEditAddress from "../Modais/ModalEditAddress";
+} from './style';
+import { UserContext } from '../../contexts/user/userContext';
+import ModalEditUser from '../Modais/ModalEditUser';
+import ModalEditAddress from '../Modais/ModalEditAddress';
 
 const HeaderComponents = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -32,15 +32,15 @@ const HeaderComponents = () => {
     getUser();
   }, []);
 
-  const nameUser = (user && user.user && user.user.name) || "";
-  const isAdvertiser = user && user.account_type === "ANNOUNCER";
+  const nameUser = (user && user.user && user.user.name) || '';
+  const isAdvertiser = user && user.account_type === 'ANNOUNCER';
 
-  const token = localStorage.getItem("@TOKEN");
+  const token = localStorage.getItem('@TOKEN');
   const isLoggedIn = !!token;
 
   const handleLogout = () => {
     userLogout();
-    window.location.href = "/login";
+    window.location.href = '/login';
   };
 
   const toggleMenu = () => {
@@ -65,8 +65,8 @@ const HeaderComponents = () => {
   return (
     <HeaderContainerStyled>
       <ContainerStyled>
-        <LogoLinkStyled to="/">
-          <img src={Logo} alt="Logo" />
+        <LogoLinkStyled to='/'>
+          <img src={Logo} alt='Logo' />
         </LogoLinkStyled>
         <MenuButtonStyled onClick={toggleMenu}>{menuIcon}</MenuButtonStyled>
       </ContainerStyled>
@@ -81,20 +81,22 @@ const HeaderComponents = () => {
             {showUserOptions && (
               <UserOptionsStyled>
                 <li>
-                  <Link to="#" onClick={openEditUserModal}>
+                  <Link to='#' onClick={openEditUserModal}>
                     Editar Perfil
                   </Link>
                 </li>
                 <li>
-                  <Link to="#" onClick={openEditAddressModal}>Editar Endereço</Link>
+                  <Link to='#' onClick={openEditAddressModal}>
+                    Editar Endereço
+                  </Link>
                 </li>
                 {isAdvertiser && (
                   <li>
-                    <Link to="/profileAdmin">Meus Anúncios</Link>
+                    <Link to='/profileAdmin'>Meus Anúncios</Link>
                   </li>
                 )}
                 <li>
-                  <Link to="#" onClick={handleLogout}>
+                  <Link to='#' onClick={handleLogout}>
                     Sair
                   </Link>
                 </li>
@@ -103,13 +105,19 @@ const HeaderComponents = () => {
           </>
         ) : (
           <UserActionsStyled>
-            <Link to="/login">Fazer Login</Link>
-            <Link to="/register">Cadastrar</Link>
+            <Link to='/login'>Fazer Login</Link>
+            <Link to='/register'>Cadastrar</Link>
           </UserActionsStyled>
         )}
       </UserMenuStyled>
-      {isEditUserModalOpen && <ModalEditUser />}
-      {isEditAddressModalOpen && <ModalEditAddress />}
+      {isEditUserModalOpen && (
+        <ModalEditUser setIsEditUserModalOpen={setIsEditUserModalOpen} />
+      )}
+      {isEditAddressModalOpen && (
+        <ModalEditAddress
+          setIsEditAddressModalOpen={setIsEditAddressModalOpen}
+        />
+      )}
     </HeaderContainerStyled>
   );
 };
