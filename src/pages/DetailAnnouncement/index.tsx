@@ -154,7 +154,11 @@ const DetailAnnouncement = () => {
           </SectionAnnouncerStyle>
         </div>
       </DivDetailsProduct>
-      <CommentsBox />
+
+      <section>
+        <CommentsBox/>
+      </section>
+
       <FooterComponent />
     </>
   ) : null;

@@ -8,7 +8,7 @@ const ButtonComponents = ({
   typeButton,
   $width,
   $height,
-  onClick
+  onClick,
 }: IButtonProps) => {
   return (
     <ButtonStyle

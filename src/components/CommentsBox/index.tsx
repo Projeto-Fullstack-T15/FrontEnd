@@ -1,10 +1,20 @@
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { Container } from './style';
-import { DeleteCommentModal } from '../Modais/ModalDeleteComment';
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import { Container } from "./style";
+import { DeleteCommentModal } from "../Modais/ModalDeleteComment";
+import { CommentContext } from "../../contexts/comments/commentsContext";
+import { UserContext } from "../../contexts/user/userContext";
+import { FaBars } from "react-icons/fa";
 
 export const CommentsBox = () => {
   const [comment, setComment] = useState([]);
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
+  const [isOptionsOpen, setIsOptionsOpen] = useState(null);
+  const [commentToDelete, setCommentToDelete] = useState(null);
+
+  const { deleteComment } = useContext(CommentContext);
+  const { user } = useContext(UserContext);
+
   const announcementId = 1;
 
   useEffect(() => {
@@ -33,45 +43,76 @@ export const CommentsBox = () => {
 
   const getInitials = (name) => {
     if (!name) {
-      name = 'User Annonimous';
+      name = "User Annonimous";
     }
-    const words = name.split(' ');
-    let initials = '';
+    const words = name.split(" ");
+    let initials = "";
     for (let i = 0; i < Math.min(2, words.length); i++) {
       initials += words[i].charAt(0).toUpperCase();
     }
     return initials;
   };
 
-  const handleConfirmDelete = () => {};
+  const handleToggleOptions = (commentId) => {
+    if (isOptionsOpen === commentId) {
+      setIsOptionsOpen(null);
+    } else {
+      setIsOptionsOpen(commentId);
+    }
+  };
+
+  const handlePrepareToDelete = (commentId) => {
+    setCommentToDelete(commentId);
+    setIsModalDeleteOpen(true);
+  };
+
+  const handleConfirmDelete = () => {
+    deleteComment(commentToDelete);
+    handleCloseModalDelete();
+  };
+
+  const handleCloseModalDelete = () => {
+    setIsModalDeleteOpen(false);
+    setCommentToDelete(null);
+  };
 
   return (
     <Container>
       <h2>Comentários</h2>
       {comment.map((comment) => (
         <div key={comment.id}>
-          <div className='commenter'>
-            <div className='capitalLetters'>
+          <div className="commenter">
+            <div className="capitalLetters">
               <h2>{getInitials(comment.author)}</h2>
             </div>
-            <h3>{comment.author || 'User Annonimous'}</h3>
-            <div className='point'>·</div>
+            <h3>{comment.author || "User Annonimous"}</h3>
+            <div className="point">·</div>
             <span>{getTimeDifference(comment.last_updated_at)}</span>
           </div>
-          <div className='comment'>
-            <a href='#'>
-              <p>{comment.text}</p>
-            </a>
-            <span className='edit'>Editar comentário?</span>
+
+          <div className="comment">
+            {user.id === comment.account_id && (
+              <div className="comment-options">
+                <FaBars onClick={() => handleToggleOptions(comment.id)} />
+              </div>
+            )}
           </div>
+          {isOptionsOpen === comment.id && (
+            <div className="comment-options-menu">
+              {/* <button onClick={}>Editar</button> */}
+              <button onClick={() => handlePrepareToDelete(comment.id)}>
+                Excluir
+              </button>
+            </div>
+          )}
         </div>
       ))}
 
-      {/* <DeleteCommentModal
+      <DeleteCommentModal
         open={isModalDeleteOpen}
         onClose={handleCloseModalDelete}
         onConfirm={handleConfirmDelete}
-      /> */}
+      />
     </Container>
   );
 };
