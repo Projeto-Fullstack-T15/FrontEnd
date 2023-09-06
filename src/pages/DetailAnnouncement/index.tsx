@@ -4,7 +4,6 @@ import FooterComponent from '../../components/Global/Footer';
 import HeaderComponents from '../../components/Header';
 import {
   DivDetailsProduct,
-  BackgroundBrandStyle,
   DivYearKMPriceStyle,
   SectionAnnouncerStyle,
   SectionDescriptionStyle,
@@ -37,17 +36,11 @@ const DetailAnnouncement = () => {
 
   return Object.keys(detailProduct).length !== 0 ? (
     <>
-      <BackgroundBrandStyle />
       <HeaderComponents />
       <DivDetailsProduct>
         <SectionProductDetailStyle>
           <div className='image--product'>
-            <img
-              src={
-                'https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419' /* detailProduct.cover_image */
-              }
-              alt='imagem do anuncio'
-            />
+            <img src={detailProduct.cover_image} alt='imagem do anuncio' />
           </div>
           <SectionDetailsProductStyle>
             <h3>
