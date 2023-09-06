@@ -1,7 +1,11 @@
-import { useParams } from 'react-router-dom';
-import ButtonComponents from '../../components/Global/Buttons';
-import FooterComponent from '../../components/Global/Footer';
-import HeaderComponents from '../../components/Header';
+import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
+import ButtonComponents from "../../components/Global/Buttons";
+import FooterComponent from "../../components/Global/Footer";
+import HeaderComponents from "../../components/Header";
+import Announcement from "../../contexts/announces/interface";
+import { api } from "../../services/api";
 import {
   DivDetailsProduct,
   DivYearKMPriceStyle,
@@ -10,11 +14,7 @@ import {
   SectionDetailsProductStyle,
   SectionPhotosStyle,
   SectionProductDetailStyle,
-} from './style';
-import { useEffect, useState } from 'react';
-import { api } from '../../services/api';
-import Announcement from '../../contexts/announces/interface';
-import { toast } from 'react-toastify';
+} from "./style";
 
 const DetailAnnouncement = () => {
   const { productId } = useParams();
@@ -34,13 +34,26 @@ const DetailAnnouncement = () => {
     retriveAnnoucement();
   }, [productId]);
 
+  const handleWhatsAppClick = () => {
+    const url = `whatsapp://send?phone=${detailProduct.account.phone}`;
+    window.location.href = url;
+  };
+
+  const handleRedirect = () => {
+    const url = `/adsbyseller/${detailProduct.account.id}`;
+    window.location.href = url;
+  };
+
   return Object.keys(detailProduct).length !== 0 ? (
     <>
       <HeaderComponents />
       <DivDetailsProduct>
         <SectionProductDetailStyle>
           <div className='image--product'>
-            <img src={detailProduct.cover_image} alt='imagem do anuncio' />
+            <img
+              src={detailProduct.cover_image}
+              alt='imagem do anuncio'
+            />
           </div>
           <SectionDetailsProductStyle>
             <h3>
@@ -52,9 +65,9 @@ const DetailAnnouncement = () => {
                 <span>{detailProduct.mileage / 1000}KM</span>
               </div>
               <p>
-                {detailProduct.price.toLocaleString('pt-BR', {
-                  style: 'currency',
-                  currency: 'BRL',
+                {detailProduct.price.toLocaleString("pt-BR", {
+                  style: "currency",
+                  currency: "BRL",
                 })}
               </p>
             </DivYearKMPriceStyle>
@@ -64,6 +77,7 @@ const DetailAnnouncement = () => {
               $width='100px'
               typeButton='button'
               $type='brand1'
+              onClick={handleWhatsAppClick}
             />
           </SectionDetailsProductStyle>
           <SectionDescriptionStyle>
@@ -76,31 +90,49 @@ const DetailAnnouncement = () => {
             <h3>Fotos</h3>
             <ul className='list__photos'>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src=''
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src=''
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src=''
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src=''
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src=''
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src=''
+                  alt='fotos do carro'
+                />
               </li>
             </ul>
           </SectionPhotosStyle>
           <SectionAnnouncerStyle>
             <div>
               {detailProduct.account.user.name
-                .split(' ')
+                .split(" ")
                 .map((elt) => elt[0])
-                .join('')}
+                .join("")}
             </div>
             <h4>{detailProduct.account.user.name}</h4>
             <p>{detailProduct.account.user.description}</p>
@@ -110,6 +142,7 @@ const DetailAnnouncement = () => {
               $width='206px'
               typeButton='button'
               $type='big45'
+              onClick={handleRedirect}
             />
           </SectionAnnouncerStyle>
         </div>
