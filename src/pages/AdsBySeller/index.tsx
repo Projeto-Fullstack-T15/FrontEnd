@@ -14,7 +14,6 @@ export const AdsBySellerPage: React.FC = () => {
   useEffect(() => {
     axios.get(`http://localhost:8000/api/announcements`).then((response) => {
       const data = response.data;
-      console.log(data);
       const filteredCars = data.filter(
         (car) => car.account_id === Number(sellerId)
       );

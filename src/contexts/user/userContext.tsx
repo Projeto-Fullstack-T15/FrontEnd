@@ -37,7 +37,7 @@ export const UserProvider = ({ children }) => {
     await api
       .get<IUserResponse>(`/accounts`, {
         headers: {
-          Authorization: bearerToken,
+          Authorization: `Bearer ${localStorage.getItem('@TOKEN')}`,
         },
       })
       .then((res) => {
@@ -65,6 +65,7 @@ export const UserProvider = ({ children }) => {
       })
       .then((res) => {
         setUser(res.data);
+        getUser()
         toast.success('Perfil editado com succeso!');
       })
       .catch((err) => toast.error(err));

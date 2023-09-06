@@ -2,7 +2,7 @@ import { UseFormRegisterReturn } from "react-hook-form";
 import { FieldStyled} from "./style";
 
 export interface IInput {
-  label: string; 
+  label?: string; 
   type: string;
   register: UseFormRegisterReturn<string>;
   error?: any;

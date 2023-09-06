@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Container } from "./style";
+import { DeleteCommentModal } from "../Modais/ModalDeleteComment";
 
 export const CommentsBox = () => {
   const [comment, setComment] = useState([]);
@@ -42,27 +43,35 @@ export const CommentsBox = () => {
     return initials;
   };
 
+  const handleConfirmDelete = () => {};
+
   return (
     <Container>
       <h2>Comentários</h2>
       {comment.map((comment) => (
         <div key={comment.id}>
-          <div className='commenter'>
-            <div className='capitalLetters'>
+          <div className="commenter">
+            <div className="capitalLetters">
               <h2>{getInitials(comment.author)}</h2>
             </div>
             <h3>{comment.author || "User Annonimous"}</h3>
-            <div className='point'>·</div>
+            <div className="point">·</div>
             <span>{getTimeDifference(comment.last_updated_at)}</span>
           </div>
-          <div className='comment'>
-            <a href='#'>
+          <div className="comment">
+            <a href="#">
               <p>{comment.text}</p>
             </a>
-            <span className='edit'>Editar comentário?</span>
+            <span className="edit">Editar comentário?</span>
           </div>
         </div>
       ))}
+
+      <DeleteCommentModal
+        open={isModalDeleteOpen}
+        onClose={handleCloseModalDelete}
+        onConfirm={handleConfirmDelete}
+      />
     </Container>
   );
 };
