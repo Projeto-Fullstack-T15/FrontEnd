@@ -10,11 +10,10 @@ import { Container } from "./style";
 export const AdsBySellerPage: React.FC = () => {
   const [carData, setCarData] = useState([]);
   const sellerId = useParams().id;
-
   useEffect(() => {
     axios.get(`http://localhost:8000/api/announcements`).then((response) => {
       const data = response.data;
-
+      console.log(data);
       const filteredCars = data.filter(
         (car) => car.account_id === Number(sellerId)
       );
