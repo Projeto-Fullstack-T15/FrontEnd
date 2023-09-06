@@ -1,5 +1,5 @@
 import { GrFormClose } from 'react-icons/gr';
-import { useState } from 'react';
+import { useContext } from 'react';
 import { ModalContainer } from '../../../style/globalStyle';
 import ButtonComponents from '../../Global/Buttons';
 import {
@@ -8,15 +8,40 @@ import {
 } from '../../../style/utilsStyle';
 import { FormStyle, DivOfInput, DivButtons } from './style';
 import { createPortal } from 'react-dom';
-import { IModalEditAddressProps } from './interface';
+import { IEditAddress, IModalEditAddressProps } from './interface';
+import { UserContext } from '../../../contexts/user/userContext';
+import { useForm } from 'react-hook-form';
+import { TUpdateUser } from '../../../contexts/user/interfaces';
+import { toast } from 'react-toastify';
 
 const ModalEditAddress = ({
   setIsEditAddressModalOpen,
 }: IModalEditAddressProps) => {
-  const [value, setValue] = useState<boolean>(false);
+  const { updateUser } = useContext(UserContext);
 
-  const verifyInputs = (target_value: string | undefined | null) => {
-    target_value ? setValue(true) : setValue(false);
+  const { register, handleSubmit } = useForm<IEditAddress>();
+
+  const formSubmit = (data: IEditAddress) => {
+    const { city, complement, number, state, street, zip_code } = data;
+
+    const address: IEditAddress = {};
+
+    if (city != '') address.city = city;
+    if (complement != '') address.complement = complement;
+    if (number != '') address.number = number;
+    if (state != '') address.state = state;
+    if (street != '') address.street = street;
+    if (zip_code != '') address.zip_code = zip_code;
+
+    const newData: TUpdateUser = {
+      address,
+    };
+
+    if (Object.keys(newData.address).length === 0) {
+      return toast.error('Preencha algum campo antes de salvar.');
+    }
+
+    updateUser(newData);
   };
 
   return createPortal(
@@ -26,15 +51,15 @@ const ModalEditAddress = ({
           <h4>Editar endereço</h4>
           <GrFormClose onClick={() => setIsEditAddressModalOpen(false)} />
         </TitleAndCloneStyle>
-        <FormStyle>
-          <h4>Informaçõwes de endereço</h4>
+        <FormStyle onSubmit={handleSubmit(formSubmit)}>
+          <h4>Informações de endereço</h4>
           <DivOfInput>
-            <label htmlFor='CEP'>CEP</label>
+            <label htmlFor='cep'>CEP</label>
             <input
               type='text'
-              id='CEP'
+              id='cep'
               placeholder='89888-888'
-              onChange={(e) => verifyInputs(e.target.value)}
+              {...register('zip_code')}
             />
           </DivOfInput>
           <div className='container__divs--input'>
@@ -44,7 +69,7 @@ const ModalEditAddress = ({
                 type='text'
                 id='state'
                 placeholder='Paraná'
-                onChange={(e) => verifyInputs(e.target.value)}
+                {...register('state')}
               />
             </DivOfInput>
             <DivOfInput>
@@ -53,7 +78,7 @@ const ModalEditAddress = ({
                 type='text'
                 id='city'
                 placeholder='Curitiba'
-                onChange={(e) => verifyInputs(e.target.value)}
+                {...register('city')}
               />
             </DivOfInput>
           </div>
@@ -63,7 +88,7 @@ const ModalEditAddress = ({
               type='text'
               id='street'
               placeholder='Rua do paraná'
-              onChange={(e) => verifyInputs(e.target.value)}
+              {...register('street')}
             />
           </DivOfInput>
           <div className='container__divs--input'>
@@ -73,7 +98,7 @@ const ModalEditAddress = ({
                 type='number'
                 id='number'
                 placeholder='1029'
-                onChange={(e) => verifyInputs(e.target.value)}
+                {...register('number')}
               />
             </DivOfInput>
             <DivOfInput>
@@ -82,7 +107,7 @@ const ModalEditAddress = ({
                 type='text'
                 id='complement'
                 placeholder='Apart 12'
-                onChange={(e) => verifyInputs(e.target.value)}
+                {...register('complement')}
               />
             </DivOfInput>
           </div>
@@ -95,11 +120,11 @@ const ModalEditAddress = ({
               $type='negative'
             />
             <ButtonComponents
-              typeButton='button'
+              typeButton='submit'
               text='Salvar alterações'
               $size='large'
               $width='193px'
-              $type={value ? 'brand1' : 'brandDisable'}
+              $type='brand1'
             />
           </DivButtons>
         </FormStyle>
