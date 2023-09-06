@@ -3,6 +3,7 @@ import ButtonComponents from '../../components/Global/Buttons';
 import FooterComponent from '../../components/Global/Footer';
 import HeaderComponents from '../../components/Header';
 import {
+  BackgroundBrandStyle,
   DivDetailsProduct,
   DivYearKMPriceStyle,
   SectionAnnouncerStyle,
@@ -36,6 +37,7 @@ const DetailAnnouncement = () => {
 
   return Object.keys(detailProduct).length !== 0 ? (
     <>
+      <BackgroundBrandStyle />
       <HeaderComponents />
       <DivDetailsProduct>
         <SectionProductDetailStyle>
