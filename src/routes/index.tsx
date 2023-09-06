@@ -21,39 +21,15 @@ export const RoutesMain = () => {
           </AnnouncementProvider>
         }
       />
-      <Route
-        path='/login'
-        element={<LoginPage />}
-      />
-      <Route
-        path='/register'
-        element={<RegisterPage />}
-      />
-      <Route
-        path='/sendEmail'
-        element={<SendEmailResetPasswordPage />}
-      />
-      <Route
-        path='/resetPassword/:token'
-        element={<ResetPasswordPage />}
-      />
-      <Route
-        path='/profileAdmin'
-        element={<ProtectedRoutes />}
-      >
-        <Route
-          index
-          element={<ProfileAdminPage />}
-        />
+      <Route path='/login' element={<LoginPage />} />
+      <Route path='/register' element={<RegisterPage />} />
+      <Route path='/sendEmail' element={<SendEmailResetPasswordPage />} />
+      <Route path='/resetPassword/:token' element={<ResetPasswordPage />} />
+      <Route path='/profileAdmin' element={<ProtectedRoutes />}>
+        <Route index element={<ProfileAdminPage />} />
       </Route>
-      <Route
-        path='/adsbyseller/:id'
-        element={<AdsBySellerPage />}
-      />
-      <Route
-        path='product-detail'
-        element={<DetailAnnouncement />}
-      />
+      <Route path='/adsbyseller/:id' element={<AdsBySellerPage />} />
+      <Route path='productDetail/:productId' element={<DetailAnnouncement />} />
     </Routes>
   );
 };
