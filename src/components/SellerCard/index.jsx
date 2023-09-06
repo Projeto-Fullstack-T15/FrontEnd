@@ -1,11 +1,11 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useParams } from 'react-router-dom';
 import { SellerCardStyle } from "./style";
 
-const SellerCard = ({ sellerId }) => {
+const SellerCard = () => {
   const [sellerData, setSellerData] = useState(null);
-  const id = localStorage.getItem("sellerId");
-
+  const id = useParams().id;
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/announcements`)
@@ -19,7 +19,7 @@ const SellerCard = ({ sellerId }) => {
       .catch((error) => {
         console.error("Erro ao buscar os dados do vendedor:", error);
       });
-  }, [sellerId]);
+  }, [id]);
 
 
   const getInitials = (name) => {

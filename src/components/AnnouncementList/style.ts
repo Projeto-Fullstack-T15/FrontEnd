@@ -1,14 +1,24 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 export const AnnouncementsListStyled = styled.div`
   width: 100%;
   height: 100%;
   box-sizing: border-box;
   overflow-y: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
+  .noData {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 50vh;
+  }
   .content {
     width: 100%;
-    height: 100%;
+    height: 95%;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
@@ -18,14 +28,13 @@ export const AnnouncementsListStyled = styled.div`
     row-gap: 1rem;
     overflow: auto;
 
-    >p {
+    > p {
       box-sizing: border-box;
       width: 100%;
       height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
-
     }
   }
 
