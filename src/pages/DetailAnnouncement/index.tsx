@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import ButtonComponents from "../../components/Global/Buttons";
-import FooterComponent from "../../components/Global/Footer";
-import HeaderComponents from "../../components/Header";
-import Announcement from "../../contexts/announces/interface";
-import { api } from "../../services/api";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import ButtonComponents from '../../components/Global/Buttons';
+import FooterComponent from '../../components/Global/Footer';
+import HeaderComponents from '../../components/Header';
+import Announcement from '../../contexts/announces/interface';
+import { api } from '../../services/api';
 import {
   BackgroundBrandStyle,
   DivDetailsProduct,
@@ -15,7 +15,8 @@ import {
   SectionDetailsProductStyle,
   SectionPhotosStyle,
   SectionProductDetailStyle,
-} from "./style";
+} from './style';
+import { CommentsBox } from '../../components/CommentsBox';
 
 const DetailAnnouncement = () => {
   const { productId } = useParams();
@@ -52,10 +53,7 @@ const DetailAnnouncement = () => {
       <DivDetailsProduct>
         <SectionProductDetailStyle>
           <div className='image--product'>
-            <img
-              src={detailProduct.cover_image}
-              alt='imagem do anuncio'
-            />
+            <img src={detailProduct.cover_image} alt='imagem do anuncio' />
           </div>
           <SectionDetailsProductStyle>
             <h3>
@@ -67,9 +65,9 @@ const DetailAnnouncement = () => {
                 <span>{detailProduct.mileage / 1000}KM</span>
               </div>
               <p>
-                {detailProduct.price.toLocaleString("pt-BR", {
-                  style: "currency",
-                  currency: "BRL",
+                {detailProduct.price.toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
                 })}
               </p>
             </DivYearKMPriceStyle>
@@ -92,49 +90,31 @@ const DetailAnnouncement = () => {
             <h3>Fotos</h3>
             <ul className='list__photos'>
               <li className='photos'>
-                <img
-                  src=''
-                  alt='fotos do carro'
-                />
+                <img src='' alt='fotos do carro' />
               </li>
               <li className='photos'>
-                <img
-                  src=''
-                  alt='fotos do carro'
-                />
+                <img src='' alt='fotos do carro' />
               </li>
               <li className='photos'>
-                <img
-                  src=''
-                  alt='fotos do carro'
-                />
+                <img src='' alt='fotos do carro' />
               </li>
               <li className='photos'>
-                <img
-                  src=''
-                  alt='fotos do carro'
-                />
+                <img src='' alt='fotos do carro' />
               </li>
               <li className='photos'>
-                <img
-                  src=''
-                  alt='fotos do carro'
-                />
+                <img src='' alt='fotos do carro' />
               </li>
               <li className='photos'>
-                <img
-                  src=''
-                  alt='fotos do carro'
-                />
+                <img src='' alt='fotos do carro' />
               </li>
             </ul>
           </SectionPhotosStyle>
           <SectionAnnouncerStyle>
             <div>
               {detailProduct.account.user.name
-                .split(" ")
+                .split(' ')
                 .map((elt) => elt[0])
-                .join("")}
+                .join('')}
             </div>
             <h4>{detailProduct.account.user.name}</h4>
             <p>{detailProduct.account.user.description}</p>
@@ -149,24 +129,7 @@ const DetailAnnouncement = () => {
           </SectionAnnouncerStyle>
         </div>
       </DivDetailsProduct>
-      <section>
-        <h3>Comentários</h3>
-        <ul>
-          <li>
-            <div>
-              <div>JL</div>
-              <h5>Júlia Lima</h5>
-              <span>há 3 dias</span>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus
-              explicabo ipsum omnis laboriosam quam? Impedit, sapiente!
-              Laboriosam totam consequatur rem. Similique voluptate fuga aliquam
-              veritatis delectus magnam unde consectetur vero.
-            </p>
-          </li>
-        </ul>
-      </section>
+      <CommentsBox />
       <FooterComponent />
     </>
   ) : null;
