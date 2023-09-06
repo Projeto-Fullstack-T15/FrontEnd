@@ -89,23 +89,48 @@ const DetailAnnouncement = () => {
           <SectionPhotosStyle>
             <h3>Fotos</h3>
             <ul className='list__photos'>
+              {/* {detailProduct.gallery_images.map((img) => {
+                return (
+                  <li className='photos'>
+                    <img src={img.url} alt='fotos do carro' />
+                  </li>
+                );
+              })} */}
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src='https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419'
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src='https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419'
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src='https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419'
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src='https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419'
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src='https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419'
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src='https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419'
+                  alt='fotos do carro'
+                />
               </li>
             </ul>
           </SectionPhotosStyle>
