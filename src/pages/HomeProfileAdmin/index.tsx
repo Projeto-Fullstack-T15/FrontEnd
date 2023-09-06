@@ -1,48 +1,41 @@
-import HeaderComponents from '../../components/Header';
-import FooterComponent from '../../components/Global/Footer';
-import { useEffect, useState } from 'react';
-import { api } from '../../services/api';
+import axios from "axios";
+import { useContext, useEffect, useState } from "react";
+import AnnouncementList from "../../components/AnnouncementList";
+import FooterComponent from "../../components/Global/Footer";
+import HeaderComponents from "../../components/Header";
+import SellerCard from "../../components/SellerCard";
+import { UserContext } from "../../contexts/user/userContext";
+import { Container } from "./style";
 /* import Announcement from "../../interfaces/announcement.interface"; */
 
 export const ProfileAdminPage: React.FC = () => {
-  const [announces, setAnnounces] = useState([]);
+  const { user } = useContext(UserContext);
+  const [carData, setCarData] = useState([]);
 
   useEffect(() => {
-    (async () => {
-      const response = await api.get('/annouces');
+    axios.get(`http://localhost:8000/api/announcements`).then((response) => {
+      const data = response.data;
+      const filteredCars = data.filter(
+        (car) => car.account_id === Number(user.id)
+      );
 
-      setAnnounces(response.data);
-    })();
-  }, []);
+      setCarData(filteredCars);
+    });
+  }, [user]);
 
   return (
-    <>
+    <Container>
       <HeaderComponents />
-      <div>
-        <div>
-          <h2>SL</h2>
-          <h3>Samuel Leão</h3>
-          <p>Descrição do perfil</p>
-          <button>Criar Anúncio</button>
-        </div>
+      <div className='sellerData'>
+        <SellerCard id={user.id} />
+        <div className='whiteBox'></div>
+        <AnnouncementList
+          products={carData}
+          itemsPerPage={6}
+          announcerView={true}
+        />
       </div>
-      <>
-        <ul>
-          {announces.map((announce) => (
-            <li key={announce.id}>
-              <h2>{announce.brand}</h2> - <h2>{announce.model}</h2>
-              <p>{announce.description}</p>
-              <div>
-                <span>{announce.year}</span>
-                <span>{announce.price}</span>
-                <span>{announce.mileage}</span>
-              </div>
-            </li>
-          ))}
-        </ul>
-      </>
-
       <FooterComponent />
-    </>
+    </Container>
   );
 };
