@@ -34,38 +34,29 @@ const DetailAnnouncement = () => {
     retriveAnnoucement();
   }, [productId]);
 
-  const imgProduct = detailProduct.cover_image;
-  const nameProduct = `${detailProduct.brand} - ${detailProduct.model}`;
-  const yearProduct = detailProduct.year;
-  const KMProduct = `${detailProduct.mileage / 1000}KM`;
-  const priceProduct = detailProduct.price.toLocaleString('pt-BR', {
-    style: 'currency',
-    currency: 'BRL',
-  });
-  const descriptionProduct = detailProduct.description;
-  const userInitialNameProduct = detailProduct.account.user.name
-    .split(' ')
-    .map((elt) => elt[0])
-    .join('');
-  const userNameProduct = detailProduct.account.user.name;
-  const userDescriptionProduct = detailProduct.account.user.description;
-
-  return (
+  return Object.keys(detailProduct).length !== 0 ? (
     <>
       <HeaderComponents />
       <DivDetailsProduct>
         <SectionProductDetailStyle>
           <div className='image--product'>
-            <img src={imgProduct} alt='imagem do anuncio' />
+            <img src={detailProduct.cover_image} alt='imagem do anuncio' />
           </div>
           <SectionDetailsProductStyle>
-            <h3>{nameProduct}</h3>
+            <h3>
+              {detailProduct.brand} - {detailProduct.model}
+            </h3>
             <DivYearKMPriceStyle>
               <div className='year_KM'>
-                <span>{yearProduct}</span>
-                <span>{KMProduct}</span>
+                <span>{detailProduct.year}</span>
+                <span>{detailProduct.mileage / 1000}KM</span>
               </div>
-              <p>{priceProduct}</p>
+              <p>
+                {detailProduct.price.toLocaleString('pt-BR', {
+                  style: 'currency',
+                  currency: 'BRL',
+                })}
+              </p>
             </DivYearKMPriceStyle>
             <ButtonComponents
               text='Comprar'
@@ -77,7 +68,7 @@ const DetailAnnouncement = () => {
           </SectionDetailsProductStyle>
           <SectionDescriptionStyle>
             <h3 className='title--description'>Descrição</h3>
-            <p className='text--description'>{descriptionProduct}</p>
+            <p className='text--description'>{detailProduct.description}</p>
           </SectionDescriptionStyle>
         </SectionProductDetailStyle>
         <div className='container__right'>
@@ -105,9 +96,14 @@ const DetailAnnouncement = () => {
             </ul>
           </SectionPhotosStyle>
           <SectionAnnouncerStyle>
-            <div>{userInitialNameProduct}</div>
-            <h4>{userNameProduct}</h4>
-            <p>{userDescriptionProduct}</p>
+            <div>
+              {detailProduct.account.user.name
+                .split(' ')
+                .map((elt) => elt[0])
+                .join('')}
+            </div>
+            <h4>{detailProduct.account.user.name}</h4>
+            <p>{detailProduct.account.user.description}</p>
             <ButtonComponents
               text='Ver todos anuncios'
               $size='large'
@@ -138,7 +134,7 @@ const DetailAnnouncement = () => {
       </section>
       <FooterComponent />
     </>
-  );
+  ) : null;
 };
 
 export default DetailAnnouncement;

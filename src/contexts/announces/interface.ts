@@ -18,6 +18,12 @@ export default interface Announcement {
   created_at: string;
   last_updated_at: string;
   account: AccountWithUser;
+  gallery_images: GalleryImages[];
+}
+
+interface GalleryImages {
+  id: number;
+  url: string;
 }
 
 export interface AnnouncementContextProps {
@@ -45,7 +51,7 @@ export interface Car {
 
 export type BrandCarsResponse = Array<Car>;
 
-export type CarName = Pick<Car, "name">;
+export type CarName = Pick<Car, 'name'>;
 
 export interface CarsResponse {
   [brand: string]: Array<CarName>;
