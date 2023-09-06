@@ -2,7 +2,7 @@ export interface ICommentContextProps {
   comment: IComment[];
   getComment: (announcementId: number) => Promise<void>;
   createComment: (announcementId: number, data: ICommentRequest) => Promise<void>;
-  updateComment: (announcementId: number, data: ICommentRequest) => Promise<void>;
+  updateComment: (commentId: number, data: ICommentRequest) => Promise<void>;
   deleteComment: (commentId: number) => Promise<void>;
 }
 
