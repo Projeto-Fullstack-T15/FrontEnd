@@ -42,7 +42,13 @@ export const ProductCard = ({
             </div>
             <div className='card_body'>
                 <h3 title={title}> {title.slice(0, 38)} </h3>
-                <p> {announcement.description} </p>
+                <p>
+                    {
+                        announcement.description.length > 85 ?
+                            announcement.description.slice(0, 85) + '...' :
+                            announcement.description
+                    }
+                </p>
             </div>
             <div className='card_footer'>
                 <CardAnnouncerStyle>
