@@ -93,4 +93,4 @@ Repositório da API: [**Aqui**](https://github.com/Projeto-Fullstack-T15/BackEnd
 - Vs Code
 - Typescript
 - Insomnia 
-
+- Postman
