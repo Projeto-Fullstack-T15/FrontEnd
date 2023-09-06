@@ -35,10 +35,14 @@ const SellerCard = () => {
     <SellerCardStyle>
       {sellerData && (
         <div className="contentBox">
+
            <div className='capitalLetters'>
             <h2>{getInitials(sellerData.user.name)}</h2>
            </div>
+            <div className='sellerData'>
             <h3>{sellerData.user.name}</h3>
+            <span><h5>Anunciante</h5></span>
+            </div>
             <p>{sellerData.user.description}</p>
           </div>
       )}
