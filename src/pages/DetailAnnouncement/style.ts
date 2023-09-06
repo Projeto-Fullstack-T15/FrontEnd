@@ -1,19 +1,33 @@
 import { styled } from 'styled-components';
 
+export const BackgroundBrandStyle = styled.div`
+  width: 100%;
+  height: 600px;
+
+  position: absolute;
+  top: 0;
+
+  z-index: -1;
+
+  background-color: var(--brand1);
+`;
+
 export const DivDetailsProduct = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
 
-  border: solid 1px orange;
-
   gap: 15px;
 
   margin: 0 auto;
 
+  margin-top: -50px;
+
   .container__right {
     display: flex;
     flex-direction: column;
+
+    margin-top: -75px;
 
     gap: 30px;
   }
@@ -28,8 +42,6 @@ export const DivDetailsProduct = styled.div`
 export const SectionProductDetailStyle = styled.section`
   margin-top: 100px;
 
-  border: solid 1px blue;
-
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -39,9 +51,12 @@ export const SectionProductDetailStyle = styled.section`
   gap: 15px;
 
   .image--product {
-    border: solid 1px red;
     border-radius: 5px;
     background-color: var(--white);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
     width: 95%;
     height: 400px;
@@ -50,7 +65,6 @@ export const SectionProductDetailStyle = styled.section`
 
 export const SectionDetailsProductStyle = styled.section`
   background-color: var(--white);
-  border: solid 1px yellow;
   border-radius: 5px;
 
   width: 95%;
@@ -108,7 +122,6 @@ export const DivYearKMPriceStyle = styled.div`
 `;
 
 export const SectionDescriptionStyle = styled.section`
-  border: solid 1px pink;
   background-color: var(--white);
 
   width: 95%;
@@ -146,7 +159,6 @@ export const SectionPhotosStyle = styled.section`
   height: 359px;
 
   background-color: var(--white);
-  border: solid 1px purple;
   border-radius: 5px;
 
   display: flex;
@@ -177,7 +189,12 @@ export const SectionPhotosStyle = styled.section`
       width: 90px;
       height: 90px;
 
-      border: solid 1px black;
+      border: solid 1px blue;
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
       border-radius: 5px;
     }
 
@@ -194,7 +211,6 @@ export const SectionPhotosStyle = styled.section`
 
 export const SectionAnnouncerStyle = styled.section`
   background-color: var(--white);
-  border: solid 1px gold;
   border-radius: 5px;
 
   width: 95%;
