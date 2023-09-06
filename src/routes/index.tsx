@@ -30,6 +30,7 @@ export const RoutesMain = () => {
       </Route>
       <Route path='/adsbyseller/:id' element={<AdsBySellerPage />} />
       <Route path='productDetail/:productId' element={<DetailAnnouncement />} />
+
     </Routes>
   );
 };
