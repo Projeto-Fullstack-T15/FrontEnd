@@ -1,17 +1,34 @@
 import { FormEventHandler, useContext, useEffect } from "react";
-import { Modal } from "../Modal";
-import { AddFieldButton, AnnouncementFormStyle, ButtonsWrapper, CancelButton, CreateAnnouncementButton, FullWidthInput, FullWidthSelect, HalfInputsContainer, HalfWidthInput, TextArea } from "./style";
 import { FaAngleDown, FaMinus } from "react-icons/fa";
-import { AnnouncementContext } from "../../../contexts/announces/announcementContext";
-import { State } from "../../../hooks/state.hook";
-import { BrandCarsResponse, Car, CarsResponse } from "../../../contexts/announces/interface";
-import { carsApi } from "../../../services/api";
 import { toast } from "react-toastify";
+import { AnnouncementContext } from "../../../contexts/announces/announcementContext";
+import {
+  BrandCarsResponse,
+  Car,
+  CarsResponse,
+} from "../../../contexts/announces/interface";
+import { State } from "../../../hooks/state.hook";
+import { carsApi } from "../../../services/api";
+import { Modal } from "../Modal";
+import {
+  AddFieldButton,
+  AnnouncementFormStyle,
+  ButtonsWrapper,
+  CancelButton,
+  CreateAnnouncementButton,
+  FullWidthInput,
+  FullWidthSelect,
+  HalfInputsContainer,
+  HalfWidthInput,
+  TextArea,
+} from "./style";
 
-export const CreateAnnouncementModal = () => {
+export const CreateAnnouncementModal = ({ setIsModalOpen }) => {
   const { createAnnouncement, cars } = useContext(AnnouncementContext);
 
-  const carBrands: Array<keyof CarsResponse> = Object.keys(cars.value) as Array<keyof CarsResponse>;
+  const carBrands: Array<keyof CarsResponse> = Object.keys(cars.value) as Array<
+    keyof CarsResponse
+  >;
   const selectedBrand = State<keyof CarsResponse>(carBrands[0]);
   const selectedBrandCars = State<BrandCarsResponse>([]);
   const selectedCar = State<Car | null>(null);
@@ -24,7 +41,8 @@ export const CreateAnnouncementModal = () => {
   const isAddGalleryDisabled = images.value.length >= 10;
 
   function loadBrandCars(brand: string) {
-    carsApi.get<BrandCarsResponse>(`/cars?brand=${brand}`)
+    carsApi
+      .get<BrandCarsResponse>(`/cars?brand=${brand}`)
       .then((res) => selectedBrandCars.set(res.data))
       .catch((err) => console.error(err));
   }
@@ -63,17 +81,21 @@ export const CreateAnnouncementModal = () => {
         fipe_price: selectedCar.value.value,
         description: description.value,
         cover_image: coverImage.value,
-        images: images.value
+        images: images.value,
       });
     } else {
-      toast.error("* Preencha todos os campos obrigatórios para criar o anuncio. ")
+      toast.error(
+        "* Preencha todos os campos obrigatórios para criar o anuncio. "
+      );
     }
-  }
+  };
 
   return (
     <Modal
-      closeFunction={() => { console.log("close") }}
-      title="Criar anúncio"
+      closeFunction={() => {
+        setIsModalOpen(false);
+      }}
+      title='Criar anúncio'
     >
       <AnnouncementFormStyle onSubmit={handleSubmit}>
         <h3> Informações do veículo </h3>
@@ -86,11 +108,15 @@ export const CreateAnnouncementModal = () => {
               onChange={(e) => selectedBrand.set(e.target.value)}
             >
               <option> Selecione uma marca </option>
-              {
-                carBrands.map((b) => (
-                  <option value={b} key={b}> {b} </option>
-                ))
-              }
+              {carBrands.map((b) => (
+                <option
+                  value={b}
+                  key={b}
+                >
+                  {" "}
+                  {b}{" "}
+                </option>
+              ))}
             </select>
             <FaAngleDown />
           </div>
@@ -102,21 +128,21 @@ export const CreateAnnouncementModal = () => {
             <select
               value={selectedCar.value?.id || "Selecione um modelo"}
               onChange={(e) => {
-                const findCar = selectedBrandCars.value.find((c) => c.id === e.target.value);
+                const findCar = selectedBrandCars.value.find(
+                  (c) => c.id === e.target.value
+                );
                 selectedCar.set(findCar || null);
               }}
             >
               <option> Selecione um modelo </option>
-              {
-                selectedBrandCars.value.map((car) => (
-                  <option
-                    value={car.id}
-                    key={car.id}
-                  >
-                    {car.name} {car.year}
-                  </option>
-                ))
-              }
+              {selectedBrandCars.value.map((car) => (
+                <option
+                  value={car.id}
+                  key={car.id}
+                >
+                  {car.name} {car.year}
+                </option>
+              ))}
             </select>
             <FaAngleDown />
           </div>
@@ -140,19 +166,24 @@ export const CreateAnnouncementModal = () => {
           <HalfWidthInput>
             <label> Quilometragem </label>
             <input
-              placeholder="* Qual é a quilometragem?"
-              value={`${String(mileage.value).replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`}
+              placeholder='* Qual é a quilometragem?'
+              value={`${String(mileage.value).replace(
+                /\B(?=(\d{3})+(?!\d))/g,
+                "."
+              )}`}
               onChange={(e) => {
-                mileage.set(Number(e.target.value.replace(/\D/g, '')));
+                mileage.set(Number(e.target.value.replace(/\D/g, "")));
               }}
-              onFocus={(e) => e.target.value = e.target.value.replace(' km', '')}
-              onBlur={(e) => e.target.value = e.target.value + ' km'}
+              onFocus={(e) =>
+                (e.target.value = e.target.value.replace(" km", ""))
+              }
+              onBlur={(e) => (e.target.value = e.target.value + " km")}
             />
           </HalfWidthInput>
           <HalfWidthInput>
             <label> Cor </label>
             <input
-              placeholder="* Qual é a cor?"
+              placeholder='* Qual é a cor?'
               value={color.value}
               onChange={(e) => color.set(e.target.value)}
             />
@@ -161,16 +192,22 @@ export const CreateAnnouncementModal = () => {
             <label> Preço tabela FIPE </label>
             <input
               disabled
-              value={`R$ ${String(selectedCar.value?.value || 0).replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`}
+              value={`R$ ${String(selectedCar.value?.value || 0).replace(
+                /\B(?=(\d{3})+(?!\d))/g,
+                "."
+              )}`}
             />
           </HalfWidthInput>
           <HalfWidthInput>
             <label> Preço </label>
             <input
-              placeholder="* Qual é o preço?"
-              value={`R$ ${String(price.value).replace(/\B(?=(\d{3})+(?!\d))/g, '.')}`}
+              placeholder='* Qual é o preço?'
+              value={`R$ ${String(price.value).replace(
+                /\B(?=(\d{3})+(?!\d))/g,
+                "."
+              )}`}
               onChange={(e) => {
-                price.set(Number(e.target.value.replace(/\D/g, '')));
+                price.set(Number(e.target.value.replace(/\D/g, "")));
               }}
             />
           </HalfWidthInput>
@@ -179,7 +216,7 @@ export const CreateAnnouncementModal = () => {
         <TextArea>
           <label> Descrição </label>
           <textarea
-            placeholder="* Adicione informações adicionais sobre o seu anúncio..."
+            placeholder='* Adicione informações adicionais sobre o seu anúncio...'
             value={description.value}
             onChange={(e) => description.set(e.target.value)}
             maxLength={2000}
@@ -191,34 +228,34 @@ export const CreateAnnouncementModal = () => {
           <input
             value={coverImage.value}
             onChange={(e) => coverImage.set(e.target.value)}
-            placeholder="* Imagem da capa. ex: https://imageurl.com"
-            type="url"
+            placeholder='* Imagem da capa. ex: https://imageurl.com'
+            type='url'
           />
         </FullWidthInput>
 
-        {
-          images.value.map((s, i) => (
-            <FullWidthInput>
-              <label> {i + 1}° Imagem da galeria </label>
-              <input
-                placeholder="https://imageurl.com"
-                type="url"
-                value={s}
-                onChange={(e) => images.set((prev) => {
+        {images.value.map((s, i) => (
+          <FullWidthInput>
+            <label> {i + 1}° Imagem da galeria </label>
+            <input
+              placeholder='https://imageurl.com'
+              type='url'
+              value={s}
+              onChange={(e) =>
+                images.set((prev) => {
                   prev[i] = e.target.value;
                   return prev;
-                })}
-              />
-              <FaMinus
-                onClick={() => {
-                  images.set((prev) => {
-                    return prev.filter((_, index) => index !== i);
-                  })
-                }}
-              />
-            </FullWidthInput>
-          ))
-        }
+                })
+              }
+            />
+            <FaMinus
+              onClick={() => {
+                images.set((prev) => {
+                  return prev.filter((_, index) => index !== i);
+                });
+              }}
+            />
+          </FullWidthInput>
+        ))}
 
         <AddFieldButton
           onClick={() => images.set((prev) => [...prev, ""])}
@@ -229,17 +266,16 @@ export const CreateAnnouncementModal = () => {
 
         <ButtonsWrapper>
           <CancelButton
-            type="button"
+            type='button'
+            onClick={() => setIsModalOpen(false)}
           >
             Cancelar
           </CancelButton>
-          <CreateAnnouncementButton
-            type="submit"
-          >
+          <CreateAnnouncementButton type='submit'>
             Criar anúncio
           </CreateAnnouncementButton>
         </ButtonsWrapper>
       </AnnouncementFormStyle>
     </Modal>
   );
-}
+};
