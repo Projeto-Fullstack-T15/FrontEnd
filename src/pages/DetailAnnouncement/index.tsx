@@ -1,4 +1,5 @@
 import ButtonComponents from '../../components/Global/Buttons';
+import FooterComponent from '../../components/Global/Footer';
 import HeaderComponents from '../../components/Header';
 import {
   DivDetailsProduct,
@@ -105,6 +106,7 @@ const DetailAnnouncement = () => {
           </li>
         </ul>
       </section>
+      <FooterComponent />
     </>
   );
 };

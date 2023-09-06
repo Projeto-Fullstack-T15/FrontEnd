@@ -180,6 +180,15 @@ export const SectionPhotosStyle = styled.section`
       border: solid 1px black;
       border-radius: 5px;
     }
+
+    @media (min-width: 768px) {
+      gap: 15px;
+
+      .photos {
+        width: 108px;
+        height: 108px;
+      }
+    }
   }
 `;
 

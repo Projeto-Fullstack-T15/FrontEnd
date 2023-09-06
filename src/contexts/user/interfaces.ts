@@ -1,4 +1,5 @@
-import { IResetPassword, ISendEmail, IUserResponse } from "../../interfaces";
+import { DeepPartial } from 'react-hook-form';
+import { IResetPassword, ISendEmail, IUserResponse } from '../../interfaces';
 
 export interface IUserContextProps {
   user: IUserResponse;
@@ -28,7 +29,7 @@ export interface TCreateUser {
   user: {
     name: string;
     cpf: string;
-    birthday: Date;
+    birthday: Date | string;
     description: string;
   };
   address: {
@@ -41,7 +42,7 @@ export interface TCreateUser {
   };
 }
 
-export type TUpdateUser = Partial<TCreateUser>;
+export type TUpdateUser = DeepPartial<TCreateUser>;
 
 export interface ILogin {
   email: string;
@@ -75,3 +76,4 @@ export interface User {
 export interface AccountWithUser extends Account {
   user: User;
 }
+
