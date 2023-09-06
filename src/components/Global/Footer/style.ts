@@ -2,11 +2,13 @@ import { styled } from 'styled-components';
 
 export const FooterStyle = styled.footer`
   position: static;
+  bottom: 0;
 
   background-color: var(--grey0);
   color: var(--white);
 
   height: 140px;
+  width: 100%;
 
   display: flex;
   justify-content: space-between;
@@ -26,15 +28,6 @@ export const FooterStyle = styled.footer`
 
   p {
     font-size: 14px;
-  }
-
-  .arrow__up {
-    height: 50px;
-    width: 50px;
-
-    border-radius: 4px;
-
-    cursor: pointer;
   }
 
   @media (max-width: 425px) {
