@@ -22,7 +22,7 @@ export const Comment = () => {
   });
 
   const submit = (data) => {
-    const id = user.id;
+    const id = user.user.id;
     createComment(id, data);
   };
 
