@@ -10,17 +10,23 @@ import { UserContext } from "../../contexts/user/userContext";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { CommentSchema } from "./shema";
+import { CommentSchema, TComment } from "./shema";
+import { CommentContext } from "../../contexts/comments/commentsContext";
 
 export const Comment = () => {
   const { user } = useContext(UserContext);
   const { createComment } = useContext(CommentContext);
 
-  const { register, handleSubmit } = useForm<CommentSchema>({
-    resolver: yupResolver(CommentSchema),
+  const { register, handleSubmit } = useForm<TComment>({
+    resolver: yupResolver<TComment>(CommentSchema),
   });
 
-  const name = user.name;
+  const submit = (data) => {
+    const id = user.id;
+    createComment(id, data);
+  };
+
+  const name = user.user.name;
 
   function pegarPrimeirasLetras(str) {
     const palavras = str.split(" ");
@@ -31,7 +37,7 @@ export const Comment = () => {
   const iniciais = pegarPrimeirasLetras(name);
 
   return (
-    <Formulario onSubmit={handleSubmit(createComment())}>
+    <Formulario onSubmit={handleSubmit(submit)}>
       <User>
         <Name>
           <h3>{iniciais.toUpperCase()}</h3>
@@ -46,7 +52,7 @@ export const Comment = () => {
           name="description"
           id="description"
           placeholder="Digitar descrição do post"
-          {...register("comment")}
+          {...register("text")}
         ></Description>
 
         <ButtonSubmit>

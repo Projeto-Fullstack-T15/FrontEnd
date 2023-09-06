@@ -1,5 +1,7 @@
 import * as yup from "yup";
 
 export const CommentSchema = yup.object().shape({
-  comment: yup.string().required("Campo obrigatório"),
+  text: yup.string().max(150),
 });
+
+export type TComment = yup.InferType<typeof CommentSchema>;
