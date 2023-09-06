@@ -9,7 +9,6 @@ export const AnnouncementsListStyled = styled.div`
   flex-direction: column;
   align-items: center;
   z-index: 1;
-
   .noData {
     display: flex;
     justify-content: center;
