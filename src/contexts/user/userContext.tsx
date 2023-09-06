@@ -63,8 +63,11 @@ export const UserProvider = ({ children }) => {
           Authorization: bearerToken,
         },
       })
-      .then((res) => setUser(res.data))
-      .catch((err) => console.error(err));
+      .then((res) => {
+        setUser(res.data);
+        toast.success('Perfil editado com succeso!');
+      })
+      .catch((err) => toast.error(err));
   };
 
   const deleteUser = async () => {
