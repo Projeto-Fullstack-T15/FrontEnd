@@ -55,10 +55,6 @@ export const AnnouncementProvider = ({
     loadAnnouncements();
   }, []);
 
-  useEffect(() => {
-    console.log(announcements.value)
-  }, [announcements.value]);
-
   return (
     <AnnouncementContext.Provider
       value={{
