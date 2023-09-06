@@ -15,6 +15,7 @@ import { useEffect, useState } from 'react';
 import { api } from '../../services/api';
 import Announcement from '../../contexts/announces/interface';
 import { toast } from 'react-toastify';
+import { CommentsBox } from '../../components/CommentsBox';
 
 const DetailAnnouncement = () => {
   const { productId } = useParams();
@@ -115,7 +116,8 @@ const DetailAnnouncement = () => {
         </div>
       </DivDetailsProduct>
       <section>
-        <h3>Comentários</h3>
+        <CommentsBox/>
+        {/* <h3>Comentários</h3>
         <ul>
           <li>
             <div>
@@ -130,7 +132,7 @@ const DetailAnnouncement = () => {
               veritatis delectus magnam unde consectetur vero.
             </p>
           </li>
-        </ul>
+        </ul> */}
       </section>
       <FooterComponent />
     </>
