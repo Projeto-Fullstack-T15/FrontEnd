@@ -238,7 +238,11 @@ const NavComponents = () => {
             text='Limpar filtros'
             $type='brand1'
             typeButton='button'
-            onClick={filters.reset}
+            onClick={() => {
+              filters.reset();
+              filterMileage.reset();
+              filterPrice.reset();
+            }}
           />
         </div>
       </div>
