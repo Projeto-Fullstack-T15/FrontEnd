@@ -12,6 +12,7 @@ import { UserContext } from '../../../contexts/user/userContext';
 import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { TUpdateUser } from '../../../contexts/user/interfaces';
+import { toast } from 'react-toastify';
 
 const ModalEditUser = ({ setIsEditUserModalOpen }: IModalEditUserProps) => {
   const { updateUser } = useContext(UserContext);
@@ -33,6 +34,10 @@ const ModalEditUser = ({ setIsEditUserModalOpen }: IModalEditUserProps) => {
 
     if (user.birthday || user.cpf || user.description || user.name)
       newData.user = user;
+
+    if (Object.keys(newData).length === 0) {
+      return toast.error('Preencha algum campo antes de salvar.');
+    }
 
     updateUser(newData);
   };
