@@ -166,6 +166,22 @@ export const SectionPhotosStyle = styled.section`
 
   justify-content: space-evenly;
 
+  ::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
   h3 {
     color: var(--grey1);
 
@@ -180,6 +196,8 @@ export const SectionPhotosStyle = styled.section`
     flex-wrap: wrap;
 
     gap: 5px;
+
+    overflow-y: scroll;
 
     list-style: none;
 
@@ -196,10 +214,16 @@ export const SectionPhotosStyle = styled.section`
       align-items: center;
 
       border-radius: 5px;
+
+      img {
+        height: 50px;
+        width: auto;
+      }
     }
 
     @media (min-width: 768px) {
       gap: 15px;
+      width: 395px;
 
       .photos {
         width: 108px;

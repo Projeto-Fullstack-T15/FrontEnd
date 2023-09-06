@@ -12,7 +12,6 @@ export const CommentsBox = () => {
   const [isOptionsOpen, setIsOptionsOpen] = useState(null);
   const [commentToDelete, setCommentToDelete] = useState(null);
 
-
   const { deleteComment } = useContext(CommentContext);
   const { user } = useContext(UserContext);
 
@@ -61,7 +60,7 @@ export const CommentsBox = () => {
       setIsOptionsOpen(commentId);
     }
   };
-  
+
   const handlePrepareToDelete = (commentId) => {
     setCommentToDelete(commentId);
     setIsModalDeleteOpen(true);
@@ -69,12 +68,12 @@ export const CommentsBox = () => {
 
   const handleConfirmDelete = () => {
     deleteComment(commentToDelete);
-    handleCloseModalDelete()
+    handleCloseModalDelete();
   };
 
   const handleCloseModalDelete = () => {
     setIsModalDeleteOpen(false);
-    setCommentToDelete(null)
+    setCommentToDelete(null);
   };
 
   return (
@@ -90,6 +89,7 @@ export const CommentsBox = () => {
             <div className="point">·</div>
             <span>{getTimeDifference(comment.last_updated_at)}</span>
           </div>
+
           <div className="comment">
             {user.id === comment.account_id && (
               <div className="comment-options">

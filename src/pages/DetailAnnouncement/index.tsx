@@ -1,8 +1,13 @@
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import ButtonComponents from '../../components/Global/Buttons';
 import FooterComponent from '../../components/Global/Footer';
 import HeaderComponents from '../../components/Header';
+import Announcement from '../../contexts/announces/interface';
+import { api } from '../../services/api';
 import {
+  BackgroundBrandStyle,
   DivDetailsProduct,
   DivYearKMPriceStyle,
   SectionAnnouncerStyle,
@@ -11,10 +16,6 @@ import {
   SectionPhotosStyle,
   SectionProductDetailStyle,
 } from './style';
-import { useEffect, useState } from 'react';
-import { api } from '../../services/api';
-import Announcement from '../../contexts/announces/interface';
-import { toast } from 'react-toastify';
 import { CommentsBox } from '../../components/CommentsBox';
 
 const DetailAnnouncement = () => {
@@ -35,8 +36,19 @@ const DetailAnnouncement = () => {
     retriveAnnoucement();
   }, [productId]);
 
+  const handleWhatsAppClick = () => {
+    const url = `whatsapp://send?phone=${detailProduct.account.phone}`;
+    window.location.href = url;
+  };
+
+  const handleRedirect = () => {
+    const url = `/adsbyseller/${detailProduct.account.id}`;
+    window.location.href = url;
+  };
+
   return Object.keys(detailProduct).length !== 0 ? (
     <>
+      <BackgroundBrandStyle />
       <HeaderComponents />
       <DivDetailsProduct>
         <SectionProductDetailStyle>
@@ -65,6 +77,7 @@ const DetailAnnouncement = () => {
               $width='100px'
               typeButton='button'
               $type='brand1'
+              onClick={handleWhatsAppClick}
             />
           </SectionDetailsProductStyle>
           <SectionDescriptionStyle>
@@ -76,23 +89,48 @@ const DetailAnnouncement = () => {
           <SectionPhotosStyle>
             <h3>Fotos</h3>
             <ul className='list__photos'>
+              {/* {detailProduct.gallery_images.map((img) => {
+                return (
+                  <li className='photos'>
+                    <img src={img.url} alt='fotos do carro' />
+                  </li>
+                );
+              })} */}
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src='https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419'
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src='https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419'
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src='https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419'
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src='https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419'
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src='https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419'
+                  alt='fotos do carro'
+                />
               </li>
               <li className='photos'>
-                <img src='' alt='fotos do carro' />
+                <img
+                  src='https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419'
+                  alt='fotos do carro'
+                />
               </li>
             </ul>
           </SectionPhotosStyle>
@@ -111,29 +149,16 @@ const DetailAnnouncement = () => {
               $width='206px'
               typeButton='button'
               $type='big45'
+              onClick={handleRedirect}
             />
           </SectionAnnouncerStyle>
         </div>
       </DivDetailsProduct>
+
       <section>
         <CommentsBox/>
-        {/* <h3>Comentários</h3>
-        <ul>
-          <li>
-            <div>
-              <div>JL</div>
-              <h5>Júlia Lima</h5>
-              <span>há 3 dias</span>
-            </div>
-            <p>
-              Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus
-              explicabo ipsum omnis laboriosam quam? Impedit, sapiente!
-              Laboriosam totam consequatur rem. Similique voluptate fuga aliquam
-              veritatis delectus magnam unde consectetur vero.
-            </p>
-          </li>
-        </ul> */}
       </section>
+
       <FooterComponent />
     </>
   ) : null;
