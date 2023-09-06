@@ -24,12 +24,12 @@ export const RoutesMain = () => {
       <Route path='/login' element={<LoginPage />} />
       <Route path='/register' element={<RegisterPage />} />
       <Route path='/sendEmail' element={<SendEmailResetPasswordPage />} />
-      <Route path='/resetPassword/:token' element={<ResetPasswordPage />} />       
+      <Route path='/resetPassword/:token' element={<ResetPasswordPage />} />
       <Route path='/profileAdmin' element={<ProtectedRoutes />}>
         <Route index element={<ProfileAdminPage />} />
       </Route>
       <Route path='/adsbyseller' element={<AdsBySellerPage />} />
-      <Route path='product-detail' element={<DetailAnnouncement />} />
+      <Route path='productDetail/:productId' element={<DetailAnnouncement />} />
     </Routes>
   );
 };
