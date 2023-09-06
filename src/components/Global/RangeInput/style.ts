@@ -7,6 +7,7 @@ export const RangeInputStyle = styled.div`
 	margin: auto;
 	height: max-content;
 	padding: 0.25rem;
+	box-sizing: border-box;
 
 	>input[type="range"] {
 		-webkit-appearance: none;
@@ -16,7 +17,7 @@ export const RangeInputStyle = styled.div`
 		outline: none;
 		position: absolute;
 		margin: auto;
-		top: 50%;
+		top: 50% + 0.25rem;
 		bottom: 0;
 		background-color: transparent;
 		z-index: 1;
@@ -93,7 +94,7 @@ export const RangeInputStyle = styled.div`
 `;
 
 export const TrackStyle = styled.div<TrackStyleProps>`
-  width: 100%;
+ 	width: 100%;
 	height: 0.25rem;
 	background-color: rgba(0,0,0, 0.1);
 	${(props) => {

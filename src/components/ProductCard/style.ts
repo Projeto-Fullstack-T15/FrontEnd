@@ -9,9 +9,11 @@ export const ProductCardStyle = styled.div`
   gap: 1rem;
   position: relative;
 
-  transition: 1s ease-in-out;
+  transition: 250ms ease-in-out;
+
   &:hover {
     cursor: pointer;
+    transform: scale(1.075);
 
     > .card_header {
       border: 3px solid var(--brand1);
@@ -27,6 +29,7 @@ export const ProductCardStyle = styled.div`
     padding: 0 1.5rem;
     height: 9.5rem;
     background-color: var(--grey7);
+    position: relative;
 
     display: flex;
     align-items: center;
@@ -36,6 +39,16 @@ export const ProductCardStyle = styled.div`
       max-width: 100%;
       height: 100%;
       margin: auto;
+      z-index: 2;
+    }
+
+    > svg {
+      font-size: 3rem;
+      position: absolute;
+      top: calc(50% - 1.5rem);
+      right: calc(50% - 1.5rem);
+      color: rgba(0,0,0, 0.25);
+      
     }
   }
 

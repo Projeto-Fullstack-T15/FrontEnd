@@ -1,15 +1,22 @@
 import { StateHook } from '../../hooks/state.hook';
+import { AccountWithUser } from '../user/interfaces';
 
 export default interface Announcement {
-  readonly id: number;
-  readonly brand: string;
-  readonly model: string;
-  readonly color: string;
-  readonly year: number;
-  readonly fuelType: string;
-  readonly mileage: number;
-  readonly price: number;
-  readonly description: string;
+  id: number;
+  is_active: boolean;
+  brand: string;
+  model: string;
+  color: string;
+  year: number;
+  fuel_type: string;
+  mileage: number;
+  price: number;
+  description: string;
+  cover_image: string;
+  account_id: number;
+  created_at: string;
+  last_updated_at: string;
+  account: AccountWithUser;
 }
 
 export interface AnnouncementContextProps {
