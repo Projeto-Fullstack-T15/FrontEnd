@@ -7,6 +7,7 @@ import HeaderComponents from "../../components/Header";
 import Announcement from "../../contexts/announces/interface";
 import { api } from "../../services/api";
 import {
+  BackgroundBrandStyle,
   DivDetailsProduct,
   DivYearKMPriceStyle,
   SectionAnnouncerStyle,
@@ -46,6 +47,7 @@ const DetailAnnouncement = () => {
 
   return Object.keys(detailProduct).length !== 0 ? (
     <>
+      <BackgroundBrandStyle />
       <HeaderComponents />
       <DivDetailsProduct>
         <SectionProductDetailStyle>
