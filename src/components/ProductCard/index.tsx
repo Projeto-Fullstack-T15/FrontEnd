@@ -17,11 +17,8 @@ export const ProductCard = ({
     announcement,
     announcerView,
 }: ProductCardProps) => {
-    const MOCKED_FIPE_PRICE: number = 2 * Math.random() * announcement.price;
-    const isCheaper: boolean = MOCKED_FIPE_PRICE * 0.95 >= announcement.price;
-
-    const nameAcronym = announcement.account.user.name.split(" ").filter((v, i) => i <= 1).map(v => v[0]).join("").toUpperCase();
-    const title = `${announcement.brand} ${announcement.model}`;
+    const isCheaper: boolean = announcement.fipe_price * 0.95 >= announcement.price;
+    const nameAcronym = announcement.account.user.name.split(" ").filter((_, i) => i <= 1).map(v => v[0]).join("").toUpperCase();
 
     return (
         <ProductCardStyle>
@@ -41,7 +38,7 @@ export const ProductCard = ({
                 <FaCar />
             </div>
             <div className='card_body'>
-                <h3 title={title}> {title.slice(0, 38)} </h3>
+                <h3 title={announcement.model}> {announcement.model.slice(0, 38)} </h3>
                 <p>
                     {
                         announcement.description.length > 85 ?
