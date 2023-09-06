@@ -37,25 +37,29 @@ export const CommentProvider = ({ children }) => {
       .catch((err) => console.error(err));
   };
 
-  const updateComment = async (
-    announcementId: number,
-    data: ICommentRequest
-  ) => {
+  const updateComment = async (commentId: number, data: ICommentRequest) => {
     await api
-      .patch(`/comments/${announcementId}`, data, {
+      .patch(`/comments/${commentId}`, data, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("@TOKEN")}`,
         },
       })
       .then((res) => {
-        setComment(res.data);
+        setComment((prevComments) =>
+          prevComments.map((comment) =>
+            comment.id === commentId
+              ? { ...comment, ...res.data }
+              : comment
+          )
+        );
+
         toast.success("Comentário atualizado com sucesso!");
       })
       .catch((err) => console.error(err));
   };
 
   const deleteComment = async (commentId: number) => {
-    console.log(commentId)
+    console.log(commentId);
     await api
       .delete(`/comments/${commentId}`, {
         headers: {
