@@ -33,7 +33,7 @@ Apresentamos o nosso projeto: sua plataforma digital premium para anúncios de a
 
 ## 🛠 [Funcionalidades](#funcionalidades)
 
-### 🌟 **Funcionalidades Gerais**
+### 🌟 **Funcionalidades Gerais** 
 - 🌐 **API Integration**: Efetue envios e recebimentos de dados.
 - 📝 **Cadastro e Login**: Entre na plataforma e acesse funções exclusivas.
 - 📢 **Anuncie**: Cadastre seus automóveis na plataforma.
