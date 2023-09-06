@@ -73,6 +73,8 @@ export const GlobalStyle = createGlobalStyle`
       height: 100vh;
       width: 100vw;
 
+      background-color: var(--grey8);
+
       overflow-x: hidden;
     }
 
