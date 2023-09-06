@@ -7,8 +7,7 @@ export const FooterStyle = styled.footer`
   background-color: var(--grey0);
   color: var(--white);
 
-  height: 140px;
-  width: 100%;
+  height: 8.75rem;
 
   display: flex;
   justify-content: space-between;
