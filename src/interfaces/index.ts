@@ -56,3 +56,9 @@ export interface IStyledModalProps {
   $width: string;
   $height: string;
 }
+
+export interface DeleteCommentProps {
+  open: boolean;
+  onClose: () => void;
+  onConfirm: () => void;
+}
