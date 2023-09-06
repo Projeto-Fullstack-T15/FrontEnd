@@ -2,7 +2,7 @@ import { ProviderProps, createContext, useEffect } from "react";
 import { toast } from "react-toastify";
 import { State } from "../../hooks/state.hook";
 import { api, carsApi } from "../../services/api";
-import Announcement, { AnnouncementContextProps, BrandCarsResponse, Car, CarsResponse } from "./interface";
+import Announcement, { AnnouncementContextProps, CarsResponse } from "./interface";
 
 export const AnnouncementContext = createContext(
   {} as AnnouncementContextProps
