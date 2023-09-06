@@ -64,37 +64,18 @@ export const Container = styled.div`
     cursor: pointer;
   }
 
-  .comment {
-    a {
-      text-decoration: none;
-    }
-    p {
-      color: var(--grey2, #495057);
-      font-family: var(--font-body);
-      font-size: 14px;
-      font-weight: 400;
-      line-height: 24px;
-
-      &:hover {
-        text-decoration: underline;
-        cursor: pointer;
-      }
-
-      &:active {
-        color: var(--brand1);
-        cursor: pointer;
-      }
-
-      &:focus {
-        outline: none;
-        cursor: pointer;
-      }
-    }
-
-    &:hover {
-      .edit {
-        display: flex;
-      }
-    }
+  .comment-options{
+    cursor: pointer;
   }
+  
+  .comment-options-menu {
+   button {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+   }
+  }
+
+
 `;

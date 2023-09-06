@@ -9,7 +9,7 @@ export const CommentContext = createContext<ICommentContextProps>(
 );
 
 export const CommentProvider = ({ children }) => {
-  const [comment, setComment] = useState<IComment>({} as IComment);
+  const [comment, setComment] = useState<IComment[]>([]);
 
   const getComment = async (announcementId: number) => {
     await api
@@ -55,14 +55,17 @@ export const CommentProvider = ({ children }) => {
   };
 
   const deleteComment = async (commentId: number) => {
+    console.log(commentId)
     await api
       .delete(`/comments/${commentId}`, {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("@TOKEN")}`,
         },
       })
-      .then((res) => {
-        setComment(res.data);
+      .then(() => {
+        setComment((prevComment) =>
+          prevComment.filter((comment) => comment.id !== commentId)
+        );
         toast.success("Comentário deletado com sucesso!");
       })
       .catch((err) => console.error(err));
