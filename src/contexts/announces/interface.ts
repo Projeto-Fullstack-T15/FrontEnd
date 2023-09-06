@@ -11,6 +11,7 @@ export default interface Announcement {
   fuel_type: string;
   mileage: number;
   price: number;
+  fipe_price: number;
   description: string;
   cover_image: string;
   account_id: number;
@@ -26,8 +27,26 @@ export interface AnnouncementContextProps {
   createAnnouncement: (data: any) => void;
   announcements: StateHook<Array<Announcement>>;
   filteredAnnouncements: StateHook<Array<Announcement>>;
+  cars: StateHook<CarsResponse>;
 }
 
 export interface AnnouncementProviderProps {
   children: React.ReactNode;
+}
+
+export interface Car {
+  id: string;
+  name: string;
+  brand: string;
+  year: string;
+  fuel: number;
+  value: number;
+}
+
+export type BrandCarsResponse = Array<Car>;
+
+export type CarName = Pick<Car, "name">;
+
+export interface CarsResponse {
+  [brand: string]: Array<CarName>;
 }
