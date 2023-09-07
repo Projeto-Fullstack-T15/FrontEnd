@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 export const BackgroundBrandStyle = styled.div`
   width: 100%;
@@ -283,4 +283,9 @@ export const SectionAnnouncerStyle = styled.section`
 
     line-height: 28px;
   }
+`;
+
+export const SectionComment = styled.section`
+  display: flex;
+  justify-content: center;
 `;
