@@ -303,4 +303,6 @@ export const SectionAnnouncerStyle = styled.section`
 export const SectionComment = styled.section`
   display: flex;
   justify-content: center;
+
+  width: 100%;
 `;
