@@ -18,6 +18,7 @@ export const Container = styled.div`
   font-style: normal;
   font-weight: 600;
   line-height: normal;
+  width: 100%;
   .edit {
     display: none;
     cursor: pointer;
@@ -64,18 +65,16 @@ export const Container = styled.div`
     cursor: pointer;
   }
 
-  .comment-options{
+  .comment-options {
     cursor: pointer;
   }
-  
+
   .comment-options-menu {
-   button {
-    font-family: var(--font-body);
-    font-size: 1rem;
-    font-weight: 600;
-    cursor: pointer;
-   }
+    button {
+      font-family: var(--font-body);
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+    }
   }
-
-
 `;
