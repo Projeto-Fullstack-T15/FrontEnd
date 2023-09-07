@@ -13,6 +13,9 @@ import {
 } from './style';
 import { createPortal } from 'react-dom';
 import Announcement from '../../../contexts/announces/interface';
+import { useContext } from 'react';
+import { AnnouncementContext } from '../../../contexts/announces/announcementContext';
+import { useForm } from 'react-hook-form';
 
 export interface IModalEditAnnouncementProps {
   showModal: React.Dispatch<React.SetStateAction<boolean>>;
@@ -23,6 +26,14 @@ const ModalEditAnnouncement = ({
   showModal,
   announcement,
 }: IModalEditAnnouncementProps) => {
+  const { updateAnnouncement } = useContext(AnnouncementContext);
+
+  const { register, handleSubmit } = useForm<Partial<Announcement>>();
+
+  const submit = (data: Partial<Announcement>) => {
+    updateAnnouncement(announcement.id, data);
+  };
+
   return createPortal(
     <ModalContainer>
       <SectionModalStyle $height='1296px' $width='541px'>
@@ -30,20 +41,35 @@ const ModalEditAnnouncement = ({
           <h4>Editar anúncio</h4>
           <GrClose onClick={showModal(false)} />
         </TitleAndCloneStyle>
-        <FormEditAnnouncementStyle>
+        <FormEditAnnouncementStyle onSubmit={handleSubmit(submit)}>
           <h4>Informações do veículo</h4>
           <div className='input--label'>
             <label htmlFor='brand'>Marca</label>
-            <input type='text' id='brand' placeholder={announcement.brand} />
+            <input
+              type='text'
+              id='brand'
+              placeholder={announcement.brand}
+              {...register('brand')}
+            />
           </div>
           <div className='input--label'>
             <label htmlFor='model'>Modelo</label>
-            <input type='text' id='model' placeholder={announcement.model} />
+            <input
+              type='text'
+              id='model'
+              placeholder={announcement.model}
+              {...register('model')}
+            />
           </div>
           <DubleInputsStyle>
             <div className='input--label'>
               <label htmlFor='year'>ano</label>
-              <input type='number' id='year' placeholder={announcement.year} />
+              <input
+                type='number'
+                id='year'
+                placeholder={String(announcement.year)}
+                {...register('year')}
+              />
             </div>
             <div className='input--label'>
               <label htmlFor='feul_type'>Combustível</label>
@@ -51,6 +77,7 @@ const ModalEditAnnouncement = ({
                 type='text'
                 id='feul_type'
                 placeholder={announcement.fuel_type}
+                {...register('fuel_type')}
               />
             </div>
           </DubleInputsStyle>
@@ -60,12 +87,18 @@ const ModalEditAnnouncement = ({
               <input
                 type='number'
                 id='mileage'
-                placeholder={announcement.mileage}
+                placeholder={String(announcement.mileage)}
+                {...register('mileage')}
               />
             </div>
             <div className='input--label'>
               <label htmlFor='color'>Cor</label>
-              <input type='text' id='color' placeholder={announcement.color} />
+              <input
+                type='text'
+                id='color'
+                placeholder={announcement.color}
+                {...register('color')}
+              />
             </div>
           </DubleInputsStyle>
           <DubleInputsStyle>
@@ -74,17 +107,27 @@ const ModalEditAnnouncement = ({
               <input
                 type='number'
                 id='fipe_price'
-                placeholder={announcement.fipe_price}
+                placeholder={String(announcement.fipe_price)}
+                {...register('fipe_price')}
               />
             </div>
             <div className='input--label'>
               <label htmlFor='price'>Preço</label>
-              <input type='text' id='price' placeholder={announcement.price} />
+              <input
+                type='text'
+                id='price'
+                placeholder={String(announcement.price)}
+                {...register('price')}
+              />
             </div>
           </DubleInputsStyle>
           <div className='input--label'>
             <label htmlFor='description'>Descrição</label>
-            <textarea id='description' placeholder={announcement.description} />
+            <textarea
+              id='description'
+              placeholder={announcement.description}
+              {...register('description')}
+            />
           </div>
           <SectionButtonsStyle>
             <h3>Publicado</h3>
@@ -111,6 +154,7 @@ const ModalEditAnnouncement = ({
               type='text'
               id='cover_image'
               placeholder='https://image.com'
+              {...register('cover_image')}
             />
           </div>
           <div className='input--label'>
@@ -119,6 +163,7 @@ const ModalEditAnnouncement = ({
               type='text'
               id='galerry_image1'
               placeholder='https://image.com'
+              {...register('gallery_images')}
             />
           </div>
           <div className='input--label'>
@@ -127,6 +172,7 @@ const ModalEditAnnouncement = ({
               type='text'
               id='galerry_image2'
               placeholder='https://image.com'
+              {...register('gallery_images')}
             />
           </div>
           <ButtonComponents
