@@ -1,5 +1,4 @@
-import { styled } from "styled-components";
-
+import { styled } from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
@@ -42,7 +41,7 @@ export const DivDetailsProduct = styled.div`
     display: flex;
     flex-direction: column;
 
-    margin-top: -75px;
+    margin-top: -275px;
 
     gap: 30px;
   }

@@ -12,7 +12,6 @@ export const HeaderContainerStyled = styled.header`
   border-bottom: 2px solid #ddd;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
   position: sticky;
-  z-index: 1;
   top: 0;
   left: 0;
   z-index: 3;
@@ -54,7 +53,6 @@ export const UserMenuStyled = styled.div<IsOpenProps>`
   position: fixed;
   top: ${(props: IsOpenProps) => (props.isOpen ? '50px' : '-100%')};
   right: 0;
-  z-index: 100;
   transition: top 0.3s ease-in-out;
 
   @media screen and (min-width: 769px) {
@@ -169,5 +167,5 @@ export const Overlay = styled.div<IsOpenProps>`
   height: 100%;
   background-color: rgba(0, 0, 0, 0.1);
   display: ${(props: IsOpenProps) => (props.isOpen ? 'block' : 'none')};
-  z-index: 99;
+  z-index: 3;
 `;

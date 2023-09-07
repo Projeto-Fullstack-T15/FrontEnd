@@ -1,10 +1,10 @@
-import { useContext } from "react";
-import AnnouncementList from "../../components/AnnouncementList";
-import FooterComponent from "../../components/Global/Footer";
-import HeaderComponents from "../../components/Header";
-import NavComponents from "../../components/Nav";
-import { AnnouncementContext } from "../../contexts/announces/announcementContext";
-import { HomeContainer } from "./style";
+import { useContext } from 'react';
+import AnnouncementList from '../../components/AnnouncementList';
+import FooterComponent from '../../components/Global/Footer';
+import HeaderComponents from '../../components/Header';
+import NavComponents from '../../components/Nav';
+import { AnnouncementContext } from '../../contexts/announces/announcementContext';
+import { HomeContainer } from './style';
 
 export const HomePage: React.FC = () => {
   const { filteredAnnouncements } = useContext(AnnouncementContext);
