@@ -5,7 +5,7 @@ import {
   ILogin,
   ILoginResponse,
   IUserContextProps,
-  TCreateUser,
+  ICreateUser,
   TUpdateUser,
 } from './interfaces';
 import { api } from '../../services/api';
@@ -46,7 +46,7 @@ export const UserProvider = ({ children }) => {
       .catch((err) => console.error(err));
   };
 
-  const createUser = async (data: TCreateUser) => {
+  const createUser = async (data: ICreateUser) => {
     await api
       .post('/accounts', data)
       .then((res) => {
@@ -65,7 +65,7 @@ export const UserProvider = ({ children }) => {
       })
       .then((res) => {
         setUser(res.data);
-        getUser()
+        getUser();
         toast.success('Perfil editado com succeso!');
       })
       .catch((err) => toast.error(err));
