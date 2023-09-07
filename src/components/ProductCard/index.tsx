@@ -24,7 +24,7 @@ export const ProductCard = ({
   const { user } = useContext(UserContext);
 
   const [openModalEditAnnouncement, setOpenModalEditAnnouncement] =
-    useState<boolean>(true);
+    useState<boolean>(false);
 
   const isCheaper: boolean =
     announcement.fipe_price * 0.95 >= announcement.price;
@@ -107,7 +107,10 @@ export const ProductCard = ({
         ) : null}
       </div>
       {openModalEditAnnouncement ? (
-        <ModalEditAnnouncement showModal={setOpenModalEditAnnouncement} />
+        <ModalEditAnnouncement
+          announcement={announcement}
+          showModal={setOpenModalEditAnnouncement}
+        />
       ) : null}
     </ProductCardStyle>
   );
