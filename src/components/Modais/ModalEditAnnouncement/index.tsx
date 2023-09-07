@@ -11,65 +11,80 @@ import {
   SectionButtonsStyle,
   SectionButtonsSubmitStyle,
 } from './style';
+import { createPortal } from 'react-dom';
+import Announcement from '../../../contexts/announces/interface';
 
-const ModalEditAnnouncement = () => {
-  return (
+export interface IModalEditAnnouncementProps {
+  showModal: React.Dispatch<React.SetStateAction<boolean>>;
+  announcement: Announcement;
+}
+
+const ModalEditAnnouncement = ({
+  showModal,
+  announcement,
+}: IModalEditAnnouncementProps) => {
+  return createPortal(
     <ModalContainer>
       <SectionModalStyle $height='1296px' $width='541px'>
         <TitleAndCloneStyle>
           <h4>Editar anúncio</h4>
-          <GrClose />
+          <GrClose onClick={showModal(false)} />
         </TitleAndCloneStyle>
         <FormEditAnnouncementStyle>
           <h4>Informações do veículo</h4>
           <div className='input--label'>
             <label htmlFor='brand'>Marca</label>
-            <input type='text' id='brand' placeholder='Chevrolet' />
+            <input type='text' id='brand' placeholder={announcement.brand} />
           </div>
           <div className='input--label'>
             <label htmlFor='model'>Modelo</label>
-            <input type='text' id='model' placeholder='camoro ss 6.2 v8 16v' />
+            <input type='text' id='model' placeholder={announcement.model} />
           </div>
           <DubleInputsStyle>
             <div className='input--label'>
               <label htmlFor='year'>ano</label>
-              <input type='number' id='year' placeholder='2018' />
+              <input type='number' id='year' placeholder={announcement.year} />
             </div>
             <div className='input--label'>
               <label htmlFor='feul_type'>Combustível</label>
               <input
                 type='text'
                 id='feul_type'
-                placeholder='Gasolina / Etanol'
+                placeholder={announcement.fuel_type}
               />
             </div>
           </DubleInputsStyle>
           <DubleInputsStyle>
             <div className='input--label'>
               <label htmlFor='mileage'>Quilometragem</label>
-              <input type='number' id='mileage' placeholder='30000' />
+              <input
+                type='number'
+                id='mileage'
+                placeholder={announcement.mileage}
+              />
             </div>
             <div className='input--label'>
               <label htmlFor='color'>Cor</label>
-              <input type='text' id='color' placeholder='Branco' />
+              <input type='text' id='color' placeholder={announcement.color} />
             </div>
           </DubleInputsStyle>
           <DubleInputsStyle>
             <div className='input--label'>
               <label htmlFor='fipe_price'>Prço da tabela FIPE</label>
-              <input type='number' id='fipe_price' placeholder='R$ 48.000,00' />
+              <input
+                type='number'
+                id='fipe_price'
+                placeholder={announcement.fipe_price}
+              />
             </div>
             <div className='input--label'>
               <label htmlFor='price'>Preço</label>
-              <input type='text' id='price' placeholder='R$ 50.000,00' />
+              <input type='text' id='price' placeholder={announcement.price} />
             </div>
           </DubleInputsStyle>
           <div className='input--label'>
             <label htmlFor='description'>Descrição</label>
-            <textarea
-              id='description'
-              placeholder='Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ratione quasi modi maiores quis illum ea nam. Asperiores placeat quod exercitationem harum. Obcaecati perspiciatis placeat quam cumque quo sed consectetur?'
-            />
+            <textarea id='description' placeholder={announcement.description} />
           </div>
           <SectionButtonsStyle>
             <h3>Publicado</h3>
@@ -139,7 +154,8 @@ const ModalEditAnnouncement = () => {
           </SectionButtonsSubmitStyle>
         </FormEditAnnouncementStyle>
       </SectionModalStyle>
-    </ModalContainer>
+    </ModalContainer>,
+    document.body
   );
 };
 
