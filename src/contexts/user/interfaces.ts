@@ -4,7 +4,7 @@ import { IResetPassword, ISendEmail, IUserResponse } from '../../interfaces';
 export interface IUserContextProps {
   user: IUserResponse;
   getUser: () => Promise<void>;
-  createUser: (data: TCreateUser) => Promise<void>;
+  createUser: (data: ICreateUser) => Promise<void>;
   updateUser: (data: TUpdateUser) => Promise<void>;
   deleteUser: () => Promise<void>;
   login: (data: ILogin) => Promise<void>;
@@ -20,16 +20,16 @@ export interface IUserProviderProps {
   children: React.ReactNode;
 }
 
-export interface TCreateUser {
+export interface ICreateUser {
   email: string;
   password: string;
   confirmPassword: string;
   phone: string;
-  account_type: string;
+  account_type: 'BUYER' | 'ANNOUNCER';
   user: {
     name: string;
     cpf: string;
-    birthday: Date | string;
+    birthday: Date;
     description: string;
   };
   address: {
@@ -38,11 +38,11 @@ export interface TCreateUser {
     city: string;
     street: string;
     number: string;
-    complement: string;
+    complement?: string;
   };
 }
 
-export type TUpdateUser = DeepPartial<TCreateUser>;
+export type TUpdateUser = DeepPartial<ICreateUser>;
 
 export interface ILogin {
   email: string;
@@ -57,7 +57,7 @@ export interface Account {
   id: number;
   email: string;
   phone: string;
-  account_type: "BUYER" | "ANNOUNCER";
+  account_type: 'BUYER' | 'ANNOUNCER';
   created_at: string;
   last_updated_at: string;
 }
@@ -76,4 +76,3 @@ export interface User {
 export interface AccountWithUser extends Account {
   user: User;
 }
-

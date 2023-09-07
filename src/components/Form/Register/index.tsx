@@ -4,7 +4,7 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { registerSchema } from './schema';
 import { Input } from '../Input';
-import { TCreateUser } from '../../../contexts/user/interfaces';
+import { ICreateUser } from '../../../contexts/user/interfaces';
 import {
   DivInput,
   DivInputRadio,
@@ -22,11 +22,11 @@ export const RegisterForm = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TCreateUser>({
+  } = useForm<ICreateUser>({
     resolver: yupResolver(registerSchema),
   });
 
-  const submit: SubmitHandler<TCreateUser> = (data) => {
+  const submit: SubmitHandler<ICreateUser> = (data) => {
     // const { confirmPassword, ...rest } = data;
 
     data.user.birthday = new Date(data.user.birthday);
