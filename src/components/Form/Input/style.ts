@@ -10,36 +10,36 @@ export const FieldStyled = styled.fieldset`
   &.with-div {
     width: 50%;
 
-    input {
+    input, textarea {
       width: 70%;
     }
 
     @media screen and (min-width: 375px) {
-      input {
+      input, textarea {
         width: 75%;
       }
     }
 
     @media screen and (min-width: 425px) {
-      input {
+      input, textarea {
         width: 78%;
       }
     }
 
     @media screen and (min-width: 768px) {
-      input {
+      input, textarea {
         width: 88%;
       }
     }
 
     @media screen and (min-width: 1024px) {
-      input {
+      input, textarea {
         width: 75%;
       }
     }
 
     @media screen and (min-width: 1040px) {
-      input {
+      input, textarea {
         width: 82%;
       }
     }
@@ -52,7 +52,8 @@ export const FieldStyled = styled.fieldset`
     color: var(--grey1);
   }
 
-  input {
+
+  input, textarea {
     width: -webkit-fill-available;
     border-radius: 0.25rem;
     border: 2px solid var(--grey7);
@@ -74,7 +75,8 @@ export const FieldStyled = styled.fieldset`
     }
 
     &.with-background {
-      background-color: var(--grey8);
+      background-color: var(--grey10);
+      border: none;
     }
   }
 `;

@@ -19,7 +19,7 @@ export const CommentsBox = ({ announcementId }) => {
 
   useEffect(() => {
     getComment(announcementId);
-  }, [announcementId]);
+  }, [announcementId, comment]);
 
   const getTimeDifference = (updatedAt) => {
     const now = new Date();
@@ -102,7 +102,7 @@ export const CommentsBox = ({ announcementId }) => {
                 <div className="point">·</div>
                 <span>{getTimeDifference(comment.last_updated_at)}</span>
               </div>
-  
+
               <div className="option">
                 {user.id === comment.account_id && (
                   <div className="comment-options">
@@ -127,18 +127,18 @@ export const CommentsBox = ({ announcementId }) => {
                 </div>
               </div>
             </div>
-  
+
             <p>{comment.text}</p>
           </div>
         ))
       )}
-  
+
       <DeleteCommentModal
         open={isModalDeleteOpen}
         onClose={handleCloseModalDelete}
         onConfirm={handleConfirmDelete}
       />
-  
+
       <EditCommentModal
         open={isEditModalOpen}
         onClose={handleCloseModalEdit}
@@ -147,5 +147,4 @@ export const CommentsBox = ({ announcementId }) => {
       />
     </Container>
   );
-  
 };

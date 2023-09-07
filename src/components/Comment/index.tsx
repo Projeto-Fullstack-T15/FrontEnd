@@ -1,58 +1,42 @@
-import {
-  ButtonSubmit,
-  Description,
-  FormComment,
-  Formulario,
-  Name,
-  User,
-} from "./style";
+import { useContext, useEffect } from "react";
+import { CommentForm } from "../Form/Comment";
 import { UserContext } from "../../contexts/user/userContext";
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
-import { CommentSchema } from "./shema";
+import { SectionComment } from "./style";
 
-export const Comment = () => {
-  const { user } = useContext(UserContext);
-  const { createComment } = useContext(CommentContext);
+export const Comment = ({ announcementId }) => {
+  const { user, getUser } = useContext(UserContext);
 
-  const { register, handleSubmit } = useForm<CommentSchema>({
-    resolver: yupResolver(CommentSchema),
-  });
+  useEffect(() => {
+    getUser();
+  }, [user]);
 
-  const name = user.name;
+  const getInitials = (userName) => {
+    if (!userName) {
+      userName = "User Annonimous";
+    }
+    const words = userName.split(" ");
+    let initials = "";
+    for (let i = 0; i < Math.min(2, words.length); i++) {
+      initials += words[i].charAt(0).toUpperCase();
+    }
+    return initials;
+  };
 
-  function pegarPrimeirasLetras(str) {
-    const palavras = str.split(" ");
-    const primeirasLetras = palavras.map((palavra) => palavra.charAt(0));
-    return primeirasLetras.join("");
-  }
-
-  const iniciais = pegarPrimeirasLetras(name);
+  const name = user?.user?.name || "User Annonimous";
 
   return (
-    <Formulario onSubmit={handleSubmit(createComment())}>
-      <User>
-        <Name>
-          <h3>{iniciais.toUpperCase()}</h3>
-          <h3>SL</h3>
-        </Name>
-        <div>
-          <h2>Samuel Leão</h2>
+    <SectionComment>
+      <div className="container-section">
+        <div className="commenter">
+          <div className="capitalLetters">
+            <h2>{getInitials(name)}</h2>
+          </div>
+          <h3>{name || "User Annonimous"}</h3>
         </div>
-      </User>
-      <FormComment>
-        <Description
-          name="description"
-          id="description"
-          placeholder="Digitar descrição do post"
-          {...register("comment")}
-        ></Description>
-
-        <ButtonSubmit>
-          <button type="submit">Postar</button>
-        </ButtonSubmit>
-      </FormComment>
-    </Formulario>
+        <div className="container">
+          <CommentForm announcementId={announcementId} />
+        </div>
+      </div>
+    </SectionComment>
   );
 };
