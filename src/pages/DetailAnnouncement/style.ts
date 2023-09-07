@@ -1,5 +1,6 @@
 import { styled } from "styled-components";
 
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -297,4 +298,9 @@ export const SectionAnnouncerStyle = styled.section`
 
     line-height: 28px;
   }
+`;
+
+export const SectionComment = styled.section`
+  display: flex;
+  justify-content: center;
 `;

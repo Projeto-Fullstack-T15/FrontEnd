@@ -13,12 +13,13 @@ import {
   DivDetailsProduct,
   DivYearKMPriceStyle,
   SectionAnnouncerStyle,
+  SectionComment,
   SectionDescriptionStyle,
   SectionDetailsProductStyle,
   SectionPhotosStyle,
   SectionProductDetailStyle,
 } from './style';
-import { Comment } from '../../components/Comment';
+
 
 const DetailAnnouncement = () => {
   const { productId } = useParams();
@@ -52,6 +53,7 @@ const DetailAnnouncement = () => {
     <>
       <BackgroundBrandStyle />
       <HeaderComponents />
+
       <Container>
         <DivDetailsProduct>
           <SectionProductDetailStyle>
@@ -87,6 +89,9 @@ const DetailAnnouncement = () => {
               <h3 className='title--description'>Descrição</h3>
               <p className='text--description'>{detailProduct.description}</p>
             </SectionDescriptionStyle>
+            <SectionComment>
+              <CommentsBox announcementId={productId} />
+            </SectionComment>
           </SectionProductDetailStyle>
           <div className='container__right'>
             <SectionPhotosStyle>
@@ -99,6 +104,7 @@ const DetailAnnouncement = () => {
                   </li>
                 );
               })} */}
+
                 <li className='photos'>
                   <img
                     src='https://www.chevrolet.com.br/content/dam/chevrolet/mercosur/brazil/portuguese/index/cars/cars-subcontent/04-images/novo-onix-branco-summit.png?imwidth=419'
@@ -157,9 +163,6 @@ const DetailAnnouncement = () => {
             </SectionAnnouncerStyle>
           </div>
         </DivDetailsProduct>
-        <section>
-          <CommentsBox />
-        </section>
       </Container>
       <FooterComponent />
     </>

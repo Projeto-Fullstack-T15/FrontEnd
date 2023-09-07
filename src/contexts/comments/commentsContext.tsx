@@ -13,11 +13,7 @@ export const CommentProvider = ({ children }) => {
 
   const getComment = async (announcementId: number) => {
     await api
-      .get(`/announcements/${announcementId}/comments`, {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("@TOKEN")}`,
-        },
-      })
+      .get(`/announcements/${announcementId}/comments`)
       .then((res) => {
         setComment(res.data);
       })
