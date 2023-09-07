@@ -1,5 +1,20 @@
 import { styled } from "styled-components";
 
+
+export const Container = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+
+  & > section {
+    width: 72%;
+    background-color: var(--white);
+    padding: 40px;
+    border-radius: 5px;
+  }
+`;
+
 export const BackgroundBrandStyle = styled.div`
   width: 100%;
   height: 600px;
