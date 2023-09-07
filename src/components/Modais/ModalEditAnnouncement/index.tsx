@@ -11,14 +11,19 @@ import {
   SectionButtonsStyle,
   SectionButtonsSubmitStyle,
 } from './style';
+import { createPortal } from 'react-dom';
 
-const ModalEditAnnouncement = () => {
-  return (
+export interface IModalEditAnnouncementProps {
+  showModal: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+const ModalEditAnnouncement = ({ showModal }: IModalEditAnnouncementProps) => {
+  return createPortal(
     <ModalContainer>
       <SectionModalStyle $height='1296px' $width='541px'>
         <TitleAndCloneStyle>
           <h4>Editar anúncio</h4>
-          <GrClose />
+          <GrClose onClick={showModal(false)} />
         </TitleAndCloneStyle>
         <FormEditAnnouncementStyle>
           <h4>Informações do veículo</h4>
@@ -139,7 +144,8 @@ const ModalEditAnnouncement = () => {
           </SectionButtonsSubmitStyle>
         </FormEditAnnouncementStyle>
       </SectionModalStyle>
-    </ModalContainer>
+    </ModalContainer>,
+    document.body
   );
 };
 

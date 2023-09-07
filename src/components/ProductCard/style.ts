@@ -47,8 +47,7 @@ export const ProductCardStyle = styled.div`
       position: absolute;
       top: calc(50% - 1.5rem);
       right: calc(50% - 1.5rem);
-      color: rgba(0,0,0, 0.25);
-      
+      color: rgba(0, 0, 0, 0.25);
     }
   }
 
@@ -78,6 +77,11 @@ export const ProductCardStyle = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+
+    .buttons {
+      display: flex;
+      gap: 15px;
+    }
   }
 `;
 
