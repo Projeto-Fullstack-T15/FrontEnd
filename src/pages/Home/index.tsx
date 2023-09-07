@@ -5,7 +5,6 @@ import HeaderComponents from '../../components/Header';
 import NavComponents from '../../components/Nav';
 import { AnnouncementContext } from '../../contexts/announces/announcementContext';
 import { HomeContainer } from './style';
-import ModalEditAnnouncement from '../../components/Modais/ModalEditAnnouncement';
 
 export const HomePage: React.FC = () => {
   const { filteredAnnouncements } = useContext(AnnouncementContext);
@@ -22,7 +21,6 @@ export const HomePage: React.FC = () => {
         />
       </div>
       <FooterComponent />
-      <ModalEditAnnouncement />
     </HomeContainer>
   );
 };
