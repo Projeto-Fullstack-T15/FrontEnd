@@ -1,11 +1,21 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useParams } from 'react-router-dom';
+import ButtonComponents from '../../components/Global/Buttons';
+import { CreateAnnouncementModal } from "../Modais/CreateAnnouncementModal";
 import { SellerCardStyle } from "./style";
-
-const SellerCard = () => {
+const SellerCard = ({id}) => {
   const [sellerData, setSellerData] = useState(null);
-  const id = useParams().id;
+  const [isModalOpen, setIsModalOpen] = useState(false);
+ 
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+ 
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+ 
   useEffect(() => {
     axios
       .get(`http://localhost:8000/api/announcements`)
@@ -14,6 +24,8 @@ const SellerCard = () => {
         const seller = data.find((item) => item.account_id === Number(id));
         if (seller) {
           setSellerData(seller.account);
+        }else {
+          setSellerData(null);
         }
       })
       .catch((error) => {
@@ -31,9 +43,35 @@ const SellerCard = () => {
     return initials;
   }
 
+  if (!sellerData) {
+    const token = localStorage.getItem("@TOKEN")
+    if (token) {
+    return (
+      <SellerCardStyle>
+    <div className="contentBox">
+     <div className='sellerNoData'>
+     <h3>Você não possui anúncios cadastrados</h3>
+     </div>
+     <p>Crie seu primeiro anúncio</p>
+   <ButtonComponents
+   text='Criar Anúncio'
+   $size='large'
+   $width='150px'
+   typeButton='button'
+   $type='outlineBrand1'
+   onClick={openModal}
+ />
+    </div>
+    {isModalOpen && (
+        <CreateAnnouncementModal onClose={closeModal} />
+      )}
+    </SellerCardStyle>
+    )}
+    }
+
   return (
     <SellerCardStyle>
-      {sellerData && (
+      {sellerData  && (
         <div className="contentBox">
 
            <div className='capitalLetters'>
@@ -44,7 +82,19 @@ const SellerCard = () => {
             <span><h5>Anunciante</h5></span>
             </div>
             <p>{sellerData.user.description}</p>
+            <ButtonComponents
+              text='Criar Anúncio'
+              $size='large'
+              $width='150px'
+              typeButton='button'
+              $type='outlineBrand1'
+              onClick={openModal}
+            />
           </div>
+          
+      )}
+      {isModalOpen && (
+        <CreateAnnouncementModal setIsModalOpen={setIsModalOpen} />
       )}
     </SellerCardStyle>
   );

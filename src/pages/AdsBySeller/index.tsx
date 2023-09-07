@@ -26,7 +26,7 @@ export const AdsBySellerPage: React.FC = () => {
     <Container>
       <HeaderComponents />
       <div className='sellerData'>
-        <SellerCard />
+        <SellerCard id={sellerId} />
         <div className='whiteBox'></div>
         <AnnouncementList
           products={carData}

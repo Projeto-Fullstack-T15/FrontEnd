@@ -5,12 +5,16 @@ import { DeleteCommentModal } from "../Modais/ModalDeleteComment";
 import { CommentContext } from "../../contexts/comments/commentsContext";
 import { UserContext } from "../../contexts/user/userContext";
 import { FaBars } from "react-icons/fa";
+import { EditCommentModal } from "../Modais/ModalEditComment";
 
 export const CommentsBox = () => {
   const [comment, setComment] = useState([]);
-  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [isOptionsOpen, setIsOptionsOpen] = useState(null);
+  const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [commentToDelete, setCommentToDelete] = useState(null);
+  const [editCommentId, setEditCommentId] = useState(null);
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [initialCommentText, setInitialCommentText] = useState("")
 
   const { deleteComment } = useContext(CommentContext);
   const { user } = useContext(UserContext);
@@ -76,6 +80,17 @@ export const CommentsBox = () => {
     setCommentToDelete(null);
   };
 
+  const handlePrepareToEdit = (commentId, commentText) => {
+    setEditCommentId(commentId);
+    setInitialCommentText(commentText);
+    setIsEditModalOpen(true);
+  };
+
+  const handleCloseModalEdit = () => {
+    setIsEditModalOpen(false);
+    setEditCommentId(null);
+  };
+
   return (
     <Container>
       <h2>Comentários</h2>
@@ -99,7 +114,9 @@ export const CommentsBox = () => {
           </div>
           {isOptionsOpen === comment.id && (
             <div className="comment-options-menu">
-              {/* <button onClick={}>Editar</button> */}
+              <button onClick={() => handlePrepareToEdit(comment.id, comment.text)}>
+                Editar
+              </button>
               <button onClick={() => handlePrepareToDelete(comment.id)}>
                 Excluir
               </button>
@@ -112,6 +129,13 @@ export const CommentsBox = () => {
         open={isModalDeleteOpen}
         onClose={handleCloseModalDelete}
         onConfirm={handleConfirmDelete}
+      />
+
+      <EditCommentModal
+        open={isEditModalOpen}
+        onClose={handleCloseModalEdit}
+        commentId={editCommentId}
+        commentText={initialCommentText}
       />
     </Container>
   );

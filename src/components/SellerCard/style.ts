@@ -41,5 +41,10 @@ export const SellerCardStyle = styled.div`
       font-style: normal;
       font-weight: 500;
     }
+    .contentBoxNoData {
+      display: flex;
+      height: 100vh;
+      background-color: red;
+    }
   }
 `;
