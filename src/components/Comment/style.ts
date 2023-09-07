@@ -1,8 +1,8 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 export const getRandomColor = () => {
-  const letters = "0123456789ABCDEF";
-  let color = "#";
+  const letters = '0123456789ABCDEF';
+  let color = '#';
   for (let i = 0; i < 6; i++) {
     color += letters[Math.floor(Math.random() * 16)];
   }
@@ -11,12 +11,13 @@ export const getRandomColor = () => {
 
 export const SectionComment = styled.section`
   margin-bottom: 50px;
-  width: 95%;
+  width: 45%;
+  margin-left: 11%;
   background-color: var(--grey10);
   display: flex;
   justify-content: center;
 
-  .container-section{
+  .container-section {
     width: 90%;
     padding: 40px;
   }
