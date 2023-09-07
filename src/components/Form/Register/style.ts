@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import { styled } from "styled-components";
 
 export const Title = styled.h1`
   font-family: var(--font-title);
@@ -80,12 +80,12 @@ export const DivInputRadio = styled.div`
       }
     }
 
-    input[type='radio'] {
+    input[type="radio"] {
       display: none;
     }
 
-    input[type='radio']:checked + span,
-    input[type='radio']:checked + label {
+    input[type="radio"]:checked + span,
+    input[type="radio"]:checked + label {
       background-color: var(--brand1);
       color: white;
       border: 2px solid var(--brand1);
