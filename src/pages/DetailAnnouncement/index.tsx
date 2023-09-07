@@ -17,6 +17,7 @@ import {
   SectionProductDetailStyle,
 } from './style';
 import { CommentsBox } from '../../components/CommentsBox';
+import { Comment } from '../../components/Comment';
 
 const DetailAnnouncement = () => {
   const { productId } = useParams();
@@ -156,7 +157,8 @@ const DetailAnnouncement = () => {
       </DivDetailsProduct>
 
       <section>
-        <CommentsBox/>
+        <Comment />
+        <CommentsBox />
       </section>
 
       <FooterComponent />
