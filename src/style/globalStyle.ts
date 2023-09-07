@@ -97,7 +97,7 @@ export const ModalContainer = styled.div`
   display: flex;
   justify-content: center;
 
-  z-index: 1;
+  z-index: 4;
 
   background-color: rgba(0, 0, 0, 0.2);
 `;

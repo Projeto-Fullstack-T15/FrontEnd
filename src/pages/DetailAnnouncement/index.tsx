@@ -1,11 +1,12 @@
-import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { toast } from "react-toastify";
-import ButtonComponents from "../../components/Global/Buttons";
-import FooterComponent from "../../components/Global/Footer";
-import HeaderComponents from "../../components/Header";
-import Announcement from "../../contexts/announces/interface";
-import { api } from "../../services/api";
+import { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import { CommentsBox } from '../../components/CommentsBox';
+import ButtonComponents from '../../components/Global/Buttons';
+import FooterComponent from '../../components/Global/Footer';
+import HeaderComponents from '../../components/Header';
+import Announcement from '../../contexts/announces/interface';
+import { api } from '../../services/api';
 import {
   BackgroundBrandStyle,
   Container,
@@ -17,8 +18,7 @@ import {
   SectionDetailsProductStyle,
   SectionPhotosStyle,
   SectionProductDetailStyle,
-} from "./style";
-import { CommentsBox } from "../../components/CommentsBox";
+} from './style';
 
 
 const DetailAnnouncement = () => {
@@ -58,10 +58,7 @@ const DetailAnnouncement = () => {
         <DivDetailsProduct>
           <SectionProductDetailStyle>
             <div className='image--product'>
-              <img
-                src={detailProduct.cover_image}
-                alt='imagem do anuncio'
-              />
+              <img src={detailProduct.cover_image} alt='imagem do anuncio' />
             </div>
             <SectionDetailsProductStyle>
               <h3>
@@ -73,9 +70,9 @@ const DetailAnnouncement = () => {
                   <span>{detailProduct.mileage / 1000}KM</span>
                 </div>
                 <p>
-                  {detailProduct.price.toLocaleString("pt-BR", {
-                    style: "currency",
-                    currency: "BRL",
+                  {detailProduct.price.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
                   })}
                 </p>
               </DivYearKMPriceStyle>
@@ -149,9 +146,9 @@ const DetailAnnouncement = () => {
             <SectionAnnouncerStyle>
               <div>
                 {detailProduct.account.user.name
-                  .split(" ")
+                  .split(' ')
                   .map((elt) => elt[0])
-                  .join("")}
+                  .join('')}
               </div>
               <h4>{detailProduct.account.user.name}</h4>
               <p>{detailProduct.account.user.description}</p>
