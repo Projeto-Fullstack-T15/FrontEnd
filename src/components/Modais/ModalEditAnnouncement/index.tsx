@@ -5,6 +5,12 @@ import {
   TitleAndCloneStyle,
 } from '../../../style/utilsStyle';
 import ButtonComponents from '../../Global/Buttons';
+import {
+  DubleInputsStyle,
+  FormEditAnnouncementStyle,
+  SectionButtonsStyle,
+  SectionButtonsSubmitStyle,
+} from './style';
 
 const ModalEditAnnouncement = () => {
   return (
@@ -14,22 +20,22 @@ const ModalEditAnnouncement = () => {
           <h4>Editar anúncio</h4>
           <GrClose />
         </TitleAndCloneStyle>
-        <form>
-          <h3>Informações do veículo</h3>
-          <div>
+        <FormEditAnnouncementStyle>
+          <h4>Informações do veículo</h4>
+          <div className='input--label'>
             <label htmlFor='brand'>Marca</label>
             <input type='text' id='brand' placeholder='Chevrolet' />
           </div>
-          <div>
+          <div className='input--label'>
             <label htmlFor='model'>Modelo</label>
             <input type='text' id='model' placeholder='camoro ss 6.2 v8 16v' />
           </div>
-          <div>
-            <div>
+          <DubleInputsStyle>
+            <div className='input--label'>
               <label htmlFor='year'>ano</label>
               <input type='number' id='year' placeholder='2018' />
             </div>
-            <div>
+            <div className='input--label'>
               <label htmlFor='feul_type'>Combustível</label>
               <input
                 type='text'
@@ -37,58 +43,54 @@ const ModalEditAnnouncement = () => {
                 placeholder='Gasolina / Etanol'
               />
             </div>
-          </div>
-          <div>
-            <div>
+          </DubleInputsStyle>
+          <DubleInputsStyle>
+            <div className='input--label'>
               <label htmlFor='mileage'>Quilometragem</label>
               <input type='number' id='mileage' placeholder='30000' />
             </div>
-            <div>
+            <div className='input--label'>
               <label htmlFor='color'>Cor</label>
               <input type='text' id='color' placeholder='Branco' />
             </div>
-          </div>
-          <div>
-            <div>
+          </DubleInputsStyle>
+          <DubleInputsStyle>
+            <div className='input--label'>
               <label htmlFor='fipe_price'>Prço da tabela FIPE</label>
               <input type='number' id='fipe_price' placeholder='R$ 48.000,00' />
             </div>
-            <div>
+            <div className='input--label'>
               <label htmlFor='price'>Preço</label>
               <input type='text' id='price' placeholder='R$ 50.000,00' />
             </div>
-          </div>
-          <div>
+          </DubleInputsStyle>
+          <div className='input--label'>
             <label htmlFor='description'>Descrição</label>
-            <input
-              type='number'
+            <textarea
               id='description'
-              placeholder='Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ratione
-          quasi modi maiores quis illum ea nam. Asperiores placeat quod
-          exercitationem harum. Obcaecati perspiciatis placeat quam cumque quo
-          sed consectetur?'
+              placeholder='Lorem ipsum dolor sit amet consectetur adipisicing elit. Aut ratione quasi modi maiores quis illum ea nam. Asperiores placeat quod exercitationem harum. Obcaecati perspiciatis placeat quam cumque quo sed consectetur?'
             />
           </div>
-          <div>
-            Publicado
+          <SectionButtonsStyle>
+            <h3>Publicado</h3>
             <div>
               <ButtonComponents
                 text='Sim'
                 $size='large'
-                $width='228'
+                $width='228px'
                 typeButton='button'
                 $type='outline2'
               />
               <ButtonComponents
                 text='Não'
                 $size='large'
-                $width='228'
+                $width='228px'
                 typeButton='button'
                 $type='brand1'
               />
             </div>
-          </div>
-          <div>
+          </SectionButtonsStyle>
+          <div className='input--label'>
             <label htmlFor='cover_image'>Imagem da capa</label>
             <input
               type='text'
@@ -96,7 +98,7 @@ const ModalEditAnnouncement = () => {
               placeholder='https://image.com'
             />
           </div>
-          <div>
+          <div className='input--label'>
             <label htmlFor='galerry_image1'>1° Imagem da galeria</label>
             <input
               type='text'
@@ -104,7 +106,7 @@ const ModalEditAnnouncement = () => {
               placeholder='https://image.com'
             />
           </div>
-          <div>
+          <div className='input--label'>
             <label htmlFor='galerry_image2'>2° Imagem da galeria</label>
             <input
               type='text'
@@ -114,12 +116,12 @@ const ModalEditAnnouncement = () => {
           </div>
           <ButtonComponents
             typeButton='button'
-            $type='outlineBrand1'
+            $type='brand'
             $size='small'
-            $width='315px'
+            $width='350px'
             text='Adicionar campo para imagem da galeria'
           />
-          <div>
+          <SectionButtonsSubmitStyle>
             <ButtonComponents
               text='Excluir anúncio'
               $size='large'
@@ -134,8 +136,8 @@ const ModalEditAnnouncement = () => {
               typeButton='submit'
               $type='brand1'
             />
-          </div>
-        </form>
+          </SectionButtonsSubmitStyle>
+        </FormEditAnnouncementStyle>
       </SectionModalStyle>
     </ModalContainer>
   );

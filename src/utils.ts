@@ -32,6 +32,14 @@ export const buttonsVariables = [
     focus: { background: '--brand4', border: '--brand4', color: '--brand1' },
   },
   {
+    id: 'brand',
+    background: '--brand4',
+    border: '--brand4',
+    color: '--brand1',
+    hover: { background: '--brand4', border: '--brand3', color: '--brand1' },
+    focus: { background: '--brand4', border: '--brand2', color: '--brand1' },
+  },
+  {
     id: 'light',
     background: '--brand10',
     border: '--grey10',
