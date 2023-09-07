@@ -3,14 +3,15 @@ import { styled } from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: start;
   gap: 30px;
 
   & > section {
-    width: 72%;
+    width: 39%;
     background-color: var(--white);
     padding: 40px;
     border-radius: 5px;
+    margin-left: 11%;
   }
 `;
 
@@ -41,7 +42,7 @@ export const DivDetailsProduct = styled.div`
     display: flex;
     flex-direction: column;
 
-    margin-top: -275px;
+    margin-top: -75px;
 
     gap: 30px;
   }
