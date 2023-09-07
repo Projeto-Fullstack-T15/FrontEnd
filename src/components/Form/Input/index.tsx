@@ -10,6 +10,7 @@ export interface IInput {
   withBackground?: string;
   withDiv?: string;
   defaultValue?: string;
+  rows?: number;
 }
 
 export const Input = ({
@@ -21,7 +22,24 @@ export const Input = ({
   withBackground,
   withDiv,
   defaultValue,
+  rows,
 }: IInput) => {
+  if (type === "textarea") {
+    return (
+      <FieldStyled className={withDiv === "yes" ? "with-div" : ""}>
+        <label htmlFor={register.name}>{label}</label>
+        <textarea
+          placeholder={placeholder}
+          {...register}
+          defaultValue={defaultValue || ""}
+          className={withBackground === "yes" ? "with-background" : ""}
+          rows={rows}
+        />
+        {error && <p>{error.message}</p>}
+      </FieldStyled>
+    );
+  }
+
   return (
     <FieldStyled className={withDiv === "yes" ? "with-div" : ""}>
       <label htmlFor={register.name}>{label}</label>
@@ -29,7 +47,7 @@ export const Input = ({
         type={type}
         placeholder={placeholder}
         {...register}
-        defaultValue={defaultValue || ""}
+        defaultValue={defaultValue || ""} 
         className={withBackground === "yes" ? "with-background" : ""}
       />
       {error && <p>{error.message}</p>}

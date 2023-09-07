@@ -1,69 +1,61 @@
 import { styled } from "styled-components";
 
-export const Formulario = styled.form`
-  max-width: 100%;
-  width: 713px;
-  box-shadow: 2px solid var(--grey2);
-  display: flex;
-  flex-direction: column;
-  border: solid 1px Var(--grey6);
-  margin: 10px auto;
-  h2 {
-    font-size: 16px;
+export const getRandomColor = () => {
+  const letters = "0123456789ABCDEF";
+  let color = "#";
+  for (let i = 0; i < 6; i++) {
+    color += letters[Math.floor(Math.random() * 16)];
   }
-`;
-export const User = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  width: 150px;
-  margin: 6px 25px;
-`;
+  return color;
+};
 
-export const Name = styled.div`
-  color: var(--grey9);
-  background-color: var(--random11);
-  border-radius: 70%;
-  width: 36px;
-  height: 26px;
+export const SectionComment = styled.section`
+  margin-bottom: 50px;
+  width: 95%;
+  background-color: var(--grey10);
   display: flex;
   justify-content: center;
-  align-items: center;
-  h3 {
-    font-size: 15px;
+
+  .container-section{
+    width: 90%;
+    padding: 40px;
   }
-`;
 
-export const Description = styled.input`
-  width: 90%;
-  height: 123px;
-  padding: 5px 0.5rem;
-  margin: 10px auto 0px;
-`;
-export const FormComment = styled.div`
-  width: 90%;
-  height: 200px;
-  padding: 5px 0.5rem;
-  margin: 10px auto 10px;
-  border: solid 1px Var(--grey6);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`;
-
-export const ButtonSubmit = styled.div`
-  width: 90%;
-  padding: 5px 0.5rem;
-  margin: 10px auto 0px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-
-  button {
-    width: 80px;
-    height: 30px;
-    background-color: var(--random11);
-    color: var(--grey9);
+  .container {
     border-radius: 4px;
+    border: 2px solid var(--grey7);
+    padding: 10px;
+  }
+
+  .commenter {
+    font-family: var(--font-body);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 15px;
+
+    & h3 {
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    & span {
+      font-size: 0.75rem;
+      color: var(--grey3);
+    }
+  }
+
+  .capitalLetters {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    color: var(--white);
+    font-size: 14px;
+    font-weight: 500;
+    background-color: ${getRandomColor()};
   }
 `;

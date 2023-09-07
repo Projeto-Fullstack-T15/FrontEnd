@@ -25,9 +25,13 @@ export const CommentProvider = ({ children }) => {
     data: ICommentRequest
   ) => {
     await api
-      .post(`/announcements/${announcementId}/comments`, data)
+      .post(`/announcements/${announcementId}/comments`, data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem("@TOKEN")}`,
+        },
+      })
       .then((res) => {
-        setComment(res.data);
+        setComment((prevComments) => [...prevComments, res.data]);
         toast.success("Comentário criado com sucesso!");
       })
       .catch((err) => console.error(err));
@@ -43,9 +47,7 @@ export const CommentProvider = ({ children }) => {
       .then((res) => {
         setComment((prevComments) =>
           prevComments.map((comment) =>
-            comment.id === commentId
-              ? { ...comment, ...res.data }
-              : comment
+            comment.id === commentId ? { ...comment, ...res.data } : comment
           )
         );
 
