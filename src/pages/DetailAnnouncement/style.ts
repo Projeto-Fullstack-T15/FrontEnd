@@ -304,5 +304,7 @@ export const SectionComment = styled.section`
   display: flex;
   justify-content: center;
 
-  width: 100%;
+  width: 47%;
+
+  margin-left: 10%;
 `;

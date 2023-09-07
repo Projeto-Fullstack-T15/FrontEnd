@@ -91,10 +91,6 @@ const DetailAnnouncement = () => {
               <h3 className='title--description'>Descrição</h3>
               <p className='text--description'>{detailProduct.description}</p>
             </SectionDescriptionStyle>
-            <SectionComment>
-              <CommentsBox announcementId={productId} />
-            </SectionComment>
-            {token ? <Comment announcementId={productId} /> : null}
           </SectionProductDetailStyle>
           <div className='container__right'>
             <SectionPhotosStyle>
@@ -167,6 +163,10 @@ const DetailAnnouncement = () => {
           </div>
         </DivDetailsProduct>
       </Container>
+      <SectionComment>
+        <CommentsBox announcementId={productId} />
+      </SectionComment>
+      {token ? <Comment announcementId={productId} /> : null}
       <FooterComponent />
     </>
   ) : null;
