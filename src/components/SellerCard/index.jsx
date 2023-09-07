@@ -1,12 +1,16 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 import ButtonComponents from '../../components/Global/Buttons';
 import { CreateAnnouncementModal } from "../Modais/CreateAnnouncementModal";
 import { SellerCardStyle } from "./style";
 const SellerCard = ({id}) => {
   const [sellerData, setSellerData] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
- 
+  const location = useLocation();
+  const publicPage = location.pathname.includes("adsbyseller");
+
+  
   const openModal = () => {
     setIsModalOpen(true);
   };
@@ -33,7 +37,6 @@ const SellerCard = ({id}) => {
       });
   }, [id]);
 
-
   const getInitials = (name) => {
     const words = name.split(' ');
     let initials = '';
@@ -43,9 +46,7 @@ const SellerCard = ({id}) => {
     return initials;
   }
 
-  if (!sellerData) {
-    const token = localStorage.getItem("@TOKEN")
-    if (token) {
+  if (!sellerData && !publicPage) {
     return (
       <SellerCardStyle>
     <div className="contentBox">
@@ -67,7 +68,8 @@ const SellerCard = ({id}) => {
       )}
     </SellerCardStyle>
     )}
-    }
+
+    
 
   return (
     <SellerCardStyle>
@@ -82,7 +84,8 @@ const SellerCard = ({id}) => {
             <span><h5>Anunciante</h5></span>
             </div>
             <p>{sellerData.user.description}</p>
-            <ButtonComponents
+            { !publicPage ? (
+              <ButtonComponents
               text='Criar Anúncio'
               $size='large'
               $width='150px'
@@ -90,6 +93,9 @@ const SellerCard = ({id}) => {
               $type='outlineBrand1'
               onClick={openModal}
             />
+            ): (
+              <></>
+            )}
           </div>
           
       )}
