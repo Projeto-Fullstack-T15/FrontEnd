@@ -22,7 +22,7 @@ export const DeleteCommentModal: React.FC<DeleteCommentProps> = ({
         }}
       >
         <Title>Tem certeza que deseja excluir esse comentário?</Title>
-        <Box display="flex" justifyContent="space-between" >
+        <Box display="flex" justifyContent="space-between" gap="50px" >
         <ButtonComponents
           typeButton="button"
           text="Cancelar"

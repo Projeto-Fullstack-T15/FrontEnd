@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { Container } from "./style";
 import { DeleteCommentModal } from "../Modais/ModalDeleteComment";
@@ -7,26 +6,19 @@ import { UserContext } from "../../contexts/user/userContext";
 import { FaBars } from "react-icons/fa";
 import { EditCommentModal } from "../Modais/ModalEditComment";
 
-export const CommentsBox = () => {
-  const [comment, setComment] = useState([]);
+export const CommentsBox = ({ announcementId }) => {
   const [isOptionsOpen, setIsOptionsOpen] = useState(null);
   const [isModalDeleteOpen, setIsModalDeleteOpen] = useState(false);
   const [commentToDelete, setCommentToDelete] = useState(null);
   const [editCommentId, setEditCommentId] = useState(null);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
-  const [initialCommentText, setInitialCommentText] = useState("")
+  const [initialCommentText, setInitialCommentText] = useState("");
 
-  const { deleteComment } = useContext(CommentContext);
+  const { comment, deleteComment, getComment } = useContext(CommentContext);
   const { user } = useContext(UserContext);
 
-  const announcementId = 1;
-
   useEffect(() => {
-    axios
-      .get(`http://localhost:8000/api/announcements/${announcementId}/comments`)
-      .then((response) => {
-        setComment(response.data);
-      });
+    getComment(announcementId);
   }, [announcementId]);
 
   const getTimeDifference = (updatedAt) => {
@@ -93,35 +85,47 @@ export const CommentsBox = () => {
 
   return (
     <Container>
-      <h2>Comentários</h2>
+      <div className="title">
+        <h2>Comentários</h2>
+      </div>
       {comment.map((comment) => (
-        <div key={comment.id}>
-          <div className="commenter">
-            <div className="capitalLetters">
-              <h2>{getInitials(comment.author)}</h2>
+        <div key={comment.id} className="container">
+          <div className="container-header-comment">
+            <div className="commenter">
+              <div className="capitalLetters">
+                <h2>{getInitials(comment.account.user.name)}</h2>
+              </div>
+              <h3>{comment.account.user.name || "User Annonimous"}</h3>
+              <div className="point">·</div>
+              <span>{getTimeDifference(comment.last_updated_at)}</span>
             </div>
-            <h3>{comment.author || "User Annonimous"}</h3>
-            <div className="point">·</div>
-            <span>{getTimeDifference(comment.last_updated_at)}</span>
+
+            <div className="option">
+              {user.id === comment.account_id && (
+                <div className="comment-options">
+                  <FaBars onClick={() => handleToggleOptions(comment.id)} />
+                </div>
+              )}
+              <div className="options">
+                {isOptionsOpen === comment.id && (
+                  <div className="comment-options-menu">
+                    <button
+                      onClick={() =>
+                        handlePrepareToEdit(comment.id, comment.text)
+                      }
+                    >
+                      Editar
+                    </button>
+                    <button onClick={() => handlePrepareToDelete(comment.id)}>
+                      Excluir
+                    </button>
+                  </div>
+                )}
+              </div>
+            </div>
           </div>
 
-          <div className="comment">
-            {user.id === comment.account_id && (
-              <div className="comment-options">
-                <FaBars onClick={() => handleToggleOptions(comment.id)} />
-              </div>
-            )}
-          </div>
-          {isOptionsOpen === comment.id && (
-            <div className="comment-options-menu">
-              <button onClick={() => handlePrepareToEdit(comment.id, comment.text)}>
-                Editar
-              </button>
-              <button onClick={() => handlePrepareToDelete(comment.id)}>
-                Excluir
-              </button>
-            </div>
-          )}
+          <p>{comment.text}</p>
         </div>
       ))}
 
