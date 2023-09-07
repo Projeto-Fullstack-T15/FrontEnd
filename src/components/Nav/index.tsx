@@ -4,68 +4,48 @@ import { FilterValue } from '../../hooks/filter.hook';
 import { State } from '../../hooks/state.hook';
 import ButtonComponents from '../Global/Buttons';
 import { NavStyle } from './style';
+import { AnnouncementFilters } from './interface';
+import RangeInput from '../Global/RangeInput';
 
 const NavComponents = () => {
-  const context = useContext(AnnouncementContext);
-  const filterBrands = State<Array<string>>([]);
-  const filterModels = State<Array<string>>([]);
-  const filterColors = State<Array<string>>([]);
-  const filterYears = State<Array<number>>([]);
-  const filterFuelTypes = State<Array<string>>([]);
-  const filterMileageMin = State<number>(context.mileageRangeMin.value);
-  const filterMileageMax = State<number>(context.mileageRangeMax.value);
-  const filterPriceMin = State<number>(context.priceRangeMin.value);
-  const filterPriceMax = State<number>(context.priceRangeMax.value);
+  const { announcements, filteredAnnouncements } = useContext(AnnouncementContext);
+
+  const filters = State<AnnouncementFilters>({
+    brands: [],
+    models: [],
+    colors: [],
+    years: [],
+    fuelTypes: []
+  });
+
+  const maxMileage: number = Math.max(...announcements.value.map((car) => car.mileage));
+  const maxPrice: number = Math.max(...announcements.value.map((car) => car.price));
+  const filterMileage = State<{ min: number, max: number }>({ min: 0, max: maxMileage });
+  const filterPrice = State<{ min: number, max: number }>({ min: 1000, max: maxPrice });
 
   useEffect(() => {
-    context.filteredAnnouncements.set(
-      context.announcements.value.filter((car) => {
+    filterMileage.set({ min: 0, max: maxMileage });
+    filterPrice.set({ min: 1000, max: maxPrice })
+  }, [maxMileage, maxPrice]);
+
+  useEffect(() => {
+    console.log("Filters: ", filters.value);
+    filteredAnnouncements.set(
+      announcements.value.filter((car) => {
         return (
-          (filterBrands.value.length
-            ? new FilterValue(filterBrands.value, car.brand, {
-                exact: true,
-              }).validate()
-            : true) &&
-          (filterModels.value.length
-            ? new FilterValue(filterModels.value, car.model, {
-                exact: true,
-              }).validate()
-            : true) &&
-          (filterColors.value.length
-            ? new FilterValue(filterColors.value, car.color, {
-                exact: true,
-              }).validate()
-            : true) &&
-          (filterYears.value.length
-            ? new FilterValue(filterYears.value, car.year, {
-                exact: true,
-              }).validate()
-            : true) &&
-          (filterFuelTypes.value.length
-            ? new FilterValue(filterFuelTypes.value, car.fuelType, {
-                exact: true,
-              }).validate()
-            : true) &&
-          car.mileage >= filterMileageMin.value &&
-          car.mileage <= filterMileageMax.value &&
-          car.price >= filterPriceMin.value &&
-          car.mileage <= filterPriceMax.value
+          new FilterValue(filters.value.brands, car.brand).validate() &&
+          new FilterValue(filters.value.models, car.model).validate() &&
+          new FilterValue(filters.value.colors, car.color).validate() &&
+          new FilterValue(filters.value.years, car.year).validate() &&
+          new FilterValue(filters.value.fuelTypes, car.fuel_type).validate() &&
+          car.mileage >= filterMileage.value.min &&
+          car.mileage <= filterMileage.value.max &&
+          car.price >= filterPrice.value.min &&
+          car.price <= filterPrice.value.max
         );
       })
     );
-  }, [
-    filterBrands.value,
-    filterModels.value,
-    filterColors.value,
-    filterYears.value,
-    filterFuelTypes.value,
-    filterMileageMin.value,
-    filterMileageMax.value,
-    filterPriceMin.value,
-    filterPriceMax.value,
-    context.announcements.value,
-    context.filteredAnnouncements.value,
-  ]);
+  }, [filters.value, announcements.value, filterMileage.value, filterPrice.value]);
 
   return (
     <NavStyle>
@@ -73,120 +53,196 @@ const NavComponents = () => {
         <div className='selectOptions'>
           <h2> Marca </h2>
           <ul>
-            {context.brands.value.map((brand) => (
-              <li key={brand}> {brand} </li>
+            {[...new Set(announcements.value.map((car) => car.brand))].map((brand) => (
+              <li
+                key={brand}
+                className={filters.value.brands.includes(brand) ? 'selected' : ''}
+                onClick={() => {
+                  if (filters.value.brands.includes(brand)) {
+                    filters.set((prev) => {
+                      const newFilters = { ...prev };
+                      newFilters.brands = newFilters.brands.filter((v) => v !== brand);
+
+                      return newFilters;
+                    });
+                  } else {
+                    filters.set((prev) => {
+                      const newFilters = { ...prev };
+                      newFilters.brands.push(brand);
+
+                      return newFilters;
+                    });
+                  }
+                }}
+              >
+                {brand}
+              </li>
             ))}
           </ul>
         </div>
         <div className='selectOptions'>
           <h2> Modelo </h2>
           <ul>
-            {context.models.value.map((model) => (
-              <li key={model}> {model} </li>
+            {[...new Set(announcements.value.map((car) => car.model))].map((model) => (
+              <li
+                key={model}
+                className={filters.value.models.includes(model) ? 'selected' : ''}
+                onClick={() => {
+                  if (filters.value.models.includes(model)) {
+                    filters.set((prev) => {
+                      const newFilters = { ...prev };
+                      newFilters.models = newFilters.models.filter((v) => v !== model);
+
+                      return newFilters;
+                    });
+                  } else {
+                    filters.set((prev) => {
+                      const newFilters = { ...prev };
+                      newFilters.models.push(model);
+
+                      return newFilters;
+                    });
+                  }
+                }}
+              >
+                {model}
+              </li>
             ))}
           </ul>
         </div>
         <div className='selectOptions'>
           <h2> Cor </h2>
           <ul>
-            {context.colors.value.map((color) => (
-              <li key={color}> {color} </li>
+            {[...new Set(announcements.value.map((car) => car.color))].map((color) => (
+              <li
+                key={color}
+                className={filters.value.colors.includes(color) ? 'selected' : ''}
+                onClick={() => {
+                  if (filters.value.colors.includes(color)) {
+                    filters.set((prev) => {
+                      const newFilters = { ...prev };
+                      newFilters.colors = newFilters.colors.filter((v) => v !== color);
+
+                      return newFilters;
+                    });
+                  } else {
+                    filters.set((prev) => {
+                      const newFilters = { ...prev };
+                      newFilters.colors.push(color);
+
+                      return newFilters;
+                    });
+                  }
+                }}
+              >
+                {color}
+              </li>
             ))}
           </ul>
         </div>
         <div className='selectOptions'>
           <h2> Ano </h2>
           <ul>
-            {context.years.value.map((year) => (
-              <li key={year}> {year} </li>
+            {[...new Set(announcements.value.map((car) => car.year))].map((year) => (
+              <li
+                key={year}
+                className={filters.value.years.includes(year) ? 'selected' : ''}
+                onClick={() => {
+                  if (filters.value.years.includes(year)) {
+                    filters.set((prev) => {
+                      const newFilters = { ...prev };
+                      newFilters.years = newFilters.years.filter((v) => v !== year);
+
+                      return newFilters;
+                    });
+                  } else {
+                    filters.set((prev) => {
+                      const newFilters = { ...prev };
+                      newFilters.years.push(year);
+
+                      return newFilters;
+                    });
+                  }
+                }}
+              >
+                {year}
+              </li>
             ))}
           </ul>
         </div>
         <div className='selectOptions'>
           <h2> Combustível </h2>
           <ul>
-            {context.fuelTypes.value.map((fuelType) => (
-              <li key={fuelType}> {fuelType} </li>
+            {[...new Set(announcements.value.map((car) => car.fuel_type))].map((fuelType) => (
+              <li
+                key={fuelType}
+                className={filters.value.fuelTypes.includes(fuelType) ? 'selected' : ''}
+                onClick={() => {
+                  if (filters.value.fuelTypes.includes(fuelType)) {
+                    filters.set((prev) => {
+                      const newFilters = { ...prev };
+                      newFilters.fuelTypes = newFilters.fuelTypes.filter((v) => v !== fuelType);
+
+                      return newFilters;
+                    });
+                  } else {
+                    filters.set((prev) => {
+                      const newFilters = { ...prev };
+                      newFilters.fuelTypes.push(fuelType);
+
+                      return newFilters;
+                    });
+                  }
+                }}
+              >
+                {fuelType}
+              </li>
             ))}
           </ul>
         </div>
-        <div className='rangeOptions'>
-          <h2> Km </h2>
-          <span>
-            <p> {context.mileageRangeMin.value} km </p>
-            <p> {context.mileageRangeMax.value} km </p>
-          </span>
-          <div className='rangeInputs'>
-            <input
-              className='range-input-min'
-              type='range'
-              name='km'
-              min={context.mileageRangeMin.value}
-              max={context.mileageRangeMax.value / 2}
-              step={
-                (context.mileageRangeMax.value / 2 -
-                  context.mileageRangeMin.value) /
-                100
-              }
-              value={filterMileageMin.value}
-              onChange={(e) => filterMileageMin.set(Number(e.target.value))}
-            />
-            <input
-              className='range-input-max'
-              type='range'
-              name='km'
-              min={context.mileageRangeMax.value / 2}
-              max={context.mileageRangeMax.value}
-              step={
-                (context.mileageRangeMax.value -
-                  context.mileageRangeMin.value / 2) /
-                1000
-              }
-              value={filterMileageMax.value}
-              onChange={(e) => filterMileageMax.set(Number(e.target.value))}
+        {
+          maxMileage && maxMileage > 0 &&
+          <div className='rangeOptions'>
+            <h2> Km </h2>
+            <span>
+              <p> {filterMileage.value.min} km </p>
+              <p> {filterMileage.value.max} km </p>
+            </span>
+            <RangeInput
+              state={filterMileage}
+              minValue={0}
+              maxValue={maxMileage}
+              step={1000}
             />
           </div>
-        </div>
-        <div className='rangeOptions'>
-          <h2> Preço </h2>
-          <span>
-            <p> R$ {String(context.priceRangeMin.value).slice(0, -3)} mil </p>
-            <p> R$ {String(context.priceRangeMax.value).slice(0, -3)} mil </p>
-          </span>
-          <div className='rangeInputs'>
-            <input
-              className='range-input-min'
-              type='range'
-              name='price'
-              min={context.priceRangeMin.value}
-              max={context.priceRangeMax.value / 2}
-              step={
-                (context.priceRangeMax.value / 2 -
-                  context.priceRangeMin.value) /
-                1000
-              }
-              value={filterPriceMin.value}
-              onChange={(e) => filterPriceMin.set(Number(e.target.value))}
-            />
-            <input
-              type='range'
-              className='range-input-max'
-              name='price'
-              min={context.priceRangeMax.value / 2}
-              max={context.priceRangeMax.value}
-              step={
-                (context.priceRangeMax.value -
-                  context.priceRangeMax.value / 2) /
-                1000
-              }
-              value={filterPriceMax.value}
-              onChange={(e) => filterPriceMax.set(Number(e.target.value))}
+        }
+        {
+          maxPrice && maxPrice > 0 &&
+          <div className='rangeOptions'>
+            <h2> Preço </h2>
+            <span>
+              <p> R$ {String(filterPrice.value.min).slice(0, -3)} mil </p>
+              <p> R$ {String(filterPrice.value.max).slice(0, -3)} mil </p>
+            </span>
+            <RangeInput
+              state={filterPrice}
+              minValue={1000}
+              maxValue={maxPrice}
+              step={1000}
             />
           </div>
-        </div>
+        }
         <div className='navFooterButton'>
           <ButtonComponents
-            {...{ $size: 'small', text: 'Limpar filtros', $type: 'brand1' }}
+            $size='small'
+            text='Limpar filtros'
+            $type='brand1'
+            typeButton='button'
+            onClick={() => {
+              filters.reset();
+              filterMileage.reset();
+              filterPrice.reset();
+            }}
           />
         </div>
       </div>

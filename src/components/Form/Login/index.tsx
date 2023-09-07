@@ -1,13 +1,13 @@
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { loginSchema } from './schema';
-import { yupResolver } from '@hookform/resolvers/yup';
-import { useContext } from 'react';
-import { UserContext } from '../../../contexts/user/userContext';
-import { Input } from '../Input';
-import { ILogin } from '../../../contexts/user/interfaces';
-import ButtonComponents from '../../Global/Buttons';
-import { FormStyled, Title } from './style';
-import { Link } from 'react-router-dom';
+import { useForm, SubmitHandler } from "react-hook-form";
+import { loginSchema } from "./schema";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { useContext } from "react";
+import { UserContext } from "../../../contexts/user/userContext";
+import { Input } from "../Input";
+import { ILogin } from "../../../contexts/user/interfaces";
+import ButtonComponents from "../../Global/Buttons";
+import { FormStyled, Title } from "./style";
+import { Link } from "react-router-dom";
 
 export const LoginForm = () => {
   const { login } = useContext(UserContext);
@@ -28,24 +28,36 @@ export const LoginForm = () => {
     <FormStyled onSubmit={handleSubmit(submit)}>
       <Title>Login</Title>
       <Input
-        label='Email'
-        type='email'
-        placeholder='Digitar email'
-        register={register('email')}
+        label="Email"
+        type="email"
+        placeholder="Digitar email"
+        register={register("email")}
         error={errors.email}
       />
       <Input
-        label='Senha'
-        type='password'
-        placeholder='Digitar senha'
-        register={register('password')}
+        label="Senha"
+        type="password"
+        placeholder="Digitar senha"
+        register={register("password")}
         error={errors.password}
       />
-      <Link to=''>Esqueci minha senha</Link>
-      <ButtonComponents text='Entrar' $type='brand1' $size='large' />
+      <Link to="/sendEmail">Esqueci minha senha</Link>
+      <ButtonComponents
+        typeButton="submit"
+        text="Entrar"
+        $type="brand1"
+        $size="large"
+        $width="100%"
+      />
       <p>Ainda não possui conta ?</p>
-      <Link to='/register'>
-        <ButtonComponents text='Cadastrar' $type='outline2' $size='large' />
+      <Link to="/register">
+        <ButtonComponents
+          typeButton="button"
+          text="Cadastrar"
+          $type="outline2"
+          $size="large"
+          $width="100%"
+        />
       </Link>
     </FormStyled>
   );

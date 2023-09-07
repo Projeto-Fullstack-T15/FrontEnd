@@ -1,8 +1,8 @@
 import { ProviderProps, createContext, useEffect } from "react";
 import { toast } from "react-toastify";
 import { State } from "../../hooks/state.hook";
-import { api } from "../../services/api";
-import Announcement, { AnnouncementContextProps } from "./interface";
+import { api, carsApi } from "../../services/api";
+import Announcement, { AnnouncementContextProps, CarsResponse } from "./interface";
 
 export const AnnouncementContext = createContext(
   {} as AnnouncementContextProps
@@ -13,29 +13,33 @@ export const AnnouncementProvider = ({
 }: ProviderProps<AnnouncementContextProps>) => {
   const announcements = State<Array<Announcement>>([]);
   const filteredAnnouncements = State<Array<Announcement>>([]);
-  const brands = State<Array<string>>([]);
-  const models = State<Array<string>>([]);
-  const colors = State<Array<string>>([]);
-  const years = State<Array<number>>([]);
-  const fuelTypes = State<Array<string>>([]);
-  const mileageRangeMin = State<number>(0);
-  const mileageRangeMax = State<number>(0);
-  const priceRangeMin = State<number>(0);
-  const priceRangeMax = State<number>(0);
+
+  const cars = State<CarsResponse>({});
+
+  const headerWithToken = () => {
+    const token = localStorage.getItem("@TOKEN");
+    return {
+      headers: { authorization: `Bearer ${token}` }
+    }
+  }
 
   function loadAnnouncements() {
     const listRoute = `/announcements`;
-    api
-      .get<Array<Announcement>>(listRoute)
-      .then((res) => announcements.set(res.data))
-      .catch(() => toast.error("Falha ao carregar anúncios..."));
+
+    api.get<Array<Announcement>>(listRoute)
+      .then((res) => {
+        announcements.set(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Falha ao carregar anúncios...");
+      });
   }
 
   function updateAnnouncement(id: number, data: Partial<Announcement>): void {
     const updateRoute = `/announcements/${id}`;
 
-    api
-      .patch(updateRoute, data)
+    api.patch(updateRoute, data, headerWithToken())
       .then(() => loadAnnouncements())
       .catch(() => toast.error("Falha ao atualizar anúncio..."));
   }
@@ -43,8 +47,7 @@ export const AnnouncementProvider = ({
   function removeAnnouncement(id: number): void {
     const deleteRoute = `/announcements/${id}`;
 
-    api
-      .delete(deleteRoute)
+    api.delete(deleteRoute, headerWithToken())
       .then(() => loadAnnouncements())
       .catch(() => toast.error("Falha ao remover anúncio..."));
   }
@@ -52,30 +55,24 @@ export const AnnouncementProvider = ({
   function createAnnouncement(data: any): void {
     const createRoute = `/announcements`;
 
-    api
-      .post(createRoute, data)
+    api.post(createRoute, data, headerWithToken())
       .then(() => loadAnnouncements())
-      .catch(() => toast.error('Falha ao criar anúncio...'));
+      .catch((err) => {
+        console.error(err);
+        toast.error('Falha ao criar anúncio...')
+      });
+  }
+
+  function loadCars() {
+    carsApi.get<CarsResponse>('/cars')
+      .then((res) => cars.set(res.data))
+      .catch((err) => console.error(err));
   }
 
   useEffect(() => {
     loadAnnouncements();
+    loadCars();
   }, []);
-  useEffect(() => {
-    brands.set([...new Set(announcements.value.map((car) => car.brand))]);
-    models.set([...new Set(announcements.value.map((car) => car.model))]);
-    colors.set([...new Set(announcements.value.map((car) => car.color))]);
-    years.set([...new Set(announcements.value.map((car) => car.year))]);
-    fuelTypes.set([...new Set(announcements.value.map((car) => car.fuelType))]);
-
-    const carMileages = [...announcements.value.map((car) => car.mileage)];
-    mileageRangeMin.set(Math.min(...carMileages));
-    mileageRangeMax.set(Math.max(...carMileages));
-
-    const carPrices = [...announcements.value.map((car) => car.price)];
-    priceRangeMin.set(Math.min(...carPrices));
-    priceRangeMax.set(Math.max(...carPrices));
-  }, [announcements.value]);
 
   return (
     <AnnouncementContext.Provider
@@ -86,15 +83,7 @@ export const AnnouncementProvider = ({
         removeAnnouncement,
         createAnnouncement,
         filteredAnnouncements,
-        brands,
-        models,
-        colors,
-        years,
-        fuelTypes,
-        mileageRangeMin,
-        mileageRangeMax,
-        priceRangeMin,
-        priceRangeMax,
+        cars
       }}
     >
       {children}

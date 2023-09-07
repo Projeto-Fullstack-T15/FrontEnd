@@ -2,11 +2,12 @@ import { styled } from 'styled-components';
 
 export const FooterStyle = styled.footer`
   position: static;
+  bottom: 0;
 
   background-color: var(--grey0);
   color: var(--white);
 
-  height: 140px;
+  height: 8.75rem;
 
   display: flex;
   justify-content: space-between;
@@ -26,19 +27,6 @@ export const FooterStyle = styled.footer`
 
   p {
     font-size: 14px;
-  }
-
-  svg {
-    background-color: var(--grey1);
-
-    height: 50px;
-    width: 50px;
-
-    border-radius: 4px;
-
-    font-size: 14px;
-
-    cursor: pointer;
   }
 
   @media (max-width: 425px) {

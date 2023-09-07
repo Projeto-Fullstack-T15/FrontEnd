@@ -1,21 +1,49 @@
 import styled from "styled-components";
 
 export const NavStyle = styled.nav`
-  width: 250px;
+  box-sizing: border-box;
+  width: 20rem;
+  height: max-content;
 
   .content {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    box-sizing: border-box;
     width: 100%;
-    gap: 20px;
-    padding: 10px;
+    gap: 1.25rem;
+    padding: 0.75rem;
+
     .selectOptions {
       display: flex;
       flex-direction: column;
       gap: 10px;
+      width: 100%;
+
+      >ul {
+        list-style: none;
+        width: 100%;
+
+        >li {
+          cursor: pointer;
+          width: 100%;
+
+          &:hover {
+            background-color: rgba(0,0,0, 0.1);
+          }
+        }
+        
+        >li.selected {
+          font-weight: 500;
+          text-decoration: underline;
+        }
+      }
     }
+    
     .rangeOptions {
+      width: 100%;
+      box-sizing: border-box;
+
       span {
         width: 100%;
         display: flex;
@@ -24,48 +52,7 @@ export const NavStyle = styled.nav`
         color: var(--grey3);
         font-weight: 600;
         font-size: 10px;
-      }
-
-      input[type="range"] {
-        --webkit-appearance: none;
-        height: 1px;
-        background: #9747ff;
-        color: #9747ff;
-        width: 40%;
-      }
-      input[type="range"]::-webkit-slider-thumb {
-        -webkit-appearance: none;
-        width: 10px;
-        height: 10px;
-        background: #9747ff;
-        cursor: pointer;
-        border-radius: 50%;
-      }
-
-      .range-input-max {
-        direction: rtl;
-      }
-      input[type="range"][name="maxPrice"][data-max] {
-        transform: scaleX(-1);
-      }
-      .rangeInputs {
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: center;
-        gap: 0px;
-        width: 100%;
-        padding: 10px 0px;
-      }
-
-      ul {
-        list-style: none;
-        font-weight: bolder;
-
-        li {
-          color: var(--grey3);
-          font-weight: 600;
-        }
+        padding: 0.25rem;
       }
     }
     .navFooterButton {

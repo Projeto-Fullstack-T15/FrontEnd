@@ -73,6 +73,8 @@ export const GlobalStyle = createGlobalStyle`
       height: 100vh;
       width: 100vw;
 
+      background-color: var(--grey8);
+
       overflow-x: hidden;
     }
 
@@ -94,6 +96,8 @@ export const ModalContainer = styled.div`
 
   display: flex;
   justify-content: center;
+
+  z-index: 4;
 
   background-color: rgba(0, 0, 0, 0.2);
 `;

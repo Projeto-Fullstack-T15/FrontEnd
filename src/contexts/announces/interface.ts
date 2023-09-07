@@ -1,15 +1,29 @@
 import { StateHook } from '../../hooks/state.hook';
+import { AccountWithUser } from '../user/interfaces';
 
 export default interface Announcement {
-  readonly id: number;
-  readonly brand: string;
-  readonly model: string;
-  readonly color: string;
-  readonly year: number;
-  readonly fuelType: string;
-  readonly mileage: number;
-  readonly price: number;
-  readonly description: string;
+  id: number;
+  is_active: boolean;
+  brand: string;
+  model: string;
+  color: string;
+  year: number;
+  fuel_type: string;
+  mileage: number;
+  price: number;
+  fipe_price: number;
+  description: string;
+  cover_image: string;
+  account_id: number;
+  created_at: string;
+  last_updated_at: string;
+  account: AccountWithUser;
+  gallery_images: GalleryImages[];
+}
+
+interface GalleryImages {
+  id: number;
+  url: string;
 }
 
 export interface AnnouncementContextProps {
@@ -19,17 +33,26 @@ export interface AnnouncementContextProps {
   createAnnouncement: (data: any) => void;
   announcements: StateHook<Array<Announcement>>;
   filteredAnnouncements: StateHook<Array<Announcement>>;
-  brands: StateHook<Array<string>>;
-  models: StateHook<Array<string>>;
-  colors: StateHook<Array<string>>;
-  years: StateHook<Array<number>>;
-  fuelTypes: StateHook<Array<string>>;
-  mileageRangeMin: StateHook<number>;
-  mileageRangeMax: StateHook<number>;
-  priceRangeMin: StateHook<number>;
-  priceRangeMax: StateHook<number>;
+  cars: StateHook<CarsResponse>;
 }
 
 export interface AnnouncementProviderProps {
   children: React.ReactNode;
+}
+
+export interface Car {
+  id: string;
+  name: string;
+  brand: string;
+  year: string;
+  fuel: number;
+  value: number;
+}
+
+export type BrandCarsResponse = Array<Car>;
+
+export type CarName = Pick<Car, 'name'>;
+
+export interface CarsResponse {
+  [brand: string]: Array<CarName>;
 }

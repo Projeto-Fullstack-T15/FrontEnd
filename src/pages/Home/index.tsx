@@ -1,26 +1,24 @@
+import { useContext } from 'react';
 import AnnouncementList from '../../components/AnnouncementList';
 import FooterComponent from '../../components/Global/Footer';
 import HeaderComponents from '../../components/Header';
 import NavComponents from '../../components/Nav';
+import { AnnouncementContext } from '../../contexts/announces/announcementContext';
 import { HomeContainer } from './style';
 
 export const HomePage: React.FC = () => {
-  const isLoggedIn = false;
-  const isAdvertiser = false;
-  const username = 'Usuário Motors';
+  const { filteredAnnouncements } = useContext(AnnouncementContext);
 
   return (
     <HomeContainer>
-      <div className='header'>
-        <HeaderComponents
-          isLoggedIn={isLoggedIn}
-          isAdvertiser={isAdvertiser}
-          username={username}
-        />
-      </div>
+      <HeaderComponents />
       <div className='body'>
         <NavComponents />
-        <AnnouncementList products={} itemsPerPage={6} />
+        <AnnouncementList
+          products={filteredAnnouncements.value}
+          itemsPerPage={6}
+          announcerView={false}
+        />
       </div>
       <FooterComponent />
     </HomeContainer>

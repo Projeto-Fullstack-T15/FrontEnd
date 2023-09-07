@@ -7,10 +7,12 @@ import { AnnouncementsListStyled } from "./style";
 interface ProductListProps {
   products: Array<Announcement>;
   itemsPerPage: number;
+  announcerView: boolean;
 }
 export const AnnouncementList = ({
   products,
   itemsPerPage,
+  announcerView,
 }: ProductListProps) => {
   const [currentPage, setCurrentPage] = useState(1);
   const indexOfLastItem = currentPage * itemsPerPage;
@@ -31,19 +33,31 @@ export const AnnouncementList = ({
     }
   };
 
+  if (products.length === 0) {
+    return (
+      <AnnouncementsListStyled>
+        <div className='noData'>
+          <p>Nenhum anúncio encontrado.</p>
+        </div>
+      </AnnouncementsListStyled>
+    );
+  }
+
   return (
     <AnnouncementsListStyled>
-      <div className="content">
-        {currentItems.map((product, index) => (
-          <ProductCard
-            key={index}
-            announcement={product}
-            announcerView={true}
-          />
+      <div className='content'>
+        {currentItems.map((product) => (
+          <>
+            <ProductCard
+              key={product.id}
+              announcement={product}
+              announcerView={announcerView}
+            />
+          </>
         ))}
       </div>
-      <div className="pagination">
-        {totalPages > 1 && (
+      <div className='pagination'>
+        {totalPages && (
           <PaginationButtons
             currentPage={currentPage}
             totalPages={totalPages}
