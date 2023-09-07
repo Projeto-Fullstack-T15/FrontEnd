@@ -88,53 +88,57 @@ export const CommentsBox = ({ announcementId }) => {
       <div className="title">
         <h2>Comentários</h2>
       </div>
-      {comment.map((comment) => (
-        <div key={comment.id} className="container">
-          <div className="container-header-comment">
-            <div className="commenter">
-              <div className="capitalLetters">
-                <h2>{getInitials(comment.account.user.name)}</h2>
-              </div>
-              <h3>{comment.account.user.name || "User Annonimous"}</h3>
-              <div className="point">·</div>
-              <span>{getTimeDifference(comment.last_updated_at)}</span>
-            </div>
-
-            <div className="option">
-              {user.id === comment.account_id && (
-                <div className="comment-options">
-                  <FaBars onClick={() => handleToggleOptions(comment.id)} />
+      {comment.length === 0 ? (
+        <p>Nenhum comentário disponível.</p>
+      ) : (
+        comment.map((comment) => (
+          <div key={comment.id} className="container">
+            <div className="container-header-comment">
+              <div className="commenter">
+                <div className="capitalLetters">
+                  <h2>{getInitials(comment.account.user.name)}</h2>
                 </div>
-              )}
-              <div className="options">
-                {isOptionsOpen === comment.id && (
-                  <div className="comment-options-menu">
-                    <button
-                      onClick={() =>
-                        handlePrepareToEdit(comment.id, comment.text)
-                      }
-                    >
-                      Editar
-                    </button>
-                    <button onClick={() => handlePrepareToDelete(comment.id)}>
-                      Excluir
-                    </button>
+                <h3>{comment.account.user.name || "User Annonimous"}</h3>
+                <div className="point">·</div>
+                <span>{getTimeDifference(comment.last_updated_at)}</span>
+              </div>
+  
+              <div className="option">
+                {user.id === comment.account_id && (
+                  <div className="comment-options">
+                    <FaBars onClick={() => handleToggleOptions(comment.id)} />
                   </div>
                 )}
+                <div className="options">
+                  {isOptionsOpen === comment.id && (
+                    <div className="comment-options-menu">
+                      <button
+                        onClick={() =>
+                          handlePrepareToEdit(comment.id, comment.text)
+                        }
+                      >
+                        Editar
+                      </button>
+                      <button onClick={() => handlePrepareToDelete(comment.id)}>
+                        Excluir
+                      </button>
+                    </div>
+                  )}
+                </div>
               </div>
             </div>
+  
+            <p>{comment.text}</p>
           </div>
-
-          <p>{comment.text}</p>
-        </div>
-      ))}
-
+        ))
+      )}
+  
       <DeleteCommentModal
         open={isModalDeleteOpen}
         onClose={handleCloseModalDelete}
         onConfirm={handleConfirmDelete}
       />
-
+  
       <EditCommentModal
         open={isEditModalOpen}
         onClose={handleCloseModalEdit}
@@ -143,4 +147,5 @@ export const CommentsBox = ({ announcementId }) => {
       />
     </Container>
   );
+  
 };
