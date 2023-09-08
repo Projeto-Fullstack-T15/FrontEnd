@@ -21,18 +21,18 @@ export interface IUserProviderProps {
 }
 
 export interface IUser {
-  name: string;
-  cpf: string;
-  birthday: Date;
-  description: string;
+  name?: string;
+  cpf?: string;
+  birthday?: Date;
+  description?: string;
 }
 export interface IAddress {
-  zip_code: string;
-  state: string;
-  city: string;
-  street: string;
-  number: string;
-  complement: string;
+  zip_code?: string;
+  state?: string;
+  city?: string;
+  street?: string;
+  number?: string;
+  complement?: string;
 }
 
 export interface ICreateUser {
