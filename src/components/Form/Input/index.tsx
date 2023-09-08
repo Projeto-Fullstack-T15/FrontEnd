@@ -6,6 +6,7 @@ export interface IInput {
   type: string;
   register: UseFormRegisterReturn<string>;
   placeholder: string;
+  error: any;
   withBackground?: string;
   withDiv?: string;
   defaultValue?: string;
@@ -17,6 +18,7 @@ export const Input = ({
   type,
   register,
   placeholder,
+  error,
   withBackground,
   withDiv,
   defaultValue,
@@ -47,6 +49,7 @@ export const Input = ({
         defaultValue={defaultValue || ''}
         className={withBackground === 'yes' ? 'with-background' : ''}
       />
+      {error && <p>{error.message}</p>}
     </FieldStyled>
   );
 };

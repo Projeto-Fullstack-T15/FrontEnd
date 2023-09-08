@@ -7,13 +7,13 @@ export interface IFormEditUser {
   phone?: string | undefined;
   name?: string | undefined;
   cpf?: string | undefined;
-  birthday?: Date | string | undefined;
+  birthday?: Date | undefined;
   description?: string | undefined;
 }
 
 export interface IFormEditUserUser {
   name?: string | undefined;
   description?: string | undefined;
-  birthday?: Date | string | undefined;
+  birthday?: Date | undefined;
   cpf?: string | undefined;
 }
