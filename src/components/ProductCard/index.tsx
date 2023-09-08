@@ -87,7 +87,7 @@ export const ProductCard = ({
             ,00{' '}
           </span>
         </CardLabelsStyle>
-        {user.user.id === announcement.account.user.id ? (
+        {user?.user?.id === announcement.account?.user?.id ? (
           <div className='buttons'>
             <ButtonComponents
               text='Editar'

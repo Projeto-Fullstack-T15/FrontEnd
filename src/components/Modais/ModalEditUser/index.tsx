@@ -22,10 +22,10 @@ const ModalEditUser = ({ setIsEditUserModalOpen }: IModalEditUserProps) => {
 
     const user: IFormEditUserUser = {};
 
-    if (!cpf) user.cpf = cpf;
-    if (!birthday) user.birthday = birthday;
-    if (!name) user.name = name;
-    if (!description) user.description = description;
+    if (cpf !== '') user.cpf = cpf;
+    if (String(birthday) !== '') user.birthday = birthday;
+    if (name !== '') user.name = name;
+    if (description !== '') user.description = description;
 
     const newData: TUpdateUser = {};
 

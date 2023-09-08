@@ -56,7 +56,6 @@ export const CommentProvider = ({ children }) => {
   };
 
   const deleteComment = async (commentId: number) => {
-    console.log(commentId);
     await api
       .delete(`/comments/${commentId}`, {
         headers: {
