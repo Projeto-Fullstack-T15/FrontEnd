@@ -1,8 +1,8 @@
-import { createContext, useState } from "react";
-import { IComment, ICommentContextProps, ICommentRequest } from "./interface";
-import { api } from "../../services/api";
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { createContext, useState } from 'react';
+import { IComment, ICommentContextProps, ICommentRequest } from './interface';
+import { api } from '../../services/api';
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const CommentContext = createContext<ICommentContextProps>(
   {} as ICommentContextProps
@@ -27,12 +27,11 @@ export const CommentProvider = ({ children }) => {
     await api
       .post(`/announcements/${announcementId}/comments`, data, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("@TOKEN")}`,
+          Authorization: `Bearer ${localStorage.getItem('@TOKEN')}`,
         },
       })
-      .then((res) => {
-        setComment((prevComments) => [...prevComments, res.data]);
-        toast.success("Comentário criado com sucesso!");
+      .then(() => {
+        toast.success('Comentário criado com sucesso!');
       })
       .catch((err) => console.error(err));
   };
@@ -41,7 +40,7 @@ export const CommentProvider = ({ children }) => {
     await api
       .patch(`/comments/${commentId}`, data, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("@TOKEN")}`,
+          Authorization: `Bearer ${localStorage.getItem('@TOKEN')}`,
         },
       })
       .then((res) => {
@@ -51,7 +50,7 @@ export const CommentProvider = ({ children }) => {
           )
         );
 
-        toast.success("Comentário atualizado com sucesso!");
+        toast.success('Comentário atualizado com sucesso!');
       })
       .catch((err) => console.error(err));
   };
@@ -61,14 +60,14 @@ export const CommentProvider = ({ children }) => {
     await api
       .delete(`/comments/${commentId}`, {
         headers: {
-          Authorization: `Bearer ${localStorage.getItem("@TOKEN")}`,
+          Authorization: `Bearer ${localStorage.getItem('@TOKEN')}`,
         },
       })
       .then(() => {
         setComment((prevComment) =>
           prevComment.filter((comment) => comment.id !== commentId)
         );
-        toast.success("Comentário deletado com sucesso!");
+        toast.success('Comentário deletado com sucesso!');
       })
       .catch((err) => console.error(err));
   };

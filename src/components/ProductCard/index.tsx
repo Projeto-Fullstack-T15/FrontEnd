@@ -48,7 +48,7 @@ export const ProductCard = ({
           {announcement.is_active ? 'Ativo' : 'Inativo'}
         </BadgeActiveInactiveStyle>
       )}
-      <div className='card_header'>
+      <div className='card_header' onClick={handleRedirect}>
         <img
           src={announcement.cover_image}
           onError={() => (announcement.cover_image = null)}
@@ -56,7 +56,9 @@ export const ProductCard = ({
         <FaCar />
       </div>
       <div className='card_body'>
-        <h3 title={announcement.model}>{announcement.model.slice(0, 38)}</h3>
+        <h3 onClick={handleRedirect} title={announcement.model}>
+          {announcement.model.slice(0, 38)}
+        </h3>
         <p>
           {announcement.description.length > 85
             ? announcement.description.slice(0, 85) + '...'

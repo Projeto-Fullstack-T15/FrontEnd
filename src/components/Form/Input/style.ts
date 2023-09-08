@@ -1,4 +1,4 @@
-import { styled } from "styled-components";
+import { styled } from 'styled-components';
 
 export const FieldStyled = styled.fieldset`
   width: 100%;
@@ -10,36 +10,42 @@ export const FieldStyled = styled.fieldset`
   &.with-div {
     width: 50%;
 
-    input, textarea {
+    input,
+    textarea {
       width: 70%;
     }
 
     @media screen and (min-width: 375px) {
-      input, textarea {
+      input,
+      textarea {
         width: 75%;
       }
     }
 
     @media screen and (min-width: 425px) {
-      input, textarea {
+      input,
+      textarea {
         width: 78%;
       }
     }
 
     @media screen and (min-width: 768px) {
-      input, textarea {
+      input,
+      textarea {
         width: 88%;
       }
     }
 
     @media screen and (min-width: 1024px) {
-      input, textarea {
+      input,
+      textarea {
         width: 75%;
       }
     }
 
     @media screen and (min-width: 1040px) {
-      input, textarea {
+      input,
+      textarea {
         width: 82%;
       }
     }
@@ -52,8 +58,8 @@ export const FieldStyled = styled.fieldset`
     color: var(--grey1);
   }
 
-
-  input, textarea {
+  input,
+  textarea {
     width: -webkit-fill-available;
     border-radius: 0.25rem;
     border: 2px solid var(--grey7);
@@ -68,7 +74,7 @@ export const FieldStyled = styled.fieldset`
     }
 
     ::placeholder {
-      font-family: "Inter", sans-serif;
+      font-family: 'Inter', sans-serif;
       font-size: 1rem;
       color: var(--grey3);
       outline: none;

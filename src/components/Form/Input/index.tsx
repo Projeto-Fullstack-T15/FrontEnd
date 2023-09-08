@@ -1,5 +1,5 @@
-import { UseFormRegisterReturn } from "react-hook-form";
-import { FieldStyled } from "./style";
+import { UseFormRegisterReturn } from 'react-hook-form';
+import { FieldStyled } from './style';
 
 export interface IInput {
   label?: string;
@@ -24,33 +24,31 @@ export const Input = ({
   defaultValue,
   rows,
 }: IInput) => {
-  if (type === "textarea") {
+  if (type === 'textarea') {
     return (
-      <FieldStyled className={withDiv === "yes" ? "with-div" : ""}>
+      <FieldStyled className={withDiv === 'yes' ? 'with-div' : ''}>
         <label htmlFor={register.name}>{label}</label>
         <textarea
           placeholder={placeholder}
           {...register}
-          defaultValue={defaultValue || ""}
-          className={withBackground === "yes" ? "with-background" : ""}
+          defaultValue={defaultValue || ''}
+          className={withBackground === 'yes' ? 'with-background' : ''}
           rows={rows}
         />
-        {error && <p>{error.message}</p>}
       </FieldStyled>
     );
   }
 
   return (
-    <FieldStyled className={withDiv === "yes" ? "with-div" : ""}>
+    <FieldStyled className={withDiv === 'yes' ? 'with-div' : ''}>
       <label htmlFor={register.name}>{label}</label>
       <input
         type={type}
         placeholder={placeholder}
         {...register}
-        defaultValue={defaultValue || ""} 
-        className={withBackground === "yes" ? "with-background" : ""}
+        defaultValue={defaultValue || ''}
+        className={withBackground === 'yes' ? 'with-background' : ''}
       />
-      {error && <p>{error.message}</p>}
     </FieldStyled>
   );
 };
