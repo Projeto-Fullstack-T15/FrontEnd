@@ -112,8 +112,7 @@ export const UserProvider = ({ children }) => {
         toast.success('E-mail enviado com sucesso !');
         navigate('/');
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         toast.error('Erro ao enviar o e-mail, tente novamente mais tarde');
       });
   };
@@ -127,8 +126,7 @@ export const UserProvider = ({ children }) => {
         toast.success('Senha atualizada com sucesso !');
         navigate('/login');
       })
-      .catch((err) => {
-        console.log(err);
+      .catch(() => {
         toast.error('Erro ao atualizar a senha');
       });
   };
