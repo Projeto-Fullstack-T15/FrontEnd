@@ -27,8 +27,6 @@ export const RegisterForm = () => {
   });
 
   const submit: SubmitHandler<ICreateUser> = (data) => {
-    // const { confirmPassword, ...rest } = data;
-
     data.user.birthday = new Date(data.user.birthday);
 
     createUser(data);

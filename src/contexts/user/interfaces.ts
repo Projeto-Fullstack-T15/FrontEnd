@@ -20,26 +20,29 @@ export interface IUserProviderProps {
   children: React.ReactNode;
 }
 
+export interface IUser {
+  name: string;
+  cpf: string;
+  birthday: Date;
+  description: string;
+}
+export interface IAddress {
+  zip_code: string;
+  state: string;
+  city: string;
+  street: string;
+  number: string;
+  complement: string;
+}
+
 export interface ICreateUser {
   email: string;
   password: string;
   confirmPassword: string;
   phone: string;
-  account_type: 'BUYER' | 'ANNOUNCER';
-  user: {
-    name: string;
-    cpf: string;
-    birthday: Date;
-    description: string;
-  };
-  address: {
-    zip_code: string;
-    state: string;
-    city: string;
-    street: string;
-    number: string;
-    complement?: string;
-  };
+  account_type: string;
+  user: IUser;
+  address: IAddress;
 }
 
 export type TUpdateUser = DeepPartial<ICreateUser>;
