@@ -47,8 +47,10 @@ export const UserProvider = ({ children }) => {
   };
 
   const createUser = async (data: ICreateUser) => {
+    const { confirmPassword, ...rest } = data;
+
     await api
-      .post('/accounts', data)
+      .post('/accounts', rest)
       .then((res) => {
         setUser(res.data);
         openSuccessModal();
